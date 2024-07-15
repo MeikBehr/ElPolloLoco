@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
 
     soundVolume = 0.1;
-    endbossSpawned = false;
+    // endbossSpawned = false;
 
 
     IMAGES_ALERT = [
@@ -29,55 +29,59 @@ class Endboss extends MovableObject {
     // consturctor(x,y) ist denkbar um fixe Stelle für Endboss zu haben
     constructor() {
         super();
-        // Startbild
         this.loadImage(this.IMAGES_ALERT[0]);
-        // cachen der Bilder
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
 
-        this.height = 480;
-        this.width = 480;
-        this.x = 300;             // this.x = 600 + Math.random() * 1500;
-        this.y = 0;             // this.y = 0 + Math.random() * 350;
+        this.height = 450;
+        this.width = 350;
+        this.x = 600;
+        this.y = 10;
         this.speed = 0.15 + Math.random() * 0.25;
 
-        this.introduce().then(() => this.animate());
+        this.animate();
+        // this.introduce().then(() => this.animate());
 
     };
 
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_ALERT);
+        }, 170)
+    }
 
 
     // introduce and spawning of endboss
-    introduce() {
-        return new Promise((resolve) => {
-            let interval = setInterval(() => {
-                if (!this.endbossSpawned) {
-                    // this.introduce_sound.playbackRate = 1;
-                    // this.introduce_sound.volume = this.soundVolume;
-                    // this.introduce_sound.play();
-                    this.playAnimation(this.IMAGES_ALERT);
-                    if(this.currentImage == this.IMAGES_ALERT.length) {
-                        this.endbossSpawned = true;
-                        clearInterval(interval);
-                        resolve();
-                    }
-                } else {
-                    resolve();
-                }
-            }, 400)
-        });
-    }
+    // introduce() {
+    //     return new Promise((resolve) => {
+    //         let interval = setInterval(() => {
+    //             if (!this.endbossSpawned) {
+    //                 // this.introduce_sound.playbackRate = 1;
+    //                 // this.introduce_sound.volume = this.soundVolume;
+    //                 // this.introduce_sound.play();
+    //                 this.playAnimation(this.IMAGES_ALERT);
+    //                 if(this.currentImage == this.IMAGES_ALERT.length) {
+    //                     this.endbossSpawned = true;
+    //                     clearInterval(interval);
+    //                     resolve();
+    //                 }
+    //             } else {
+    //                 resolve();
+    //             }
+    //         }, 400)
+    //     });
+    // }
 
 
-    animate() {
+    // animate() {
     
-        // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
-        setInterval(() => {
-            if (this.endbossSpawned) {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
-        }, 170)
-    }
+    //     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
+    //     setInterval(() => {
+    //         if (this.endbossSpawned) {
+    //             this.playAnimation(this.IMAGES_WALKING);
+    //         }
+    //     }, 170)
+    // }
 
     
 

@@ -39,7 +39,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);                // poison zeichnen
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-        // this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück
