@@ -3,9 +3,10 @@
 
 class Chicken extends MovableObject {
 
-    height = 150;
-    width = 150;
-    y = 280;
+    height = 80;
+    width = 80;
+    y = 345;
+    speed = 0.15;
 
     IMAGES_WALKING = [
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -13,15 +14,13 @@ class Chicken extends MovableObject {
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
 
-    constructor(x,y) {
+    constructor(x) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
         
-        // cachen der Bilder für walking
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 600 + Math.random() * 500;
-        // this.x = x;
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.x = x + Math.random() * 500;
+        this.speed = this.speed + Math.random() * 0.25;
 
         this.animate();
     }
@@ -29,7 +28,9 @@ class Chicken extends MovableObject {
 
     // spielt die gecachten Bilder ab z.B. Animation beim walking
     animate() {
+
         this.moveLeft();
+
         setInterval( () => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 175);

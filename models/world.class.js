@@ -7,8 +7,10 @@ class World {
     keyboard;
     level = level1;
     camera_x = 0;
-    // soundVolume = 0.3;
-    // backgroundSound = new Audio('./assets/audio/background.mp3'); 
+    soundVolume = 0.01;
+
+    backgroundSound_on = false;
+    backgroundSound = new Audio('./assets/audio/background.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -22,8 +24,8 @@ class World {
 
     setWorld() {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
-        // this.backgroundSound.volume = this.soundVolume;
-        // this.backgroundSound.play();
+        this.backgroundSound.volume = this.soundVolume;
+        if (this.backgroundSound_on) {this.backgroundSound.play();};
     }
 
 
