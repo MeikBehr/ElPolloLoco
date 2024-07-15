@@ -34,15 +34,12 @@ class World {
         this.ctx.translate(this.camera_x, 0);                   // Kameraverschiebung
         
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
-        this.addToMap(this.level.clouds[0]);
-        // this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.light[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
-        // this.addObjectsToMap(this.level.endboss);          
+        this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
+        this.addObjectsToMap(this.level.coins);                  // coin zeichnen
+        this.addObjectsToMap(this.level.bottles);                // poison zeichnen
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-        // MISSING small chicken: this.addObjectsToMap(this.level.chicken);             // jellyfishe zeichnen
-        // this.addObjectsToMap(this.level.coins);                  // coin zeichnen
-        // this.addObjectsToMap(this.level.bottles);                // poison zeichnen
-        
+        // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück

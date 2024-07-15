@@ -1,7 +1,7 @@
 class Coin extends MovableObject {
 
-    height = 40;
-    width = 40;
+    height = 100;
+    width = 100;
 
     IMAGES_COINS = [
         './assets/img/8_coin/coin_1.png',

@@ -13,11 +13,8 @@ class Chicken_small extends MovableObject {
     constructor(x,y) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
-        
-        // cachen der Bilder für walking
         this.loadImages(this.IMAGES_WALKING);
         this.x = 600 + Math.random() * 500;
-        // this.x = x;
         this.speed = 0.15 + Math.random() * 0.25;
 
         this.animate();
