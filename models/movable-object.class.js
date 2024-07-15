@@ -5,6 +5,8 @@ class MovableObject {
     height;
     width;
     speed;
+    speedY = 0;
+    acceleration = 2.5;
     imageCache = {};
     currentImage = 0;
     otherDirection = false;
@@ -49,6 +51,21 @@ class MovableObject {
         let path = images[i];
         this.img = this.imageCache[path];   // img & imageCache sind in der moveable-object.class.js declariert
         this.currentImage++;
+    }
+
+
+    applyGravity(groundLevel) {
+        setInterval(()=> {
+            if (this.isAboveGround(groundLevel)) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            };
+        }, 1000 / 25)
+    }
+
+    
+    isAboveGround(groundLevel) {
+        return this.y < groundLevel;
     }
 
 }
