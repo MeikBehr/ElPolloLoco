@@ -51,38 +51,6 @@ class Endboss extends MovableObject {
     }
 
 
-    // introduce and spawning of endboss
-    // introduce() {
-    //     return new Promise((resolve) => {
-    //         let interval = setInterval(() => {
-    //             if (!this.endbossSpawned) {
-    //                 // this.introduce_sound.playbackRate = 1;
-    //                 // this.introduce_sound.volume = this.soundVolume;
-    //                 // this.introduce_sound.play();
-    //                 this.playAnimation(this.IMAGES_ALERT);
-    //                 if(this.currentImage == this.IMAGES_ALERT.length) {
-    //                     this.endbossSpawned = true;
-    //                     clearInterval(interval);
-    //                     resolve();
-    //                 }
-    //             } else {
-    //                 resolve();
-    //             }
-    //         }, 400)
-    //     });
-    // }
-
-
-    // animate() {
-    
-    //     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
-    //     setInterval(() => {
-    //         if (this.endbossSpawned) {
-    //             this.playAnimation(this.IMAGES_WALKING);
-    //         }
-    //     }, 170)
-    // }
-
     
 
 }
@@ -91,39 +59,3 @@ class Endboss extends MovableObject {
 
 
 
-
-
-/*
-
-
-
-introduce() {
-
-        return new Promise((resolve) => {
-        
-            setInterval(() => {
-
-                if (!this.endbossSpawned) {
-                    this.introduce_sound.playbackRate = 1;
-                    this.introduce_sound.volume = 0.5;
-                    this.introduce_sound.play();
-                    this.playAnimation(this.IMAGES_INTRODUCE);
-                    if(this.currentImage == this.IMAGES_INTRODUCE.length) {
-                        this.endbossSpawned = true;
-                    }
-                } else {
-                    this.playAnimation(this.IMAGES_FLOATING);
-                }
-    
-            }, 500)
-
-            setTimeout(() => {
-                console.log("Endboss introduced");
-                resolve();
-            }, 5000); // Beispiel: 2 Sekunden Verzögerung für die Einführungsanimation
-        });
-
-    }
-
-
-*/

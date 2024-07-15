@@ -6,7 +6,7 @@ class Chicken extends MovableObject {
     height = 80;
     width = 80;
     y = 345;
-    speed = 0.15;
+    speed = 2.15;
 
     IMAGES_WALKING = [
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',

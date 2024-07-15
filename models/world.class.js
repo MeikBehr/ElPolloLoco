@@ -40,11 +40,20 @@ class World {
         this.addObjectsToMap(this.level.coins);                  // coin zeichnen
         this.addObjectsToMap(this.level.bottles);                // poison zeichnen
         this.addObjectsToMap(this.level.chicken_small); 
+        
         this.addObjectsToMap(this.level.chicken);
+
+
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück
+
+
+        // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
+        this.chickenLoop(this.level.chicken);
+        this.chickenLoop(this.level.chicken_small);
+
 
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
             this.draw();
@@ -93,6 +102,15 @@ class World {
     }
 
     
+
+    chickenLoop() {
+        this.level.chicken.forEach((chick) => {
+            if (chick.x <= -150) {
+                chick.x = 3500;
+            }
+        })
+    }
+
 
 }
 
