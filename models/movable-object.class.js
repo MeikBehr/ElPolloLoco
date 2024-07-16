@@ -6,7 +6,7 @@ class MovableObject {
     width;
     speed;
     speedY = 0;
-    acceleration = 2.5;
+    acceleration = 1.5;
     imageCache = {};
     currentImage = 0;
     otherDirection = false;
@@ -56,14 +56,14 @@ class MovableObject {
 
     applyGravity(groundLevel) {
         setInterval(()=> {
-            if (this.isAboveGround(groundLevel)) {
+            if (this.isAboveGround(groundLevel) || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             };
         }, 1000 / 25)
     }
 
-    
+
     isAboveGround(groundLevel) {
         return this.y < groundLevel;
     }
