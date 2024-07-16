@@ -30,19 +30,6 @@ class MovableObject {
         })
     }
 
-    moveRight() {
-        setInterval(() => {
-            this.x += this.speed;
-        }, 1000 / 60);
-    }
-    
-
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
-    }
-
 
     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
     playAnimation(images) {
@@ -54,9 +41,9 @@ class MovableObject {
     }
 
 
-    applyGravity(groundLevel) {
+    applyGravity() {
         setInterval(()=> {
-            if (this.isAboveGround(groundLevel) || this.speedY > 0) {
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             };
@@ -64,8 +51,40 @@ class MovableObject {
     }
 
 
-    isAboveGround(groundLevel) {
-        return this.y < groundLevel;
+    isAboveGround() {
+        return this.y < 180;
     }
+
+
+    // moveRight() {
+    //     setInterval(() => {
+    //         this.x += this.speed;
+    //     }, 1000 / 60);
+    // }
+    
+
+    // moveLeft() {
+    //     setInterval(() => {
+    //         this.x -= this.speed;
+    //     }, 1000 / 60);
+    // }
+
+
+    moveRight() {
+        this.x += this.speed;
+    }
+    
+
+    moveLeft() {
+        this.x -= this.speed;
+    }
+
+    jump() {
+        this.speedY = 26;
+        this.jump_sound.playbackRate = 0.4;
+        this.jump_sound.volume = 0.03;
+        this.jump_sound.play();
+    }
+
 
 }

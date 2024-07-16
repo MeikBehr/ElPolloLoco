@@ -3,9 +3,9 @@
 
 class Chicken extends MovableObject {
 
-    height = 80;
-    width = 80;
-    y = 345;
+    height = 100;
+    width = 100;
+    y = 325;
     speed = 2.15;
 
     IMAGES_WALKING = [
@@ -29,7 +29,10 @@ class Chicken extends MovableObject {
     // spielt die gecachten Bilder ab z.B. Animation beim walking
     animate() {
 
-        this.moveLeft();
+        setInterval(() => { 
+            this.moveLeft();
+        }, 1000 / 60)
+
 
         setInterval( () => {
             this.playAnimation(this.IMAGES_WALKING);

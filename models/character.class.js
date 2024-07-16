@@ -3,8 +3,6 @@ class Character extends MovableObject {
     height = 250;
     width = 115;
     speed = 8;
-    jump_speed = 25;
-    groundLevel = 180;
     y = 0; // 180
 
 
@@ -59,7 +57,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
 
-        this.applyGravity(this.groundLevel);
+        this.applyGravity();
 
         this.animate();
 
@@ -79,28 +77,24 @@ class Character extends MovableObject {
 
             if ((this.world.keyboard.RIGHT ||
                 this.world.keyboard.LEFT) &&
-                !this.isAboveGround(this.groundLevel)) {
+                !this.isAboveGround()) {
                     this.walking_sound.playbackRate = 2;
                     this.walking_sound.volume = 0.3;
                     this.walking_sound.play();
             }
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
+                this.moveRight();
                 this.otherDirection = false;
             };
 
             if (this.world.keyboard.LEFT && this.x > 0) {
+                this.moveLeft();
                 this.otherDirection = true;
-                this.x -= this.speed;
             };
 
-
-            if (this.world.keyboard.UP && !this.isAboveGround(this.groundLevel)) {
-                this.speedY = this.jump_speed;
-                this.jump_sound.playbackRate = 0.4;
-                this.jump_sound.volume = 0.03;
-                this.jump_sound.play();
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jump();
             }
 
             this.world.camera_x = -this.x + 50;      // Kamera-X immer auf Charakter-X + 50px
@@ -109,7 +103,7 @@ class Character extends MovableObject {
 
         setInterval( () => {
 
-            if (this.isAboveGround(this.groundLevel)) {
+            if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
@@ -122,8 +116,5 @@ class Character extends MovableObject {
     };
 
 
-    jump() {
-
-    };
 
 }
