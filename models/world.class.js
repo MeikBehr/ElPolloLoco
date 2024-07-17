@@ -62,8 +62,8 @@ class World {
 
     }
 
-    // funktion zum Zeichnen von Arrays von Objekten - X, Y, Width, Height sind zwingend erforderlich
-    addObjectsToMap(objects) {
+    
+    addObjectsToMap(objects) {              // funktion zum Zeichnen von Arrays von Objekten - X, Y, Width, Height sind zwingend erforderlich
         objects.forEach((object) => {
             this.addToMap(object);
         });
@@ -72,16 +72,19 @@ class World {
     // funktion zum Zeichnen von einzelnen Objekten - X, Y, Width, Height sind zwingend erforderlich
     addToMap(mo) {
 
-        // nur der Character hat otherDirection als true => das hier kann nur für ihn gelten. Wir ändern alles für ihn...
-        if (mo.otherDirection) {
+        if (mo.otherDirection) {    // nur der Character hat otherDirection als true => das hier kann nur für ihn gelten. Wir ändern alles für ihn...
             this.flipImage(mo);
         }     
 
-        // .... zeichnen ihn
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height); // Zeichnet das Bild an der neuen Position
-    
-        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
-        if (mo.otherDirection) {
+        mo.draw(this.ctx);
+
+        if (mo.frame) {
+            mo.drawFrame(this.ctx);     
+        }
+
+        // mo.drawFrame(this.ctx);
+        
+        if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
             this.flipImageBack(mo)
         }
 

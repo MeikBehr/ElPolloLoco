@@ -17,6 +17,20 @@ class MovableObject {
         this.img.src = path;
     }
 
+    
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+
+    drawFrame(ctx) {
+        ctx.beginPath();
+        ctx.lineWidth = '3';
+        ctx.strokeStyle = 'blue';
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
+    }
+
 
     /**
      * 
@@ -54,20 +68,6 @@ class MovableObject {
     isAboveGround() {
         return this.y < 180;
     }
-
-
-    // moveRight() {
-    //     setInterval(() => {
-    //         this.x += this.speed;
-    //     }, 1000 / 60);
-    // }
-    
-
-    // moveLeft() {
-    //     setInterval(() => {
-    //         this.x -= this.speed;
-    //     }, 1000 / 60);
-    // }
 
 
     moveRight() {
