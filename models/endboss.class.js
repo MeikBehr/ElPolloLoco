@@ -2,6 +2,12 @@ class Endboss extends MovableObject {
 
     soundVolume = 0.1;
     // endbossSpawned = false;
+    offset = {
+        top: 60,
+        bottom: 70,
+        left: 0,
+        right: 0,
+      };
 
 
     IMAGES_ALERT = [
@@ -35,7 +41,7 @@ class Endboss extends MovableObject {
 
         this.height = 450;
         this.width = 350;
-        this.x = 600;
+        this.x = 300;
         this.y = 10;
         this.speed = 0.15 + Math.random() * 0.25;
 

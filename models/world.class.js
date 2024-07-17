@@ -18,7 +18,8 @@ class World {
         this.canvas = canvas;               // so, damit draw() das canvas hat und dort clearRect ausführen kann
         this.keyboard = keyboard;
         this.draw();
-        this.setWorld();    // damit übergeben ich die Variablen von world eine Ebene tiefer (hier besonders das Keyboard (Spiellogic - 07))
+        this.setWorld();                    // damit übergeben ich die Variablen von world eine Ebene tiefer (hier besonders das Keyboard (Spiellogic - 07))
+        this.checkCollisions();
     }
 
 
@@ -26,6 +27,42 @@ class World {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
         this.backgroundSound.volume = this.soundVolume;
         if (this.backgroundSound_on) {this.backgroundSound.play();};
+    }
+
+
+    checkCollisions() {
+        setInterval(() => {
+            // this.level.chicken.forEach((enemy) => {
+            //     if (this.character.iscolliding(enemy)) {
+            //         console.log('Kollision');
+            //     };
+            // })
+
+            // this.level.chicken_small.forEach((enemy) => {
+            //     if (this.character.iscolliding(enemy)) {
+            //         console.log('Kollision');
+            //     };
+            // })
+
+            // this.level.endboss.forEach((enemy) => {
+            //     if (this.character.iscolliding(enemy)) {
+            //         console.log('Kollision');
+            //     };
+            // })
+
+            this.level.coins.forEach((enemy) => {
+                if (this.character.iscolliding(enemy)) {
+                    console.log('Kollision');
+                };
+            })
+
+            // this.level.bottles.forEach((enemy) => {
+            //     if (this.character.iscolliding(enemy)) {
+            //         console.log('Kollision');
+            //     };
+            // })
+
+        }, 500)
     }
 
 
@@ -39,11 +76,9 @@ class World {
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
         this.addObjectsToMap(this.level.coins);                  // coin zeichnen
         this.addObjectsToMap(this.level.bottles);                // poison zeichnen
-        this.addObjectsToMap(this.level.chicken_small); 
         
+        this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-
-
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
 
@@ -78,6 +113,7 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        // mo.drawOffsetFrame(this.ctx);
 
         
         if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
@@ -100,7 +136,6 @@ class World {
         this.ctx.restore();                     // Stellt den ursprünglichen Zustand des Kontextes wieder her
     }
 
-    
 
     chickenLoop() {
         this.level.chicken.forEach((chick) => {
@@ -112,11 +147,6 @@ class World {
 
 
 }
-
-
-
-
-
 
 
 

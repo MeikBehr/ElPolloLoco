@@ -24,7 +24,6 @@ class MovableObject {
 
 
     drawFrame(ctx) {
-
         if (this instanceof Character || this instanceof Chicken ||
             this instanceof Endboss || this instanceof Coin || 
             this instanceof Bottle || this instanceof Chicken_small) {
@@ -34,7 +33,75 @@ class MovableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+
+
+
+
+        // return  
+        // this.x + this.width - this.offset.right              > mo.x + mo.offset.left &&
+        // this.y + this.height - this.offset.bottom            > mo.y + mo.offset.top &&
+        // this.x + this.offset.left                            < mo.x + mo.width - mo.offset.right &&
+        // this.y + this.offset.top                             < mo.y + mo.height - mo.offset.bottom
     }
+
+
+
+
+    drawOffsetFrame(ctx) {
+        if (this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+
+        if (this instanceof Chicken_small) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+
+        if (this instanceof Coin) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+
+        if (this instanceof Bottle) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+
+        if (this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+
+        if (this instanceof Character) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+    }
+
+
+
+
+
+
 
 
     /**
@@ -91,5 +158,37 @@ class MovableObject {
         this.jump_sound.play();
     }
 
+    // charakter.iscolliding(chicken);
+    iscolliding(mo) {
+        return  this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+    }
+
+    // ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
 
 }
+
+
+
+
+/* Video 10:
+// Bessere Formel zur Kollisionsberechnung (Genauer)
+isColliding (obj) {
+    return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
+            (this.Y + this.offsetY + this.height) >= obj.Y &&
+            (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
+            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+
+}
+
+
+        // return this.x + this.width > mo.x &&
+        //     this.y + this.height > mo.y &&
+        //     this.x < mo.x &&
+        //     this.y < mo.y + mo.height
+
+
+*/
+
