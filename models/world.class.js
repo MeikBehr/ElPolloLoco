@@ -77,12 +77,8 @@ class World {
         }     
 
         mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
 
-        if (mo.frame) {
-            mo.drawFrame(this.ctx);     
-        }
-
-        // mo.drawFrame(this.ctx);
         
         if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
             this.flipImageBack(mo)

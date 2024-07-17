@@ -4,7 +4,6 @@ class Character extends MovableObject {
     width = 115;
     speed = 8;
     y = 0; // 180
-    frame = true;
 
 
     IMAGES_STANDING = [

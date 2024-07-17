@@ -1,6 +1,5 @@
 class Endboss extends MovableObject {
 
-    frame = true;
     soundVolume = 0.1;
     // endbossSpawned = false;
 
