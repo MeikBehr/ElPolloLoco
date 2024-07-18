@@ -32,37 +32,42 @@ class World {
 
     checkCollisions() {
         setInterval(() => {
-            // this.level.chicken.forEach((enemy) => {
-            //     if (this.character.iscolliding(enemy)) {
-            //         console.log('Kollision');
-            //     };
-            // })
+            this.level.chicken.forEach((enemy) => {
+                if (this.character.iscolliding(enemy)) {
+                    this.character.hit();
+                    console.log('Energy Charakter :', this.character.energy);
+                    console.log('Character is dead? ', this.character.isDead());
+                    // this.character.playAnimation(this.character.IMAGES_HURT);
+                };
+            })
 
             // this.level.chicken_small.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
-            //         console.log('Kollision');
+            //         this.character.energy -= 1;
+            //         console.log("Energy Charakter :", this.character.energy);
             //     };
             // })
 
             // this.level.endboss.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
-            //         console.log('Kollision');
+            //         this.character.energy -= 1;
+            //         console.log("Energy Charakter :", this.character.energy);
             //     };
             // })
 
             this.level.coins.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
-                    console.log('Kollision');
+                    console.log('Kollision mit ', enemy);
                 };
             })
 
-            // this.level.bottles.forEach((enemy) => {
-            //     if (this.character.iscolliding(enemy)) {
-            //         console.log('Kollision');
-            //     };
-            // })
+            this.level.bottles.forEach((enemy) => {
+                if (this.character.iscolliding(enemy)) {
+                    console.log('Kollision mit ', enemy);
+                };
+            })
 
-        }, 500)
+        }, 200)
     }
 
 
@@ -113,7 +118,7 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
-        // mo.drawOffsetFrame(this.ctx);
+        mo.drawOffsetFrame(this.ctx);
 
         
         if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.

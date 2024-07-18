@@ -3,7 +3,7 @@ class Chicken_small extends MovableObject {
     height = 55;
     width = 55;
     y = 368;
-    speed = 3.25;
+    speed = 1.25;
     offset = {
         top: 0,
         bottom: 0,

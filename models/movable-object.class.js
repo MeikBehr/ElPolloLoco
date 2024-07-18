@@ -10,6 +10,7 @@ class MovableObject {
     imageCache = {};
     currentImage = 0;
     otherDirection = false;
+    energy = 100;
 
 
     loadImage(path) {
@@ -161,34 +162,28 @@ class MovableObject {
     // charakter.iscolliding(chicken);
     iscolliding(mo) {
         return  this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
 
-    // ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+
+            // Auferstehung nach 3 Sekunden!
+            const myResurrection = setTimeout(() => {
+                this.energy = 100;
+            }, 3000);
+            /////////////////////////////////////////////
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
 
 }
 
-
-
-
-/* Video 10:
-// Bessere Formel zur Kollisionsberechnung (Genauer)
-isColliding (obj) {
-    return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
-            (this.Y + this.offsetY + this.height) >= obj.Y &&
-            (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
-            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-
-}
-
-
-        // return this.x + this.width > mo.x &&
-        //     this.y + this.height > mo.y &&
-        //     this.x < mo.x &&
-        //     this.y < mo.y + mo.height
-
-
-*/
 

@@ -14,7 +14,7 @@ class Character extends MovableObject {
 
 
     IMAGES_STANDING = [
-        './assets/img/2_character_pepe/2_walk/W-21.png',
+        './assets/img/2_character_pepe/1_idle/idle/I-1.png',
     ]
 
     IMAGES_IDLE = [
@@ -52,6 +52,24 @@ class Character extends MovableObject {
         './assets/img/2_character_pepe/3_jump/J-39.png',
     ]
 
+    IMAGES_HURT = [
+        './assets/img/2_character_pepe/4_hurt/H-41.png',
+        './assets/img/2_character_pepe/4_hurt/H-42.png',
+        './assets/img/2_character_pepe/4_hurt/H-43.png',
+    ]
+
+
+    IMAGES_DYING = [
+        './assets/img/2_character_pepe/5_dead/D-51.png',
+        './assets/img/2_character_pepe/5_dead/D-52.png',
+        './assets/img/2_character_pepe/5_dead/D-53.png',
+        './assets/img/2_character_pepe/5_dead/D-54.png',
+        './assets/img/2_character_pepe/5_dead/D-55.png',
+        './assets/img/2_character_pepe/5_dead/D-56.png',
+        './assets/img/2_character_pepe/5_dead/D-57.png',
+    ]
+
+
     world;                                                          // damit Variablen von world.class.js übergeben werden können => hier besonders das keyboard
      walking_sound = new Audio('./assets/audio/walking.mp3');
      jump_sound = new Audio('assets/audio/jump.mp3');
@@ -63,6 +81,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DYING);
 
         this.applyGravity();
 
@@ -110,18 +130,20 @@ class Character extends MovableObject {
 
         setInterval( () => {
 
-            if (this.isAboveGround()) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DYING);
+                // this.energy = 100;
+            } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
             }  else {
-                this.playAnimation(this.IMAGES_IDLE);
+                this.playAnimation(this.IMAGES_STANDING);
             }
 
         }, 100);
 
     };
-
 
 
 }
