@@ -11,6 +11,7 @@ class MovableObject {
     currentImage = 0;
     otherDirection = false;
     energy = 100;
+    lastHit = 0;
 
 
     loadImage(path) {
@@ -102,9 +103,6 @@ class MovableObject {
 
 
 
-
-
-
     /**
      * 
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ....]
@@ -177,11 +175,21 @@ class MovableObject {
                 this.energy = 100;
             }, 3000);
             /////////////////////////////////////////////
+        } else {
+            this.lastHit = new Date().getTime();
         }
     }
 
+
     isDead() {
         return this.energy == 0;
+    }
+
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;   // difference in ms
+        timepassed = timepassed / 1000                          // difference in s
+        return timepassed < 1;                                  // kleiner 5s true, größer false
     }
 
 }

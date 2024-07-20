@@ -44,26 +44,26 @@ class World {
             // this.level.chicken_small.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
             //         this.character.energy -= 1;
-            //         console.log("Energy Charakter :", this.character.energy);
+            //         // console.log("Energy Charakter :", this.character.energy);
             //     };
             // })
 
             // this.level.endboss.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
             //         this.character.energy -= 1;
-            //         console.log("Energy Charakter :", this.character.energy);
+            //         // console.log("Energy Charakter :", this.character.energy);
             //     };
             // })
 
             this.level.coins.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
-                    console.log('Kollision mit ', enemy);
+                    // console.log('Kollision mit ', enemy);
                 };
             })
 
             this.level.bottles.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
-                    console.log('Kollision mit ', enemy);
+                    // console.log('Kollision mit ', enemy);
                 };
             })
 

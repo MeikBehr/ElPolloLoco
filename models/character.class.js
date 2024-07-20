@@ -52,6 +52,7 @@ class Character extends MovableObject {
         './assets/img/2_character_pepe/3_jump/J-39.png',
     ]
 
+
     IMAGES_HURT = [
         './assets/img/2_character_pepe/4_hurt/H-41.png',
         './assets/img/2_character_pepe/4_hurt/H-42.png',
@@ -69,7 +70,7 @@ class Character extends MovableObject {
         './assets/img/2_character_pepe/5_dead/D-57.png',
     ]
 
-
+    
     world;                                                          // damit Variablen von world.class.js übergeben werden können => hier besonders das keyboard
      walking_sound = new Audio('./assets/audio/walking.mp3');
      jump_sound = new Audio('assets/audio/jump.mp3');
@@ -128,11 +129,14 @@ class Character extends MovableObject {
             
         }, 1000 / 60);
 
+
         setInterval( () => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
                 // this.energy = 100;
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
