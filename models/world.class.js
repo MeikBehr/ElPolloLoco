@@ -7,8 +7,10 @@ class World {
     keyboard;
     level = level1;
     camera_x = 0;
-    soundVolume = 0.01;
 
+    statusbar_health = new StatusbarHealth();
+    
+    soundVolume = 0.01;
     backgroundSound_on = false;
     backgroundSound = new Audio('./assets/audio/background.mp3');
 
@@ -35,8 +37,8 @@ class World {
             this.level.chicken.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
                     this.character.hit();
-                    console.log('Energy Charakter :', this.character.energy);
-                    console.log('Character is dead? ', this.character.isDead());
+                    // console.log('Energy Charakter :', this.character.energy);
+                    // console.log('Character is dead? ', this.character.isDead());
                     // this.character.playAnimation(this.character.IMAGES_HURT);
                 };
             })
@@ -79,13 +81,16 @@ class World {
         
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
-        this.addObjectsToMap(this.level.coins);                  // coin zeichnen
-        this.addObjectsToMap(this.level.bottles);                // poison zeichnen
+        // this.addObjectsToMap(this.level.coins);                  // coin zeichnen
+        // this.addObjectsToMap(this.level.bottles);                // poison zeichnen
         
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-        this.addObjectsToMap(this.level.endboss);
+        // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
+        
+        this.addToMap(this.statusbar_health);
+        // console.log(this.statusbar_health.img);
 
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück
 

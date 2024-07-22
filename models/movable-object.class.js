@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObjects {
     x;
     y;
     img;
@@ -7,22 +7,9 @@ class MovableObject {
     speed;
     speedY = 0;
     acceleration = 1.5;
-    imageCache = {};
-    currentImage = 0;
     otherDirection = false;
     energy = 100;
     lastHit = 0;
-
-
-    loadImage(path) {
-        this.img = new Image();     // vergeichbar dem hier: this.img = document.getElementById('image') <img id="image" src="">
-        this.img.src = path;
-    }
-
-    
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
 
 
     drawFrame(ctx) {
@@ -102,18 +89,6 @@ class MovableObject {
 
 
 
-
-    /**
-     * 
-     * @param {Array} arr - ['img/image1.png', 'img/image2.png', ....]
-     */
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        })
-    }
 
 
     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
