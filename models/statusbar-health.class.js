@@ -1,9 +1,6 @@
 class StatusbarHealth extends Statusbar {
 
-    status = 100;
-
-
-    IMAGES_GREEN = [
+    IMAGES = [
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png',
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png',
@@ -12,17 +9,35 @@ class StatusbarHealth extends Statusbar {
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png',
     ]
 
+    percentage = 100;
+
     constructor() {
         super();
-        this.loadImages(this.IMAGES_GREEN);
+        this.loadImages(this.IMAGES);
 
         this.img = new Image();             // WICHTIG! Sonst ist da nur ein String mit dem Pfad!!!
-        this.img.src = this.IMAGES_GREEN[0];
+        this.img.src = this.IMAGES[0];
 
         this.y = 10;
-        this.width = 200;
-        this.height = 50;
+
+        this.setPercentage(this.percentage);
         
+    }
+
+
+    setPercentage(percentage) {
+        this.percentage = percentage;   // => 0 ... 5
+        let path = this.IMAGES[this.resolveImageIndex(this.percentage)];
+        this.img = this.imageCache[path];
+    }
+
+
+    resolveImageIndex(percentage) {
+        return percentage === 100 ? 5 :
+           percentage >= 80 ? 4 :
+           percentage >= 60 ? 3 :
+           percentage >= 40 ? 2 :
+           percentage >= 20 ? 1 : 0;
     }
 
 }

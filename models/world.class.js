@@ -22,6 +22,7 @@ class World {
         this.draw();
         this.setWorld();                    // damit übergeben ich die Variablen von world eine Ebene tiefer (hier besonders das Keyboard (Spiellogic - 07))
         this.checkCollisions();
+
     }
 
 
@@ -88,6 +89,7 @@ class World {
         this.addObjectsToMap(this.level.chicken);
         // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
+
         
         this.addToMap(this.statusbar_health);
         // console.log(this.statusbar_health.img);
@@ -98,6 +100,8 @@ class World {
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
         this.chickenLoop(this.level.chicken);
         this.chickenLoop(this.level.chicken_small);
+
+        // this.statusbar_health.setPercentage(this.level.character);
 
 
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!

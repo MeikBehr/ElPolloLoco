@@ -1,9 +1,4 @@
 class MovableObject extends DrawableObjects {
-    x;
-    y;
-    img;
-    height;
-    width;
     speed;
     speedY = 0;
     acceleration = 1.5;
@@ -22,9 +17,6 @@ class MovableObject extends DrawableObjects {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
-
-
-
 
         // return  
         // this.x + this.width - this.offset.right              > mo.x + mo.offset.left &&
@@ -142,6 +134,7 @@ class MovableObject extends DrawableObjects {
 
     hit() {
         this.energy -= 5;
+
         if (this.energy < 0) {
             this.energy = 0;
 
