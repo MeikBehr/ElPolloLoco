@@ -102,6 +102,7 @@ class World {
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
         this.chickenLoop(this.level.chicken);
         this.chickenLoop(this.level.chicken_small);
+        this.cloudLoop(this.level.clouds);
 
 
 
@@ -156,6 +157,14 @@ class World {
         this.level.chicken.forEach((chick) => {
             if (chick.x <= -150) {
                 chick.x = 3500;
+            }
+        })
+    }
+
+    cloudLoop() {
+        this.level.clouds.forEach((cloud) => {
+            if (cloud.x <= -150) {
+                cloud.x = 3500;
             }
         })
     }
