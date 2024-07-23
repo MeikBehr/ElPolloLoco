@@ -9,6 +9,7 @@ class World {
     camera_x = 0;
 
     statusbar_health = new StatusbarHealth();
+    statusbar_coin = new StatusbarCoin();
     
     soundVolume = 0.01;
     backgroundSound_on = false;
@@ -89,19 +90,19 @@ class World {
         this.addObjectsToMap(this.level.chicken);
         // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
-
         
-        this.addToMap(this.statusbar_health);
-        // console.log(this.statusbar_health.img);
-
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück
+
+
+        // behind this.ctx.translate(-this.camera_x, 0) because now its pinned to canvas and not moving while character is moving!!!!
+        this.addToMap(this.statusbar_health);
+        this.addToMap(this.statusbar_coin);
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
         this.chickenLoop(this.level.chicken);
         this.chickenLoop(this.level.chicken_small);
 
-        // this.statusbar_health.setPercentage(this.level.character);
 
 
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
