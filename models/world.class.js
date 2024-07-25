@@ -39,23 +39,22 @@ class World {
             this.level.chicken.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
                     this.character.hit();
-                    // console.log('Energy Charakter :', this.character.energy);
+                    this.statusbar_health.setPercentage(this.character.energy);
                     // console.log('Character is dead? ', this.character.isDead());
-                    // this.character.playAnimation(this.character.IMAGES_HURT);
                 };
             })
 
             // this.level.chicken_small.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
-            //         this.character.energy -= 1;
-            //         // console.log("Energy Charakter :", this.character.energy);
+            //         this.character.hit();
+            //         this.statusbar_health.setPercentage(this.character.energy);
             //     };
             // })
 
             // this.level.endboss.forEach((enemy) => {
             //     if (this.character.iscolliding(enemy)) {
-            //         this.character.energy -= 1;
-            //         // console.log("Energy Charakter :", this.character.energy);
+            //         this.character.hit();
+            //         this.statusbar_health.setPercentage(this.character.energy);
             //     };
             // })
 
@@ -79,7 +78,9 @@ class World {
 
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
 
-        this.ctx.translate(this.camera_x, 0);                   // Kameraverschiebung
+
+        // MOVEABLE OBJECTS
+        this.ctx.translate(this.camera_x, 0);                   // Kameraverschiebung bzw. Verschiebung Koordinatensystem
         
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
@@ -91,9 +92,12 @@ class World {
         // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
         
-        this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück
+        this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
 
 
+
+        // FIXED OBJECTS
+        // AUssERHALB der VERSCHIEBUNG der KAMERA
         // behind this.ctx.translate(-this.camera_x, 0) because now its pinned to canvas and not moving while character is moving!!!!
         this.addToMap(this.statusbar_health);
         this.addToMap(this.statusbar_coin);
