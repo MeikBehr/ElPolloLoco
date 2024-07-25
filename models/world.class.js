@@ -10,6 +10,7 @@ class World {
 
     statusbar_health = new StatusbarHealth();
     statusbar_coin = new StatusbarCoin();
+    statusbar_bottle = new StatusbarBottle();
     
     soundVolume = 0.01;
     backgroundSound_on = false;
@@ -60,13 +61,19 @@ class World {
 
             this.level.coins.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
-                    // console.log('Kollision mit ', enemy);
+                    if (this.character.coins < 100) {
+                        this.character.coins += 20;
+                    };
+                    this.statusbar_coin.setPercentage(this.character.coins);
                 };
             })
 
             this.level.bottles.forEach((enemy) => {
                 if (this.character.iscolliding(enemy)) {
-                    // console.log('Kollision mit ', enemy);
+                    if (this.character.bottles < 100) {
+                        this.character.bottles += 20;
+                    };
+                    this.statusbar_bottle.setPercentage(this.character.bottles);
                 };
             })
 
@@ -84,8 +91,8 @@ class World {
         
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
-        // this.addObjectsToMap(this.level.coins);                  // coin zeichnen
-        // this.addObjectsToMap(this.level.bottles);                // poison zeichnen
+        this.addObjectsToMap(this.level.coins);                  // coin zeichnen
+        this.addObjectsToMap(this.level.bottles);                // bottles zeichnen
         
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
@@ -101,6 +108,7 @@ class World {
         // behind this.ctx.translate(-this.camera_x, 0) because now its pinned to canvas and not moving while character is moving!!!!
         this.addToMap(this.statusbar_health);
         this.addToMap(this.statusbar_coin);
+        this.addToMap(this.statusbar_bottle);
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side

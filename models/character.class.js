@@ -2,14 +2,17 @@ class Character extends MovableObject {
 
     height = 250;
     width = 115;
-    speed = 8;
-    y = 0; // 180
+    speed = 4;
+    y = 0; // 0 - 180
+
+    coins = 0;
+    bottles = 0;
 
     offset = {
         top: 90,
-        bottom: 100,
+        bottom: 10,
         left: 10,
-        right: 30,
+        right: 10,
     };
 
 
