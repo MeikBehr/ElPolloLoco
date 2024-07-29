@@ -128,6 +128,10 @@ class Character extends MovableObject {
                 this.jump();
             }
 
+            if (this.world.keyboard.D) {
+                console.log('D')
+            };
+
             this.world.camera_x = -this.x + 50;      // Kamera-X immer auf Charakter-X + 50px
             
         }, 1000 / 60);
