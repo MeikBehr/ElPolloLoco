@@ -22,7 +22,9 @@ class MovableObject extends DrawableObjects {
         setInterval(()=> {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.y > 180 ? this.y = 180 : this.y = this.y;
+                if (this instanceof Character) {        // Character is always on same level after jumping!
+                    this.y > 180 ? this.y = 180 : this.y = this.y; 
+                }
                 this.speedY -= this.acceleration;
             };
         }, 1000 / 25)
@@ -30,7 +32,11 @@ class MovableObject extends DrawableObjects {
 
 
     isAboveGround() {
-        return this.y < 180;
+        if(this instanceof ThrowableObject) {     // Throwable Objects should always fall
+            return true;
+        } else {
+            return this.y < 180;
+        }
     }
 
 

@@ -7,6 +7,8 @@ class World {
     keyboard;
     level = level1;
     camera_x = 0;
+    throwableObjects = [];
+    // throwableObjects = [new ThrowableObject()];
 
     statusbar_health = new StatusbarHealth();
     statusbar_coin = new StatusbarCoin();
@@ -23,7 +25,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();                    // damit übergeben ich die Variablen von world eine Ebene tiefer (hier besonders das Keyboard (Spiellogic - 07))
-        this.checkCollisions();
+        this.run();
 
     }
 
@@ -35,49 +37,76 @@ class World {
     }
 
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.chicken.forEach((enemy) => {
-                if (this.character.iscolliding(enemy)) {
-                    this.character.hit();
-                    this.statusbar_health.setPercentage(this.character.energy);
-                    // console.log('Character is dead? ', this.character.isDead());
-                };
-            })
 
-            // this.level.chicken_small.forEach((enemy) => {
-            //     if (this.character.iscolliding(enemy)) {
-            //         this.character.hit();
-            //         this.statusbar_health.setPercentage(this.character.energy);
-            //     };
-            // })
 
-            // this.level.endboss.forEach((enemy) => {
-            //     if (this.character.iscolliding(enemy)) {
-            //         this.character.hit();
-            //         this.statusbar_health.setPercentage(this.character.energy);
-            //     };
-            // })
+            this.checkCollisions();
+            this.checkThrowObjects();
 
-            this.level.coins.forEach((enemy) => {
-                if (this.character.iscolliding(enemy)) {
-                    if (this.character.coins < 100) {
-                        this.character.coins += 20;
-                    };
-                    this.statusbar_coin.setPercentage(this.character.coins);
-                };
-            })
-
-            this.level.bottles.forEach((enemy) => {
-                if (this.character.iscolliding(enemy)) {
-                    if (this.character.bottles < 100) {
-                        this.character.bottles += 20;
-                    };
-                    this.statusbar_bottle.setPercentage(this.character.bottles);
-                };
-            })
+            this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
+            
 
         }, 200)
+    }
+
+
+    deleteThrowingObjects() {
+        this.throwableObjects = this.throwableObjects.filter((object) => {
+            return object.y <= 500;
+        });
+    }
+
+
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject((this.character.x + 20), this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }
+    };
+
+
+    checkCollisions() {
+        this.level.chicken.forEach((enemy) => {
+            if (this.character.iscolliding(enemy)) {
+                this.character.hit();
+                this.statusbar_health.setPercentage(this.character.energy);
+                // console.log('Character is dead? ', this.character.isDead());
+            };
+        })
+
+        // this.level.chicken_small.forEach((enemy) => {
+        //     if (this.character.iscolliding(enemy)) {
+        //         this.character.hit();
+        //         this.statusbar_health.setPercentage(this.character.energy);
+        //     };
+        // })
+
+        // this.level.endboss.forEach((enemy) => {
+        //     if (this.character.iscolliding(enemy)) {
+        //         this.character.hit();
+        //         this.statusbar_health.setPercentage(this.character.energy);
+        //     };
+        // })
+
+        this.level.coins.forEach((enemy) => {
+            if (this.character.iscolliding(enemy)) {
+                if (this.character.coins < 100) {
+                    this.character.coins += 20;
+                };
+                this.statusbar_coin.setPercentage(this.character.coins);
+            };
+        })
+
+        this.level.bottles.forEach((enemy) => {
+            if (this.character.iscolliding(enemy)) {
+                if (this.character.bottles < 100) {
+                    this.character.bottles += 20;
+                };
+                this.statusbar_bottle.setPercentage(this.character.bottles);
+            };
+        })
     }
 
 
@@ -98,6 +127,8 @@ class World {
         this.addObjectsToMap(this.level.chicken);
         // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
+
+        this.addObjectsToMap(this.throwableObjects);
         
         this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
 

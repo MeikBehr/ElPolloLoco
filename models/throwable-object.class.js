@@ -1,35 +1,34 @@
 class ThrowableObject extends MovableObject {
 
-    speedX = 20;
-    speedY = 20;
+    speedX = 10;
+    speedY = 25;
 
-
-    constructor() {
+    constructor(x, y) {
         super();
-        loadImage('./assets/img/6_salsa_bottle/salsa_bottle.png');
-        this.x = 0;
-        thix.y = 0;
-        this.throw(this.x, this.y, direction);
+        this.loadImage('./assets/img/6_salsa_bottle/salsa_bottle.png');
+        this.x = x;
+        this.y = y;
+        this.height = 80;
+        this.width = 80;
+        this.throw(this.x, this.y);
     }
 
 
     offset = {
-        top: 3,
-        bottom: 3,
+        top: 5,
+        bottom: 5,
         left: 13,
         right: 13,
     };
 
 
-
-    throw(x, y, direction) {
+    throw(x, y) {
         x = x;
         y = y;
-        this.height = 60;
-        this.width = 50;
-        this.speedY = 30;
         this.applyGravity();
-        this.moveThrowableObject(direction);
+        setInterval(() => {
+            this.x += this.speedX;
+        }, 25)
     }
 
 
