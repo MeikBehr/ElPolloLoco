@@ -6,6 +6,20 @@ class World {
     canvas;
     keyboard;
     level = level1;
+
+    arrayOfEnemies = [
+        this.level.chicken_small,
+        this.level.chicken,
+        this.level.endboss,
+    ];
+
+    arrayOfItems = [
+        this.level.coins,
+        this.level.bottles,
+    ];
+
+
+
     camera_x = 0;
     throwableObjects = [];
     // throwableObjects = [new ThrowableObject()];
@@ -39,15 +53,12 @@ class World {
 
     run() {
         setInterval(() => {
-
-
             this.checkCollisions();
+        }, 200);                                // set this to 1000 / 60
+        setInterval(() => {
             this.checkThrowObjects();
-
             this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
-            
-
-        }, 200)
+        }, 200);
     }
 
 
@@ -68,13 +79,25 @@ class World {
 
 
     checkCollisions() {
-        this.level.chicken.forEach((enemy) => {
-            if (this.character.iscolliding(enemy)) {
-                this.character.hit();
-                this.statusbar_health.setPercentage(this.character.energy);
-                // console.log('Character is dead? ', this.character.isDead());
-            };
-        })
+
+        this.arrayOfEnemies.forEach(arrayOfEnemies => {
+            arrayOfEnemies.forEach(enemy => {
+                if (this.character.iscolliding(enemy)) {
+                    this.character.hit();
+                    this.statusbar_health.setPercentage(this.character.energy);
+                };
+            });
+        });
+
+
+
+        // this.level.chicken.forEach((enemy) => {
+        //     if (this.character.iscolliding(enemy)) {
+        //         this.character.hit();
+        //         this.statusbar_health.setPercentage(this.character.energy);
+        //         // console.log('Character is dead? ', this.character.isDead());
+        //     };
+        // })
 
         // this.level.chicken_small.forEach((enemy) => {
         //     if (this.character.iscolliding(enemy)) {
@@ -196,8 +219,8 @@ class World {
     }
 
 
-    chickenLoop() {
-        this.level.chicken.forEach((chick) => {
+    chickenLoop(chicken) {
+        chicken.forEach((chick) => {
             if (chick.x <= -150) {
                 chick.x = 3500;
             }
