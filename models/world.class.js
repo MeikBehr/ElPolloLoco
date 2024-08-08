@@ -1,7 +1,6 @@
 class World {
 
     character = new Character();
-
     ctx;
     canvas;
     keyboard;
@@ -18,24 +17,18 @@ class World {
         this.level.bottles,
     ];
 
-    endboss = true;
-
-
-   
-
+    endboss_sightable = true;
+    coinsCounter = 0;
     camera_x = 0;
     throwableObjects = [];
-    // throwableObjects = [new ThrowableObject()];
-
     statusbar_health = new StatusbarHealth();
     statusbar_coin = new StatusbarCoin();
     statusbar_bottle = new StatusbarBottle();
     statusbar_endboss = new StatusbarEndboss();
-    
-    soundVolume = 0.01;
-    background_sound_on = false;
 
+    ismuted = false;
     background_sound = new Audio('./assets/audio/background.mp3');
+    background_sound_volume = 0.01;
     sound_walk = new Audio('./assets/audio/walking.mp3');
     sound_jump = new Audio('assets/audio/jump.mp3');
     sound_hurt = new Audio('assets/audio/hurt.mp3');
@@ -57,8 +50,11 @@ class World {
 
     setWorld() {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
-        this.background_sound.volume = this.soundVolume;
-        if (this.background_sound_on) {this.background_sound.play();};
+        if (!this.ismuted) {
+            this.background_sound.loop = true;
+            this.background_sound.volume = this.background_sound_volume;
+            this.background_sound.play();
+        };
     }
 
 
@@ -82,30 +78,29 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D  && this.character.bottles > 0) {
             let bottle = new ThrowableObject((this.character.x + 20), this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
     };
 
 
+
+
+
+
+
+
+
+
+
+
     checkCollisions() {
 
-        this.arrayOfEnemies.forEach(arrayOfEnemies => {
-            arrayOfEnemies.forEach(enemy => {
-                if (this.character.iscolliding(enemy)) {
-                    this.character.hit();
-                    this.statusbar_health.setPercentage(this.character.energy);
-                };
-            });
-        });
+        this.checkCollisionsCharacterVsEnemy();
+        this.checkCollisionsCharacterVsEndboss();
 
-        // this.level.endboss.forEach((enemy) => {
-        //     if (this.character.iscolliding(enemy)) {
-        //         this.character.hit();
-        //         this.statusbar_health.setPercentage(this.character.energy);
-        //     };
-        // })
+        
 
 
         this.arrayOfItems.forEach(arrayOfItems => {
@@ -126,6 +121,32 @@ class World {
 
 
     }
+
+
+    checkCollisionsCharacterVsEnemy() {
+        this.arrayOfEnemies.forEach(arrayOfEnemies => {
+            arrayOfEnemies.forEach(enemy => {
+                if (this.character.iscolliding(enemy)) {
+                    this.character.hit();
+                    this.statusbar_health.setPercentage(this.character.energy);
+                };
+            });
+        });
+    }
+
+
+    checkCollisionsCharacterVsEndboss() {
+        this.level.endboss.forEach((enemy) => {
+            if (this.character.iscolliding(enemy)) {
+                this.character.hit();
+                this.statusbar_health.setPercentage(this.character.energy);
+                console.log('ENDBOSS HITS!');
+                
+            };
+        })
+    }
+
+
 
     collectingCoins(index, arrayOfItems) {
         if (this.character.coins < 100) {
@@ -160,7 +181,7 @@ class World {
         
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-        if (this.endboss) {this.addObjectsToMap(this.level.endboss)};
+        if (this.endboss_sightable) {this.addObjectsToMap(this.level.endboss)};
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.addObjectsToMap(this.throwableObjects);
@@ -175,7 +196,7 @@ class World {
         this.addToMap(this.statusbar_health);
         this.addToMap(this.statusbar_coin);
         this.addToMap(this.statusbar_bottle);
-        if (this.endboss) {this.addToMap(this.statusbar_endboss);}
+        if (this.endboss_sightable) {this.addToMap(this.statusbar_endboss);}
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
@@ -183,6 +204,11 @@ class World {
         this.chickenLoop(this.level.chicken_small);
         this.cloudLoop(this.level.clouds);
 
+
+        if (this.character.x >= 2500) {
+            // this.endboss.endbossAlerted = true;
+            this.level.endboss[0].x -= 10;
+        }
 
 
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
