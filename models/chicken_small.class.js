@@ -24,12 +24,12 @@ class Chicken_small extends NormalEnemies {
         './assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png',
     ];
 
-    constructor(x,y) {
+    constructor(x) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 600 + Math.random() * 500;
+        this.x = x + Math.random() * 500;
         this.speed = this.speed + Math.random() * 0.25;
 
         this.animate();

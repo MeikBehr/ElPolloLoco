@@ -4,7 +4,9 @@ class MovableObject extends DrawableObjects {
     acceleration = 1.5;
     otherDirection = false;
     energy = 100;
+    energyEndboss = 100;
     lastHit = 0;
+    lastHitEndBoss = 0;
 
 
 
@@ -64,6 +66,7 @@ class MovableObject extends DrawableObjects {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
 
+    
     hit() {
         this.energy -= 5;
 
