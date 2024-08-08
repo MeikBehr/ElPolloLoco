@@ -19,7 +19,7 @@ class NormalEnemies extends MovableObject {
         }, 1000 / 60)
 
         setInterval( () => {
-            if (!this.chickenIsDead) {
+            if (!this.enemyIsDead) {
                 this.animationIsWalking();
             } else {
                 this.animationIsDead();

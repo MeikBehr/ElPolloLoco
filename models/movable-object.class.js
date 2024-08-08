@@ -60,7 +60,7 @@ class MovableObject extends DrawableObjects {
     }
 
     // charakter.iscolliding(chicken);
-    iscolliding(mo) {
+    isColliding(mo) {
         return  this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
@@ -68,8 +68,20 @@ class MovableObject extends DrawableObjects {
     }
 
     
-    hit() {
-        this.energy -= 5;
+    hit(enemy) {
+
+        if (enemy instanceof Chicken_small) {
+            this.energy -= 1;
+        };
+
+        if (enemy instanceof Chicken) {
+            this.energy -= 5;
+        };
+
+        if (enemy instanceof Endboss) {
+            this.energy -= 10;
+        };
+        
 
         if (this.energy < 0) {
             this.energy = 0;

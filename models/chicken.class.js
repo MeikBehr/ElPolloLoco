@@ -5,7 +5,7 @@ class Chicken extends NormalEnemies {
     y = 325;
     speed = 0.5;
 
-    chickenIsDead = false;
+    enemyIsDead = false;
 
     offset = {
         top: 0,

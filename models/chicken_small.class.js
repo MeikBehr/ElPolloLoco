@@ -1,11 +1,11 @@
 class Chicken_small extends NormalEnemies {
 
-    height = 55;
-    width = 55;
-    y = 368;
+    height = 60;
+    width = 60;
+    y = 366;
     speed = 0.7;
 
-    chickenIsDead = false;
+    enemyIsDead = false;
 
     offset = {
         top: 0,

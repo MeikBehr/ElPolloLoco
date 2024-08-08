@@ -9,7 +9,7 @@ class World {
     arrayOfEnemies = [
         this.level.chicken_small,
         this.level.chicken,
-        this.level.endboss,
+        // this.level.endboss,
     ];
 
     arrayOfItems = [
@@ -61,7 +61,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-        }, 200);                                // set this to 1000 / 60
+        }, 100);                                // set this to 1000 / 60
         setInterval(() => {
             this.checkThrowObjects();
             this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
@@ -97,6 +97,7 @@ class World {
 
     checkCollisions() {
 
+        this.checkCollisionsCharacterJumpOnEnemy();
         this.checkCollisionsCharacterVsEnemy();
         this.checkCollisionsCharacterVsEndboss();
 
@@ -105,7 +106,7 @@ class World {
 
         this.arrayOfItems.forEach(arrayOfItems => {
             arrayOfItems.forEach((item, index) => {
-                if (this.character.iscolliding(item)) {
+                if (this.character.isColliding(item)) {
                     if (item instanceof Coin) {
                         this.collectingCoins(index, arrayOfItems);
                     } else {
@@ -119,15 +120,28 @@ class World {
             });
         })
 
+    }
 
+
+    checkCollisionsCharacterJumpOnEnemy() {
+        this.arrayOfEnemies.forEach(arrayOfEnemies => {
+            arrayOfEnemies.forEach(enemy => {
+                if(this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.enemyIsDead) {
+                    if (!enemy.enemyIsDead) {
+                        this.character.jump();
+                    };
+                    enemy.enemyIsDead = true;
+                }
+            });
+        });
     }
 
 
     checkCollisionsCharacterVsEnemy() {
         this.arrayOfEnemies.forEach(arrayOfEnemies => {
             arrayOfEnemies.forEach(enemy => {
-                if (this.character.iscolliding(enemy)) {
-                    this.character.hit();
+                if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
+                    this.character.hit(enemy);
                     this.statusbar_health.setPercentage(this.character.energy);
                 };
             });
@@ -137,7 +151,7 @@ class World {
 
     checkCollisionsCharacterVsEndboss() {
         this.level.endboss.forEach((enemy) => {
-            if (this.character.iscolliding(enemy)) {
+            if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar_health.setPercentage(this.character.energy);
                 console.log('ENDBOSS HITS!');
@@ -207,7 +221,7 @@ class World {
 
         if (this.character.x >= 2500) {
             // this.endboss.endbossAlerted = true;
-            this.level.endboss[0].x -= 10;
+            this.level.endboss[0].x -= 5;
         }
 
 
