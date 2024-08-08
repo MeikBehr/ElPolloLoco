@@ -1,6 +1,3 @@
-
-/* In USE */ 
-
 class Chicken extends NormalEnemies {
 
     height = 100;

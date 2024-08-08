@@ -2,6 +2,9 @@ class Endboss extends MovableObject {
 
     soundVolume = 0.1;
     // endbossSpawned = false;
+    endbossAlerted = false;
+
+
     offset = {
         top: 60,
         bottom: 70,

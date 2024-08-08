@@ -4,6 +4,9 @@ let canvas;
 let world;
 let level;
 let keyboard = new Keyboard();
+let isLoading = false;
+let isMuted = false;
+let fullscreen = false;
 
 
 function init() {

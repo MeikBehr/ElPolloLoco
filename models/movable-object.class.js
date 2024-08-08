@@ -1,5 +1,9 @@
 class MovableObject extends DrawableObjects {
+    width;
+    height;
     speed;
+    x;
+    y;
     speedY = 0;
     acceleration = 1.5;
     otherDirection = false;
@@ -7,7 +11,7 @@ class MovableObject extends DrawableObjects {
     energyEndboss = 100;
     lastHit = 0;
     lastHitEndBoss = 0;
-
+    standingStill = 0;
 
 
     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
@@ -50,6 +54,7 @@ class MovableObject extends DrawableObjects {
     moveLeft() {
         this.x -= this.speed;
     }
+    
 
     jump() {
         this.speedY = 26;
