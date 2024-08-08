@@ -115,7 +115,7 @@ class Character extends MovableObject {
                 !this.isAboveGround()) {
                     this.world.sound_walk.playbackRate = 2;
                     this.world.sound_walk.volume = 0.3;
-                    this.world.sound_walk.play();
+                    this.playSound(this.world.sound_walk);
             }
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -160,8 +160,8 @@ class Character extends MovableObject {
     characterJump() {
         this.jump();
         this.world.sound_jump.playbackRate = 0.4;
-        this.world.sound_jump.volume = 0.02;
-        this.world.sound_jump.play();
+        this.world.sound_jump.volume = 0.01;
+        this.playSound(this.world.sound_jump);
     }
 
 
@@ -169,7 +169,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_HURT);
         this.world.sound_hurt.playbackRate = 1;
         this.world.sound_hurt.volume = 0.05;
-        this.world.sound_hurt.play();
+        this.playSound(this.world.sound_hurt);
     }
 
 

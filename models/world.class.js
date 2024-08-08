@@ -32,6 +32,9 @@ class World {
     sound_walk = new Audio('./assets/audio/walking.mp3');
     sound_jump = new Audio('assets/audio/jump.mp3');
     sound_hurt = new Audio('assets/audio/hurt.mp3');
+    sound_coin = new Audio('assets/audio/coin.mp3');
+    sound_bottle = new Audio('assets/audio/bottle.mp3');
+    sound_hit_chicken = new Audio('assets/audio/hit_chicken.mp3');
     
 
 
@@ -131,6 +134,9 @@ class World {
                         this.character.jump();
                     };
                     enemy.enemyIsDead = true;
+                    this.sound_hit_chicken.playbackRate = 1;
+                    this.sound_hit_chicken.volume = 0.03;
+                    this.character.playSound(this.sound_hit_chicken);
                 }
             });
         });
@@ -167,6 +173,9 @@ class World {
             this.character.coins += 20;
             arrayOfItems.splice(index, 1);
             this.statusbar_coin.setPercentage(this.character.coins);
+            this.sound_coin.playbackRate = 1;
+            this.sound_coin.volume = 0.05;
+            this.character.playSound(this.sound_coin);
         };
     }
 
@@ -176,6 +185,9 @@ class World {
             this.character.bottles += 20;
             arrayOfItems.splice(index, 1);
             this.statusbar_bottle.setPercentage(this.character.bottles);
+            this.sound_bottle.playbackRate = 1;
+            this.sound_bottle.volume = 0.03;
+            this.character.playSound(this.sound_bottle);
         };
     }
 

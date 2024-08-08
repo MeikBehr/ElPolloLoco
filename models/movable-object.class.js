@@ -108,6 +108,12 @@ class MovableObject extends DrawableObjects {
         return timepassed < 1;                                  // kleiner 5s true, größer false
     }
 
+    playSound(sound) {
+        if (!isMuted) {
+            sound.play();
+        }
+    }
+
 }
 
 
