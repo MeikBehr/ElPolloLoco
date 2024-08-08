@@ -72,58 +72,16 @@ class World {
     }
 
 
-    deleteThrowingObjects() {
-        this.throwableObjects = this.throwableObjects.filter((object) => {
-            return object.y <= 500;
-        });
-    }
-
-
-
-    checkThrowObjects() {
-        if (this.keyboard.D  && this.character.bottles > 0) {
-            let bottle = new ThrowableObject((this.character.x + 20), this.character.y + 100);
-            this.throwableObjects.push(bottle);
-        }
-    };
-
-
-
-
-
-
-
-
-
-
 
 
     checkCollisions() {
-
         this.checkCollisionsCharacterJumpOnEnemy();
         this.checkCollisionsCharacterVsEnemy();
         this.checkCollisionsCharacterVsEndboss();
-
-        
-
-
-        this.arrayOfItems.forEach(arrayOfItems => {
-            arrayOfItems.forEach((item, index) => {
-                if (this.character.isColliding(item)) {
-                    if (item instanceof Coin) {
-                        this.collectingCoins(index, arrayOfItems);
-                    } else {
-                        this.collectingBottles(index, arrayOfItems);
-                    }
-
-                    if (this.character.item < 100) {
-                        this.character.item += 20;
-                    };
-                };
-            });
-        })
+        this.checkCollisionsCharacterVSItems();
 
     }
+
 
 
     checkCollisionsCharacterJumpOnEnemy() {
@@ -134,6 +92,7 @@ class World {
                         this.character.jump();
                     };
                     enemy.enemyIsDead = true;
+                    (enemy instanceof Chicken) ? (enemy.y = enemy.y + 20) : (enemy.y = enemy.y + 5);
                     this.sound_hit_chicken.playbackRate = 1;
                     this.sound_hit_chicken.volume = 0.03;
                     this.character.playSound(this.sound_hit_chicken);
@@ -167,6 +126,24 @@ class World {
     }
 
 
+    checkCollisionsCharacterVSItems() {
+        this.arrayOfItems.forEach(arrayOfItems => {
+            arrayOfItems.forEach((item, index) => {
+                if (this.character.isColliding(item)) {
+                    if (item instanceof Coin) {
+                        this.collectingCoins(index, arrayOfItems);
+                    } else {
+                        this.collectingBottles(index, arrayOfItems);
+                    }
+
+                    if (this.character.item < 100) {
+                        this.character.item += 20;
+                    };
+                };
+            });
+        })
+    }
+
 
     collectingCoins(index, arrayOfItems) {
         if (this.character.coins < 100) {
@@ -190,6 +167,37 @@ class World {
             this.character.playSound(this.sound_bottle);
         };
     }
+
+
+
+
+
+    deleteThrowingObjects() {
+        this.throwableObjects = this.throwableObjects.filter((object) => {
+            return object.y <= 500;
+        });
+    }
+
+
+
+    checkThrowObjects() {
+        if (this.keyboard.D  && this.character.bottles > 0) {
+            let bottle = new ThrowableObject((this.character.x + 20), this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     draw() {
@@ -232,7 +240,6 @@ class World {
 
 
         if (this.character.x >= 2500) {
-            // this.endboss.endbossAlerted = true;
             this.level.endboss[0].x -= 5;
         }
 
@@ -253,20 +260,15 @@ class World {
 
     // funktion zum Zeichnen von einzelnen Objekten - X, Y, Width, Height sind zwingend erforderlich
     addToMap(mo) {
-
         if (mo.otherDirection) {    // nur der Character hat otherDirection als true => das hier kann nur für ihn gelten. Wir ändern alles für ihn...
             this.flipImage(mo);
         }     
-
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawOffsetFrame(this.ctx);
-
-        
+        // mo.drawFrame(this.ctx);
+        // mo.drawOffsetFrame(this.ctx);
         if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
             this.flipImageBack(mo)
         }
-
     }
 
 
