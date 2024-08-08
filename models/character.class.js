@@ -29,19 +29,6 @@ class Character extends MovableObject {
         './assets/img/2_character_pepe/1_idle/idle/I-10.png',
     ]
 
-    IMAGES_IDLE = [
-        './assets/img/2_character_pepe/1_idle/idle/I-1.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-2.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-3.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-4.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-5.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-6.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-7.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-8.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-9.png',
-        './assets/img/2_character_pepe/1_idle/idle/I-10.png',
-    ];
-
     IMAGES_WALKING = [
         './assets/img/2_character_pepe/2_walk/W-21.png',
         './assets/img/2_character_pepe/2_walk/W-22.png',
@@ -98,27 +85,20 @@ class Character extends MovableObject {
 
     
     world;                                                          // damit Variablen von world.class.js übergeben werden können => hier besonders das keyboard
-     walking_sound = new Audio('./assets/audio/walking.mp3');
-     jump_sound = new Audio('assets/audio/jump.mp3');
 
     constructor() {
         super();
         this.loadImage('./assets/img/2_character_pepe/2_walk/W-21.png',);
         this.loadImages(this.IMAGES_STANDING);
-        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_SLEEPING);
-
         this.applyGravity();
-
         this.animate();
 
-
         this.x = 0;
-    
     };
 
     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
@@ -127,15 +107,15 @@ class Character extends MovableObject {
 
         // Bewegung
         setInterval( () => {
-            this.walking_sound.pause();
+            this.world.sound_walk.pause();
 
 
             if ((this.world.keyboard.RIGHT ||
                 this.world.keyboard.LEFT) &&
                 !this.isAboveGround()) {
-                    this.walking_sound.playbackRate = 2;
-                    this.walking_sound.volume = 0.3;
-                    this.walking_sound.play();
+                    this.world.sound_walk.playbackRate = 2;
+                    this.world.sound_walk.volume = 0.3;
+                    this.world.sound_walk.play();
             }
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -149,7 +129,7 @@ class Character extends MovableObject {
             };
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
+                this.characterJump();
             }
 
             this.world.camera_x = -this.x + 50;      // Kamera-X immer auf Charakter-X + 50px
@@ -163,7 +143,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DYING);
                 // this.energy = 100;
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
+                this.animationHurt();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -175,6 +155,22 @@ class Character extends MovableObject {
         }, 100);
 
     };
+
+
+    characterJump() {
+        this.jump();
+        this.world.sound_jump.playbackRate = 0.4;
+        this.world.sound_jump.volume = 0.02;
+        this.world.sound_jump.play();
+    }
+
+
+    animationHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        this.world.sound_hurt.playbackRate = 1;
+        this.world.sound_hurt.volume = 0.05;
+        this.world.sound_hurt.play();
+    }
 
 
 }

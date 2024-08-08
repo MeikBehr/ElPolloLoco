@@ -21,6 +21,8 @@ class World {
     endboss = true;
 
 
+   
+
     camera_x = 0;
     throwableObjects = [];
     // throwableObjects = [new ThrowableObject()];
@@ -31,8 +33,15 @@ class World {
     statusbar_endboss = new StatusbarEndboss();
     
     soundVolume = 0.01;
-    backgroundSound_on = false;
-    backgroundSound = new Audio('./assets/audio/background.mp3');
+    background_sound_on = false;
+
+    background_sound = new Audio('./assets/audio/background.mp3');
+    sound_walk = new Audio('./assets/audio/walking.mp3');
+    sound_jump = new Audio('assets/audio/jump.mp3');
+    sound_hurt = new Audio('assets/audio/hurt.mp3');
+    
+
+
 
 
     constructor(canvas, keyboard) {
@@ -48,8 +57,8 @@ class World {
 
     setWorld() {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
-        this.backgroundSound.volume = this.soundVolume;
-        if (this.backgroundSound_on) {this.backgroundSound.play();};
+        this.background_sound.volume = this.soundVolume;
+        if (this.background_sound_on) {this.background_sound.play();};
     }
 
 

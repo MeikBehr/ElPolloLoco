@@ -55,12 +55,8 @@ class MovableObject extends DrawableObjects {
         this.x -= this.speed;
     }
     
-
     jump() {
         this.speedY = 26;
-        this.jump_sound.playbackRate = 0.4;
-        this.jump_sound.volume = 0.03;
-        this.jump_sound.play();
     }
 
     // charakter.iscolliding(chicken);
