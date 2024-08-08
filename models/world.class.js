@@ -18,6 +18,7 @@ class World {
         this.level.bottles,
     ];
 
+    endboss = true;
 
 
     camera_x = 0;
@@ -150,7 +151,7 @@ class World {
         
         this.addObjectsToMap(this.level.chicken_small); 
         this.addObjectsToMap(this.level.chicken);
-        // this.addObjectsToMap(this.level.endboss);
+        if (this.endboss) {this.addObjectsToMap(this.level.endboss)};
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.addObjectsToMap(this.throwableObjects);
@@ -165,7 +166,7 @@ class World {
         this.addToMap(this.statusbar_health);
         this.addToMap(this.statusbar_coin);
         this.addToMap(this.statusbar_bottle);
-        this.addToMap(this.statusbar_endboss);
+        if (this.endboss) {this.addToMap(this.statusbar_endboss);}
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side

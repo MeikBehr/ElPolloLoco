@@ -56,7 +56,7 @@ class Endboss extends MovableObject {
 
 
     // consturctor(x,y) ist denkbar um fixe Stelle für Endboss zu haben
-    constructor() {
+    constructor(x) {
         super();
         this.loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -67,7 +67,7 @@ class Endboss extends MovableObject {
 
         this.height = 450;
         this.width = 350;
-        this.x = 400;
+        this.x = x;
         this.y = 10;
         this.speed = 0.15 + Math.random() * 0.25;
 

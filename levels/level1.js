@@ -21,7 +21,7 @@ function initLevel() {
         ],
 
         [
-            new Endboss(),
+            new Endboss(3100),
         ],
 
         [

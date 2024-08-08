@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 250;
     width = 115;
-    speed = 4;
+    speed = 8;
     y = 0; // 0 - 180
 
     coins = 0;
