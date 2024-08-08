@@ -27,6 +27,7 @@ class World {
     statusbar_health = new StatusbarHealth();
     statusbar_coin = new StatusbarCoin();
     statusbar_bottle = new StatusbarBottle();
+    statusbar_endboss = new StatusbarEndboss();
     
     soundVolume = 0.01;
     backgroundSound_on = false;
@@ -89,23 +90,6 @@ class World {
             });
         });
 
-
-
-        // this.level.chicken.forEach((enemy) => {
-        //     if (this.character.iscolliding(enemy)) {
-        //         this.character.hit();
-        //         this.statusbar_health.setPercentage(this.character.energy);
-        //         // console.log('Character is dead? ', this.character.isDead());
-        //     };
-        // })
-
-        // this.level.chicken_small.forEach((enemy) => {
-        //     if (this.character.iscolliding(enemy)) {
-        //         this.character.hit();
-        //         this.statusbar_health.setPercentage(this.character.energy);
-        //     };
-        // })
-
         // this.level.endboss.forEach((enemy) => {
         //     if (this.character.iscolliding(enemy)) {
         //         this.character.hit();
@@ -113,23 +97,41 @@ class World {
         //     };
         // })
 
-        this.level.coins.forEach((enemy) => {
-            if (this.character.iscolliding(enemy)) {
-                if (this.character.coins < 100) {
-                    this.character.coins += 20;
+
+        this.arrayOfItems.forEach(arrayOfItems => {
+            arrayOfItems.forEach((item, index) => {
+                if (this.character.iscolliding(item)) {
+                    if (item instanceof Coin) {
+                        this.collectingCoins(index, arrayOfItems);
+                    } else {
+                        this.collectingBottles(index, arrayOfItems);
+                    }
+
+                    if (this.character.item < 100) {
+                        this.character.item += 20;
+                    };
                 };
-                this.statusbar_coin.setPercentage(this.character.coins);
-            };
+            });
         })
 
-        this.level.bottles.forEach((enemy) => {
-            if (this.character.iscolliding(enemy)) {
-                if (this.character.bottles < 100) {
-                    this.character.bottles += 20;
-                };
-                this.statusbar_bottle.setPercentage(this.character.bottles);
-            };
-        })
+
+    }
+
+    collectingCoins(index, arrayOfItems) {
+        if (this.character.coins < 100) {
+            this.character.coins += 20;
+            arrayOfItems.splice(index, 1);
+            this.statusbar_coin.setPercentage(this.character.coins);
+        };
+    }
+
+
+    collectingBottles(index, arrayOfItems) {
+        if (this.character.bottles < 100) {
+            this.character.bottles += 20;
+            arrayOfItems.splice(index, 1);
+            this.statusbar_bottle.setPercentage(this.character.bottles);
+        };
     }
 
 
@@ -163,6 +165,7 @@ class World {
         this.addToMap(this.statusbar_health);
         this.addToMap(this.statusbar_coin);
         this.addToMap(this.statusbar_bottle);
+        this.addToMap(this.statusbar_endboss);
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
