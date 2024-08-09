@@ -30,11 +30,12 @@ class World {
     background_sound = new Audio('./assets/audio/background.mp3');
     background_sound_volume = 0.01;
     sound_walk = new Audio('./assets/audio/walking.mp3');
-    sound_jump = new Audio('assets/audio/jump.mp3');
-    sound_hurt = new Audio('assets/audio/hurt.mp3');
-    sound_coin = new Audio('assets/audio/coin.mp3');
-    sound_bottle = new Audio('assets/audio/bottle.mp3');
-    sound_hit_chicken = new Audio('assets/audio/hit_chicken.mp3');
+    sound_jump = new Audio('./assets/audio/jump.mp3');
+    sound_hurt = new Audio('./assets/audio/hurt.mp3');
+    sound_coin = new Audio('./assets/audio/coin.mp3');
+    sound_bottle = new Audio('./assets/audio/bottle.mp3');
+    sound_hit_chicken = new Audio('./assets/audio/hit_chicken.mp3');
+    sound_snoring = new Audio('./assets/audio/snoring.mp3');
     
 
 
@@ -172,11 +173,15 @@ class World {
 
 
 
+
     deleteThrowingObjects() {
         this.throwableObjects = this.throwableObjects.filter((object) => {
             return object.y <= 500;
         });
     }
+
+
+
 
 
 
