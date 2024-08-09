@@ -174,6 +174,10 @@ class World {
 
 
 
+
+
+
+
     deleteThrowingObjects() {
         this.throwableObjects = this.throwableObjects.filter((object) => {
             return object.y <= 500;
@@ -182,17 +186,16 @@ class World {
 
 
 
+    
 
 
 
     checkThrowObjects() {
-        if (this.keyboard.D  && this.character.bottles > 0) {
-            let bottle = new ThrowableObject((this.character.x + 20), this.character.y + 100);
+        if (this.keyboard.D  && this.character.bottles >= 0) {
+            let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
         }
     };
-
-
 
 
 

@@ -10,7 +10,8 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 80;
-        this.throw(this.x, this.y);
+        // this.throw(this.x, this.y);
+        // this.animate();
     }
 
 
@@ -22,13 +23,21 @@ class ThrowableObject extends MovableObject {
     };
 
 
-    throw(x, y) {
+    throw(x, y, otherDirection) {
         x = x;
         y = y;
         this.applyGravity();
         setInterval(() => {
-            this.x += this.speedX;
+            if (otherDirection) {
+              this.x -=this.speedX;
+            } else {
+              this.x += this.speedX;
+            }
         }, 25)
+
+        setInterval(() => {
+          this.animate();
+        }, 100);
     }
 
 
@@ -42,5 +51,18 @@ class ThrowableObject extends MovableObject {
           }
         }, 25);
     }
+
+
+    animate() {
+      // this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+
+      // if (this.isAboveGround() && !this.isColliding) {
+      //     this.playAnimation(this.IMAGES_BOTTLE_ROTATION);  
+      // }
+      // else {
+      //     this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+      // }
+
+  }
 
 }

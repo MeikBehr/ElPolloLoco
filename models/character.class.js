@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 250;
     width = 115;
     speed = 8;
-    y = 0; // 0 - 180
+    y = 0;
 
     coins = 0;
     bottles = 0;
@@ -98,7 +98,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SLEEPING);
         this.applyGravity();
         this.animate();
-
         this.x = 0;
     };
 
@@ -126,7 +125,7 @@ class Character extends MovableObject {
         this.characterMovesRight();
         this.characterMovesLeft();
         this.characterJumps();
-        this.world.camera_x = -this.x + 50;
+        this.world.camera_x = -this.x + 100;
     }
 
     characterMovesRight() {
@@ -199,7 +198,7 @@ class Character extends MovableObject {
 
     animationIdle() {
         this.playAnimation(this.IMAGES_STANDING);
-        this.idleTime += 200;
+        this.idleTime += 100;
         if (this.idleTime >= 8000) {
             this.playAnimation(this.IMAGES_SLEEPING);
             this.playSound(this.world.sound_snoring);
