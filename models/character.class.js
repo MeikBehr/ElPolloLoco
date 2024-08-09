@@ -145,6 +145,17 @@ class Character extends MovableObject {
     characterJumps() {
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
+            this.characterJumpSound();
+        }
+    }
+
+
+    characterJumpSound() {
+        this.stopSound(this.world.sound_snoring);
+        if (this.world.sound_jump.paused) {
+            this.world.sound_jump.playbackRate = 0.4;
+            this.world.sound_jump.volume = 0.01;
+            this.playSound(this.world.sound_jump);
         }
     }
 
@@ -173,6 +184,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_WALKING);
         this.world.sound_walk.playbackRate = 2;
         this.world.sound_walk.volume = 0.3;
+        this.stopSound(this.world.sound_snoring);
         this.playSound(this.world.sound_walk);
         this.idleTime = 0;
     }
@@ -180,9 +192,6 @@ class Character extends MovableObject {
 
     animationJump() {
         this.playAnimation(this.IMAGES_JUMPING);
-        this.world.sound_jump.playbackRate = 0.4;
-        this.world.sound_jump.volume = 0.01;
-        this.playSound(this.world.sound_jump);
         this.idleTime = 0;
     }
 
@@ -191,6 +200,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_HURT);
         this.world.sound_hurt.playbackRate = 1;
         this.world.sound_hurt.volume = 0.05;
+        this.stopSound(this.world.sound_snoring);
         this.playSound(this.world.sound_hurt);
         this.idleTime = 0;
     }
@@ -198,9 +208,11 @@ class Character extends MovableObject {
 
     animationIdle() {
         this.playAnimation(this.IMAGES_STANDING);
+        this.stopSound(this.world.sound_snoring);
         this.idleTime += 100;
         if (this.idleTime >= 8000) {
             this.playAnimation(this.IMAGES_SLEEPING);
+            this.world.sound_snoring.volume = 0.04;
             this.playSound(this.world.sound_snoring);
         }
     }

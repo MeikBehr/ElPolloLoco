@@ -33,7 +33,8 @@ class World {
     sound_jump = new Audio('./assets/audio/jump.mp3');
     sound_hurt = new Audio('./assets/audio/hurt.mp3');
     sound_coin = new Audio('./assets/audio/coin.mp3');
-    sound_bottle = new Audio('./assets/audio/bottle.mp3');
+    sound_bottle = new Audio('./assets/audio/bottle_collect.mp3');
+    sound_bottle_splash = new Audio('./assets/audio/bottle_splash.mp3');
     sound_hit_chicken = new Audio('./assets/audio/hit_chicken.mp3');
     sound_snoring = new Audio('./assets/audio/snoring.mp3');
     
@@ -55,7 +56,6 @@ class World {
     setWorld() {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
         if (!this.ismuted) {
-            this.background_sound.loop = true;
             this.background_sound.volume = this.background_sound_volume;
             this.background_sound.play();
         };
@@ -91,6 +91,7 @@ class World {
                 if(this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.enemyIsDead) {
                     if (!enemy.enemyIsDead) {
                         this.character.jump();
+                        this.character.characterJumpSound();
                     };
                     enemy.enemyIsDead = true;
                     (enemy instanceof Chicken) ? (enemy.y = enemy.y + 20) : (enemy.y = enemy.y + 5);
@@ -194,6 +195,7 @@ class World {
         if (this.keyboard.D  && this.character.bottles >= 0) {
             let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
+            this.character.idleTime = 0;
         }
     };
 

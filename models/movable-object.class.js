@@ -114,6 +114,10 @@ class MovableObject extends DrawableObjects {
         }
     }
 
+    stopSound(sound) {
+        sound.pause();
+    }
+
 }
 
 
