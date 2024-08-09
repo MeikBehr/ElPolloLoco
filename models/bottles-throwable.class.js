@@ -45,7 +45,6 @@ class BottleThrowable extends ThrowableObject {
     }
 
     animate() {
-
         this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
     }
 

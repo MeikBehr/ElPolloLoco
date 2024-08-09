@@ -35,8 +35,11 @@ class World {
     sound_coin = new Audio('./assets/audio/coin.mp3');
     sound_bottle = new Audio('./assets/audio/bottle_collect.mp3');
     sound_bottle_splash = new Audio('./assets/audio/bottle_splash.mp3');
+    sound_bottle_throw = new Audio('./assets/audio/bottle_throw.mp3');
     sound_hit_chicken = new Audio('./assets/audio/hit_chicken.mp3');
     sound_snoring = new Audio('./assets/audio/snoring.mp3');
+    sound_endboss = new Audio('./assets/audio/endboss.mp3');
+    
     
 
 
@@ -188,20 +191,30 @@ class World {
 
 
     
-
-
-
     checkThrowObjects() {
-        if (this.keyboard.D  && this.character.bottles >= 0) {
+        if (this.throwCooldown) {
+            return;
+        }
+    
+        if (this.keyboard.D && this.character.bottles >= 0) {
             let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.character.idleTime = 0;
+            // this.character.bottles--;
+    
+            if (this.sound_bottle_throw.paused) {
+                this.sound_bottle_throw.playbackRate = 1;
+                this.sound_bottle_throw.volume = 0.1;
+                bottle.playSound(this.sound_bottle_throw);
+            }
+    
+            this.throwCooldown = true;
+            setTimeout(() => {
+                this.throwCooldown = false;
+            }, 2000);
         }
     };
-
-
-
-
+    
 
 
 
