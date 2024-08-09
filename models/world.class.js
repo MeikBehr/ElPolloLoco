@@ -301,9 +301,9 @@ class World {
         this.cloudLoop(this.level.clouds);
 
 
-        if (this.character.x >= 2500) {
-            this.level.endboss[0].x -= 5;
-        }
+        // if (this.character.x >= 2500) {
+        //     this.level.endboss[0].x -= 5;
+        // }
 
 
         this.showCoins();

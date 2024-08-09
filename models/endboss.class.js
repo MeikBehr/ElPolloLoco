@@ -106,6 +106,18 @@ class Endboss extends MovableObject {
         else if (this.isHurtEndboss()) {
             this.animationHurt();
         } 
+
+        else if (this.i < 10) {
+            this.animationAlert();     
+        }
+        else if (this.i < 20) {
+            this.animationAttack();
+        }
+        else {        
+            this.animationWalk();
+        }
+        this.i++;    
+        this.characterAnimatesEndboss();
     }
 
 
@@ -129,14 +141,28 @@ class Endboss extends MovableObject {
         // }, 1500);
     }
 
+    animationAlert() {
+        this.playAnimation(this.IMAGES_ALERT); 
+    }
+
+    animationAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
+    }
+
+    animationWalk() {
+        this.playAnimation(this.IMAGES_WALKING);
+    }
+
 
     characterAnimatesEndboss() {
-        if (this.world.character.x > 2500 && !this.hadFirstContact) {
+        if (this.world.character.x > 2600 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
             console.log('Endboss called!');
         }
     }
+
+
 
 
 
