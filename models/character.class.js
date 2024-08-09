@@ -196,12 +196,15 @@ class Character extends MovableObject {
     }
 
 
+
     animationHurt() {
         this.playAnimation(this.IMAGES_HURT);
-        this.world.sound_hurt.playbackRate = 1;
-        this.world.sound_hurt.volume = 0.05;
         this.stopSound(this.world.sound_snoring);
-        this.playSound(this.world.sound_hurt);
+        if (this.world.sound_jump.paused) {
+            this.world.sound_hurt.playbackRate = 1;
+            this.world.sound_hurt.volume = 0.05;
+            this.playSound(this.world.sound_hurt);
+        }
         this.idleTime = 0;
     }
 

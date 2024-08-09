@@ -119,6 +119,7 @@ class World {
     }
 
 
+
     checkCollisionsCharacterVsEndboss() {
         this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -215,6 +216,15 @@ class World {
         }
     };
     
+
+
+
+
+
+
+
+
+
 
 
 
