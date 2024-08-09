@@ -306,6 +306,10 @@ class World {
         }
 
 
+        this.showCoins();
+        this.showBottles();
+        this.showHealth();
+
         // this.gameOverTest();
 
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
@@ -336,7 +340,25 @@ class World {
     }
 
 
+    showCoins() {
+        this.ctx.font="24px Zabars";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText(': ' + this.character.coins / 20, 225, 97);
+    }
 
+
+    showBottles() {
+        this.ctx.font="24px Zabars";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText(': ' + this.character.bottles / 20, 225, 142);
+    }
+
+
+    showHealth() {
+        this.ctx.font="24px Zabars";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText(': ' + this.character.energy + ' %', 225, 52);
+    }
 
 
     
