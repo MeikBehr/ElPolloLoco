@@ -58,6 +58,7 @@ class World {
 
     setWorld() {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
+        this.level.endboss[0].world = this;                          // endboss hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
         if (!this.ismuted) {
             this.background_sound.volume = this.background_sound_volume;
             this.background_sound.play();
@@ -123,8 +124,8 @@ class World {
 
     checkCollisionsCharacterVsEndboss() {
         this.level.endboss.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
+            if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
+                this.character.hit(enemy);
                 this.statusbar_health.setPercentage(this.character.energy);
             };
         })
@@ -214,7 +215,7 @@ class World {
             this.throwCooldown = true;
             setTimeout(() => {
                 this.throwCooldown = false;
-            }, 2000);
+            }, 1000);
         }
     };
     
@@ -242,7 +243,6 @@ class World {
 
 
     checkCollisionsBottleEndboss(bottle, index) {
-
         this.level.endboss.forEach((endboss) => {
             if (bottle.isColliding(endboss)) {
                 this.sound_bottle_splash.volume = 0.1;

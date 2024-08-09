@@ -200,7 +200,7 @@ class Character extends MovableObject {
     animationHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.stopSound(this.world.sound_snoring);
-        if (this.world.sound_jump.paused) {
+        if (this.world.sound_hurt.paused) {
             this.world.sound_hurt.playbackRate = 1;
             this.world.sound_hurt.volume = 0.05;
             this.playSound(this.world.sound_hurt);

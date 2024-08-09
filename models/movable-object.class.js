@@ -78,9 +78,9 @@ class MovableObject extends DrawableObjects {
             this.energy -= 5;
         };
 
-        // if (enemy instanceof Endboss) {
-        //     this.energy -= 10;
-        // };
+        if (enemy instanceof Endboss) {
+            this.energy -= 10;
+        };
         
 
         if (this.energy < 0) {
@@ -123,6 +123,12 @@ class MovableObject extends DrawableObjects {
     stopSound(sound) {
         sound.pause();
     }
+
+    stopAnimation() {
+        clearInterval(this.animationInterval);
+        this.currentImageIndex = 0;
+    }
+    
 
 }
 

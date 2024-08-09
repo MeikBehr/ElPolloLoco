@@ -47,7 +47,7 @@ class Endboss extends MovableObject {
         './assets/img/4_enemie_boss_chicken/4_hurt/G23.png',
     ];
 
-    IMAGES_DEAD = [
+    IMAGES_DYING = [
         './assets/img/4_enemie_boss_chicken/5_dead/G24.png',
         './assets/img/4_enemie_boss_chicken/5_dead/G25.png',
         './assets/img/4_enemie_boss_chicken/5_dead/G26.png',
@@ -61,7 +61,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DYING);
 
         this.height = 450;
         this.width = 350;
@@ -73,12 +73,6 @@ class Endboss extends MovableObject {
 
     };
 
-
-    animate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_ALERT);
-        }, 170)
-    }
 
 
     endbossHit(endboss) {
@@ -93,11 +87,46 @@ class Endboss extends MovableObject {
 
 
     
-    // this.isHurtEndboss()         aus der moveable
 
-    // this.isDead()                 aus der moveable
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_ALERT);
+            this.endbossAnimations();
+        }, 170)
+    }
 
-    
+
+
+    endbossAnimations() {
+        if (this.isDead()) {
+            this.animationDying();
+        }
+        else if (this.isHurtEndboss()) {
+            this.animationHurt();
+        } 
+    }
+
+
+    animationHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        if (this.world.sound_endboss.paused) {
+            this.world.sound_endboss.playbackRate = 1;
+            this.world.sound_endboss.volume = 0.05;
+            this.playSound(this.world.sound_endboss);
+        }
+    }
+
+
+    animationDying() {
+        this.playAnimation(this.IMAGES_DYING);
+        // setTimeout(() => {
+        //     this.clearAllIntervals();
+        //     world.background_sound.pause();
+        //     world.sound_walk.pause();
+        //     gameOver();
+        // }, 1500);
+    }
+
 
 }
 
