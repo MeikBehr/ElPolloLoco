@@ -70,6 +70,7 @@ class Endboss extends MovableObject {
         this.speed = 1.5 + Math.random() * 0.5;
 
         this.animate();
+        
 
     };
 
@@ -91,6 +92,7 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_ALERT);
+            this.characterAnimatesEndboss();
             this.endbossAnimations();
         }, 170)
     }
@@ -126,6 +128,17 @@ class Endboss extends MovableObject {
         //     this.world.gameOverTest();
         // }, 1500);
     }
+
+
+    characterAnimatesEndboss() {
+        if (this.world.character.x > 2500 && !this.endbossAlerted) {
+            this.i = 0;
+            this.endbossAlerted = true;
+            console.log('Endboss called!');
+        }
+    }
+
+
 
 }
 
