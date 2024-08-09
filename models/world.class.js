@@ -70,7 +70,8 @@ class World {
             this.checkCollisions();
         }, 100);                                // set this to 1000 / 60
         setInterval(() => {
-            this.checkThrowObjects();
+            this.checkThrownObjects();
+            this.checkCollisionOfThrowObjects();
             this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
         }, 200);
     }
@@ -192,7 +193,7 @@ class World {
 
 
     
-    checkThrowObjects() {
+    checkThrownObjects() {
         if (this.throwCooldown) {
             return;
         }
@@ -201,14 +202,16 @@ class World {
             let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.character.idleTime = 0;
-            // this.character.bottles--;
     
             if (this.sound_bottle_throw.paused) {
                 this.sound_bottle_throw.playbackRate = 1;
                 this.sound_bottle_throw.volume = 0.1;
                 bottle.playSound(this.sound_bottle_throw);
             }
-    
+
+            this.character.bottles = this.character.bottles - 20;
+            this.statusbar_bottle.setPercentage(this.character.bottles);
+
             this.throwCooldown = true;
             setTimeout(() => {
                 this.throwCooldown = false;
@@ -220,7 +223,9 @@ class World {
 
 
 
-
+    checkCollisionOfThrowObjects () {
+        
+    }
 
 
 
