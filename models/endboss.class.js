@@ -1,7 +1,6 @@
 class Endboss extends MovableObject {
 
     soundVolume = 0.1;
-    // endbossSpawned = false;
     endbossAlerted = false;
 
 
@@ -54,11 +53,7 @@ class Endboss extends MovableObject {
         './assets/img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
 
-    // world;
-    // introduce_sound = new Audio('./assets/audio/introduce_boss.mp3');
 
-
-    // consturctor(x,y) ist denkbar um fixe Stelle für Endboss zu haben
     constructor(x) {
         super();
         this.loadImage(this.IMAGES_ALERT[0]);
@@ -72,12 +67,12 @@ class Endboss extends MovableObject {
         this.width = 350;
         this.x = x;
         this.y = 10;
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.speed = 1.5 + Math.random() * 0.5;
 
         this.animate();
-        // this.introduce().then(() => this.animate());
 
     };
+
 
     animate() {
         setInterval(() => {
@@ -85,6 +80,22 @@ class Endboss extends MovableObject {
         }, 170)
     }
 
+
+    endbossHit(endboss) {
+        endboss.energy -= 20;    
+        if (endboss.energy < 0) {
+            endboss.energy = 0;
+        }
+        else {
+            endboss.lastHitEndBoss = new Date().getTime();
+        }
+    }
+
+
+    
+    // this.isHurtEndboss()         aus der moveable
+
+    // this.isDead()                 aus der moveable
 
     
 

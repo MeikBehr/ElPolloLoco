@@ -8,7 +8,6 @@ class MovableObject extends DrawableObjects {
     acceleration = 1.5;
     otherDirection = false;
     energy = 100;
-    energyEndboss = 100;
     lastHit = 0;
     lastHitEndBoss = 0;
     standingStill = 0;
@@ -79,9 +78,9 @@ class MovableObject extends DrawableObjects {
             this.energy -= 5;
         };
 
-        if (enemy instanceof Endboss) {
-            this.energy -= 10;
-        };
+        // if (enemy instanceof Endboss) {
+        //     this.energy -= 10;
+        // };
         
 
         if (this.energy < 0) {
@@ -105,6 +104,12 @@ class MovableObject extends DrawableObjects {
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;   // difference in ms
+        timepassed = timepassed / 1000                          // difference in s
+        return timepassed < 3;                                  // kleiner 5s true, größer false
+    }
+
+    isHurtEndboss() {
+        let timepassed = new Date().getTime() - this.lastHitEndBoss;   // difference in ms
         timepassed = timepassed / 1000                          // difference in s
         return timepassed < 3;                                  // kleiner 5s true, größer false
     }

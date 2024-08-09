@@ -126,8 +126,6 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar_health.setPercentage(this.character.energy);
-                console.log('ENDBOSS HITS!');
-                
             };
         })
     }
@@ -234,6 +232,7 @@ class World {
 
     checkCollisionsBottleGround(bottle, index) {
         if (!bottle.isAboveGround()) {
+            this.sound_bottle_splash.volume = 0.1;
             bottle.playSound(this.sound_bottle_splash);
             setTimeout(() => {
                 this.throwableObjects.splice(index, 1)
@@ -242,12 +241,24 @@ class World {
     }
 
 
-    checkCollisionsBottleEndboss() {
+    checkCollisionsBottleEndboss(bottle, index) {
+
+        this.level.endboss.forEach((endboss) => {
+            if (bottle.isColliding(endboss)) {
+                this.sound_bottle_splash.volume = 0.1;
+                bottle.playSound(this.sound_bottle_splash);
+                endboss.endbossHit(endboss);
+                this.statusbar_endboss.setPercentage(endboss.energy);
+                bottle.isColliding = true;
+                setTimeout(() => {
+                    this.throwableObjects.splice(index, 1)
+                }, 1000 / 60);
+            };
+        })
+
 
     }
-
-
-
+    
 
 
 
