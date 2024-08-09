@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
 
     soundVolume = 0.1;
-    firstContact = false;
+    hadFirstContact = false;
 
 
     offset = {
@@ -131,9 +131,9 @@ class Endboss extends MovableObject {
 
 
     characterAnimatesEndboss() {
-        if (this.world.character.x > 2500 && !this.firstContact) {
+        if (this.world.character.x > 2500 && !this.hadFirstContact) {
             this.i = 0;
-            this.firstContact = true;
+            this.hadFirstContact = true;
             console.log('Endboss called!');
         }
     }
