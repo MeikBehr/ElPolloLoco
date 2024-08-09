@@ -306,12 +306,38 @@ class World {
         }
 
 
+        // this.gameOverTest();
+
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
             this.draw();
         });
 
 
     }
+
+
+    gameOverTest() {
+
+        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+        this.ctx.font="40px Comic Sans MS";
+        this.ctx.textAlign="center"; 
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
+
+        this.ctx.font="18px Comic Sans MS";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText("You've reached bottles " + this.character.bottles + " and your coins is " + this.character.coins + ".", this.canvas.width / 2, this.canvas.height/2 - 40);
+    
+	    this.ctx.font="36px Comic Sans MS";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
+
+
+    }
+
+
+
+
 
     
     addObjectsToMap(objects) {              // funktion zum Zeichnen von Arrays von Objekten - X, Y, Width, Height sind zwingend erforderlich

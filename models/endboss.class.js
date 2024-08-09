@@ -123,10 +123,9 @@ class Endboss extends MovableObject {
         //     this.clearAllIntervals();
         //     world.background_sound.pause();
         //     world.sound_walk.pause();
-        //     gameOver();
+        //     this.world.gameOverTest();
         // }, 1500);
     }
-
 
 }
 
