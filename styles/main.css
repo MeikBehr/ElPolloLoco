@@ -50,7 +50,25 @@ canvas {
   background-color: black;
   box-shadow:  0 0 8px 8px rgba(0,0,0,0.3);
   border-radius: 2rem;
+  display: block;
 }
+
+/* Smartphones ---------------------- */
+@media only screen and (max-width: 720px) {
+  canvas {
+    width: 100%;
+  }
+}
+
+
+/* Smartphones ---------------------- */
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
+}
+
+
 
 
 h1 {

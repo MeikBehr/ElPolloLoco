@@ -343,14 +343,14 @@ class World {
     showCoins() {
         this.ctx.font="24px Zabars";
         this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText(': ' + this.character.coins / 20, 225, 97);
+        this.ctx.fillText(': ' + this.character.coins + ' %', 225, 97);
     }
 
 
     showBottles() {
         this.ctx.font="24px Zabars";
         this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText(': ' + this.character.bottles / 20, 225, 142);
+        this.ctx.fillText(': ' + this.character.bottles + ' %', 225, 142);
     }
 
 
