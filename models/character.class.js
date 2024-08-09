@@ -6,7 +6,7 @@ class Character extends MovableObject {
     y = 0;
 
     coins = 0;
-    bottles = 0;
+    bottles = 1000; // 0
     idleTime = 0;
 
     offset = {

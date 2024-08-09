@@ -71,8 +71,8 @@ class World {
         }, 100);                                // set this to 1000 / 60
         setInterval(() => {
             this.checkThrownObjects();
-            this.checkCollisionOfThrowObjects();
-            this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
+            this.checkCollisionsOfThrowObjects();
+            // this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
         }, 200);
     }
 
@@ -186,7 +186,7 @@ class World {
 
     deleteThrowingObjects() {
         this.throwableObjects = this.throwableObjects.filter((object) => {
-            return object.y <= 500;
+            return object.y <= 1000;
         });
     }
 
@@ -200,6 +200,7 @@ class World {
     
         if (this.keyboard.D && this.character.bottles >= 0) {
             let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
+            bottle.isThrown = true;
             this.throwableObjects.push(bottle);
             this.character.idleTime = 0;
     
@@ -223,15 +224,27 @@ class World {
 
 
 
-    checkCollisionOfThrowObjects () {
-        
+    checkCollisionsOfThrowObjects () {
+        this.throwableObjects.forEach((bottle, index) => {
+            this.checkCollisionsBottleGround(bottle, index);
+            this.checkCollisionsBottleEndboss(bottle, index);
+        });
     }
 
 
+    checkCollisionsBottleGround(bottle, index) {
+        if (!bottle.isAboveGround()) {
+            bottle.playSound(this.sound_bottle_splash);
+            setTimeout(() => {
+                this.throwableObjects.splice(index, 1)
+            }, 1000 / 60);
+        };
+    }
 
 
+    checkCollisionsBottleEndboss() {
 
-
+    }
 
 
 

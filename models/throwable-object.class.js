@@ -1,7 +1,7 @@
 class ThrowableObject extends MovableObject {
 
-    speedX = 10;
-    speedY = 25;
+    speedX = 5; // 10
+    speedY = 20; //25
 
     constructor(x, y) {
         super();
@@ -56,7 +56,7 @@ class ThrowableObject extends MovableObject {
     animate() {
       // this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
 
-      // if (this.isAboveGround() && !this.isColliding) {
+      // if (this.isAboveGround()) {
       //     this.playAnimation(this.IMAGES_BOTTLE_ROTATION);  
       // }
       // else {

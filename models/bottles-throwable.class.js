@@ -45,7 +45,12 @@ class BottleThrowable extends ThrowableObject {
     }
 
     animate() {
-        this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+        if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_BOTTLE_ROTATION);  
+        }
+        else {
+            this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+        }
     }
 
 }
