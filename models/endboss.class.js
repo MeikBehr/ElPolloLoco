@@ -2,6 +2,7 @@ class Endboss extends MovableObject {
 
     soundVolume = 0.1;
     hadFirstContact = false;
+    endbossIsDead = false;
 
 
     offset = {
@@ -77,7 +78,7 @@ class Endboss extends MovableObject {
 
 
     endbossHit(endboss) {
-        endboss.energy -= 20;    
+        endboss.energy -= 50;    
         if (endboss.energy < 0) {
             endboss.energy = 0;
         }
@@ -133,12 +134,7 @@ class Endboss extends MovableObject {
 
     animationDying() {
         this.playAnimation(this.IMAGES_DYING);
-        // setTimeout(() => {
-        //     this.clearAllIntervals();
-        //     world.background_sound.pause();
-        //     world.sound_walk.pause();
-        //     this.world.gameOverTest();
-        // }, 1500);
+        this.endbossIsDead = true;
     }
 
     animationAlert() {

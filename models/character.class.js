@@ -9,6 +9,8 @@ class Character extends MovableObject {
     bottles = 1000; // 0
     idleTime = 0;
 
+    characterIsDead = false;
+
     offset = {
         top: 90,
         bottom: 10,
@@ -223,12 +225,7 @@ class Character extends MovableObject {
 
     animationDying() {
         this.playAnimation(this.IMAGES_DYING);
-        // setTimeout(() => {
-        //     this.clearAllIntervals();
-        //     world.background_sound.pause();
-        //     world.sound_walk.pause();
-        //     gameOver();
-        // }, 1500);
+        this.characterIsDead = true;
     }
 
 

@@ -5,6 +5,7 @@ class World {
     canvas;
     keyboard;
     level = level1;
+    stopGame = false;
 
     arrayOfEnemies = [
         this.level.chicken_small,
@@ -73,6 +74,9 @@ class World {
         setInterval(() => {
             this.checkThrownObjects();
             this.checkCollisionsOfThrowObjects();
+
+            this.checkIfCharacterOrEndbossIsDead();
+
             // this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
         }, 200);
     }
@@ -312,33 +316,17 @@ class World {
 
         // this.gameOverTest();
 
+        if (this.stopGame) {
+            this.clearCanvas();
+        };
+        
+
         requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
             this.draw();
         });
 
 
     }
-
-
-    gameOverTest() {
-
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-        this.ctx.font="40px Comic Sans MS";
-        this.ctx.textAlign="center"; 
-        this.ctx.fillStyle = '#ffffff';
-        this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
-
-        this.ctx.font="18px Comic Sans MS";
-        this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("You've reached bottles " + this.character.bottles + " and your coins is " + this.character.coins + ".", this.canvas.width / 2, this.canvas.height/2 - 40);
-    
-	    this.ctx.font="36px Comic Sans MS";
-        this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
-
-
-    }
-
 
     showCoins() {
         this.ctx.font="24px Zabars";
@@ -410,6 +398,63 @@ class World {
                 cloud.x = 3500;
             }
         })
+    }
+
+
+    clearCanvas() {
+        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+    }
+
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
+
+
+    
+    gameOverTest2() {
+
+        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+        this.ctx.font="40px Comic Sans MS";
+        this.ctx.textAlign="center"; 
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
+
+        this.ctx.font="18px Comic Sans MS";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText("You've reached bottles " + this.character.bottles + " and your coins is " + this.character.coins + ".", this.canvas.width / 2, this.canvas.height/2 - 40);
+    
+	    this.ctx.font="36px Comic Sans MS";
+        this.ctx.fillStyle = '#D7DF01';
+        this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
+
+
+    }
+
+    gameOverTest() {
+        setTimeout(() => {
+            this.background_sound.pause();
+            this.clearAllIntervals();
+        }, 2000);   
+    }
+
+
+    checkIfCharacterOrEndbossIsDead() {
+        if (this.character.characterIsDead) {
+            // console.log('Character is Dead');
+            // this.stopGame = true;
+        } else if (this.level.endboss[0].endbossIsDead) {
+            console.log('Endboss is Dead');
+            this.gameOverTest();
+            this.final();
+            setTimeout(() => {
+                this.stopGame = true;
+            }, 1500);
+        }
+    }
+
+    final() {
+        console.log('Still here');
+        
     }
 
 
