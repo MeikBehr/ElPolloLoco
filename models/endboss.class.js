@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
     endbossIsDead = false;
 
     soundEndboss = new Audio('./assets/audio/endboss.mp3');
+    soundEndbossWalking = new Audio('./assets/audio/endboss_walking.mp3');
 
 
     offset = {
@@ -137,6 +138,7 @@ class Endboss extends MovableObject {
 
 
     animationHurt() {
+        this.stopSound(this.soundEndbossWalking);
         this.playAnimation(this.IMAGES_HURT);
         if (this.soundEndboss.paused) {
             this.soundEndboss.playbackRate = 1;
@@ -147,12 +149,14 @@ class Endboss extends MovableObject {
 
 
     animationDying() {
+        this.stopSound(this.soundEndbossWalking);
         this.playAnimation(this.IMAGES_DYING);
         this.endbossIsDead = true;
         this.i = 0;
     }
 
     animationAlert() {
+        this.stopSound(this.soundEndbossWalking);
         this.playAnimation(this.IMAGES_ALERT);
         if (this.soundEndboss.paused) {
             this.soundEndboss.playbackRate = 1;
@@ -163,6 +167,7 @@ class Endboss extends MovableObject {
 
     animationAttack() {
         this.playAnimation(this.IMAGES_ATTACK);
+        this.stopSound(this.soundEndbossWalking);
         if (this.soundEndboss.paused) {
             this.soundEndboss.playbackRate = 1;
             this.soundEndboss.volume = 0.05;
@@ -172,6 +177,11 @@ class Endboss extends MovableObject {
 
     animationWalk() {
         this.playAnimation(this.IMAGES_WALKING);
+        if (this.soundEndbossWalking.paused && this.hadFirstContact) {
+            this.soundEndbossWalking.playbackRate = 3;
+            this.soundEndbossWalking.volume = 0.05;
+            this.playSound(this.soundEndbossWalking);
+        }
     }
 
 
