@@ -8,7 +8,7 @@ class World {
     stopGame = false;
 
     arrayOfEnemies = [
-        this.level.chicken_small,
+        this.level.chickenSmall,
         this.level.chicken,
         // this.level.endboss,
     ];
@@ -20,26 +20,28 @@ class World {
 
     endboss_sightable = true;
     coinsCounter = 0;
-    camera_x = 0;
+    cameraX = 0;
     throwableObjects = [];
-    statusbar_health = new StatusbarHealth();
-    statusbar_coin = new StatusbarCoin();
-    statusbar_bottle = new StatusbarBottle();
-    statusbar_endboss = new StatusbarEndboss();
+
+    statusbarHealth = new StatusbarHealth();
+    statusbarCoin = new StatusbarCoin();
+    statusbarBottle = new StatusbarBottle();
+    statusbarEndboss = new StatusbarEndboss();
 
     ismuted = false;
-    background_sound = new Audio('./assets/audio/background.mp3');
-    background_sound_volume = 0.01;
-    sound_walk = new Audio('./assets/audio/walking.mp3');
-    sound_jump = new Audio('./assets/audio/jump.mp3');
-    sound_hurt = new Audio('./assets/audio/hurt.mp3');
-    sound_coin = new Audio('./assets/audio/coin.mp3');
-    sound_bottle = new Audio('./assets/audio/bottle_collect.mp3');
-    sound_bottle_splash = new Audio('./assets/audio/bottle_splash.mp3');
-    sound_bottle_throw = new Audio('./assets/audio/bottle_throw.mp3');
-    sound_hit_chicken = new Audio('./assets/audio/hit_chicken.mp3');
-    sound_snoring = new Audio('./assets/audio/snoring.mp3');
-    sound_endboss = new Audio('./assets/audio/endboss.mp3');
+    backgroundSound = new Audio('./assets/audio/background.mp3');
+    backgroundSoundVolume = 0.01;
+
+    soundWalk = new Audio('./assets/audio/walking.mp3');
+    soundJump = new Audio('./assets/audio/jump.mp3');
+    soundHurt = new Audio('./assets/audio/hurt.mp3');
+    soundCoin = new Audio('./assets/audio/coin.mp3');
+    soundBottle = new Audio('./assets/audio/bottle_collect.mp3');
+    soundBottleSplash = new Audio('./assets/audio/bottle_splash.mp3');
+    soundBottleThrow = new Audio('./assets/audio/bottle_throw.mp3');
+    soundHitChicken = new Audio('./assets/audio/hit_chicken.mp3');
+    soundSnoring = new Audio('./assets/audio/snoring.mp3');
+    soundEndboss = new Audio('./assets/audio/endboss.mp3');
     
     
 
@@ -61,8 +63,8 @@ class World {
         this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
         this.level.endboss[0].world = this;                          // endboss hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
         if (!this.ismuted) {
-            this.background_sound.volume = this.background_sound_volume;
-            this.background_sound.play();
+            this.backgroundSound.volume = this.backgroundSoundVolume;
+            this.backgroundSound.play();
         };
     }
 
@@ -104,9 +106,9 @@ class World {
                     };
                     enemy.enemyIsDead = true;
                     (enemy instanceof Chicken) ? (enemy.y = enemy.y + 20) : (enemy.y = enemy.y + 5);
-                    this.sound_hit_chicken.playbackRate = 1;
-                    this.sound_hit_chicken.volume = 0.03;
-                    this.character.playSound(this.sound_hit_chicken);
+                    this.soundHitChicken.playbackRate = 1;
+                    this.soundHitChicken.volume = 0.03;
+                    this.character.playSound(this.soundHitChicken);
                 }
             });
         });
@@ -118,7 +120,7 @@ class World {
             arrayOfEnemies.forEach(enemy => {
                 if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
                     this.character.hit(enemy);
-                    this.statusbar_health.setPercentage(this.character.energy);
+                    this.statusbarHealth.setPercentage(this.character.energy);
                 };
             });
         });
@@ -130,7 +132,7 @@ class World {
         this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
                 this.character.hit(enemy);
-                this.statusbar_health.setPercentage(this.character.energy);
+                this.statusbarHealth.setPercentage(this.character.energy);
             };
         })
     }
@@ -159,10 +161,10 @@ class World {
         if (this.character.coins < 100) {
             this.character.coins += 20;
             arrayOfItems.splice(index, 1);
-            this.statusbar_coin.setPercentage(this.character.coins);
-            this.sound_coin.playbackRate = 1;
-            this.sound_coin.volume = 0.05;
-            this.character.playSound(this.sound_coin);
+            this.statusbarCoin.setPercentage(this.character.coins);
+            this.soundCoin.playbackRate = 1;
+            this.soundCoin.volume = 0.05;
+            this.character.playSound(this.soundCoin);
         };
     }
 
@@ -171,10 +173,10 @@ class World {
         if (this.character.bottles < 100) {
             this.character.bottles += 20;
             arrayOfItems.splice(index, 1);
-            this.statusbar_bottle.setPercentage(this.character.bottles);
-            this.sound_bottle.playbackRate = 1;
-            this.sound_bottle.volume = 0.03;
-            this.character.playSound(this.sound_bottle);
+            this.statusbarBottle.setPercentage(this.character.bottles);
+            this.soundBottle.playbackRate = 1;
+            this.soundBottle.volume = 0.03;
+            this.character.playSound(this.soundBottle);
         };
     }
 
@@ -207,14 +209,14 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.idleTime = 0;
     
-            if (this.sound_bottle_throw.paused) {
-                this.sound_bottle_throw.playbackRate = 1;
-                this.sound_bottle_throw.volume = 0.1;
-                bottle.playSound(this.sound_bottle_throw);
+            if (this.soundBottleThrow.paused) {
+                this.soundBottleThrow.playbackRate = 1;
+                this.soundBottleThrow.volume = 0.1;
+                bottle.playSound(this.soundBottleThrow);
             }
 
             this.character.bottles = this.character.bottles - 20;
-            this.statusbar_bottle.setPercentage(this.character.bottles);
+            this.statusbarBottle.setPercentage(this.character.bottles);
 
             this.throwCooldown = true;
             setTimeout(() => {
@@ -237,8 +239,8 @@ class World {
 
     checkCollisionsBottleGround(bottle, index) {
         if (!bottle.isAboveGround()) {
-            this.sound_bottle_splash.volume = 0.1;
-            bottle.playSound(this.sound_bottle_splash);
+            this.soundBottleSplash.volume = 0.1;
+            bottle.playSound(this.soundBottleSplash);
             setTimeout(() => {
                 this.throwableObjects.splice(index, 1)
             }, 1000 / 60);
@@ -249,10 +251,10 @@ class World {
     checkCollisionsBottleEndboss(bottle, index) {
         this.level.endboss.forEach((endboss) => {
             if (bottle.isColliding(endboss)) {
-                this.sound_bottle_splash.volume = 0.1;
-                bottle.playSound(this.sound_bottle_splash);
+                this.soundBottleSplash.volume = 0.1;
+                bottle.playSound(this.soundBottleSplash);
                 endboss.endbossHit(endboss);
-                this.statusbar_endboss.setPercentage(endboss.energy);
+                this.statusbarEndboss.setPercentage(endboss.energy);
                 bottle.isColliding = true;
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1)
@@ -272,36 +274,36 @@ class World {
 
 
         // MOVEABLE OBJECTS
-        this.ctx.translate(this.camera_x, 0);                   // Kameraverschiebung bzw. Verschiebung Koordinatensystem
+        this.ctx.translate(this.cameraX, 0);                   // Kameraverschiebung bzw. Verschiebung Koordinatensystem
         
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
         this.addObjectsToMap(this.level.coins);                  // coin zeichnen
         this.addObjectsToMap(this.level.bottles);                // bottles zeichnen
         
-        this.addObjectsToMap(this.level.chicken_small); 
+        this.addObjectsToMap(this.level.chickenSmall); 
         this.addObjectsToMap(this.level.chicken);
         if (this.endboss_sightable) {this.addObjectsToMap(this.level.endboss)};
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.addObjectsToMap(this.throwableObjects);
         
-        this.ctx.translate(-this.camera_x, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
+        this.ctx.translate(-this.cameraX, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
 
 
 
         // FIXED OBJECTS
         // AUssERHALB der VERSCHIEBUNG der KAMERA
         // behind this.ctx.translate(-this.camera_x, 0) because now its pinned to canvas and not moving while character is moving!!!!
-        this.addToMap(this.statusbar_health);
-        this.addToMap(this.statusbar_coin);
-        this.addToMap(this.statusbar_bottle);
-        if (this.endboss_sightable) {this.addToMap(this.statusbar_endboss);}
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoin);
+        this.addToMap(this.statusbarBottle);
+        if (this.endboss_sightable) {this.addToMap(this.statusbarEndboss);}
 
 
         // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
         this.chickenLoop(this.level.chicken);
-        this.chickenLoop(this.level.chicken_small);
+        this.chickenLoop(this.level.chickenSmall);
         this.cloudLoop(this.level.clouds);
 
 
@@ -432,7 +434,7 @@ class World {
 
     gameOverTest() {
         setTimeout(() => {
-            this.background_sound.pause();
+            this.backgroundSound.pause();
             this.clearAllIntervals();
         }, 2000);   
     }

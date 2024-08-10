@@ -59,7 +59,7 @@ class MovableObject extends DrawableObjects {
         this.speedY = 26;
     }
 
-    // charakter.iscolliding(chicken);
+    
     isColliding(mo) {
         return  this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -70,7 +70,7 @@ class MovableObject extends DrawableObjects {
     
     hit(enemy) {
 
-        if (enemy instanceof Chicken_small) {
+        if (enemy instanceof ChickenSmall) {
             this.energy -= 1;
         };
 

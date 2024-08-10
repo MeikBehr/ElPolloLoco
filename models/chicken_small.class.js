@@ -1,4 +1,4 @@
-class Chicken_small extends NormalEnemies {
+class ChickenSmall extends NormalEnemies {
 
     height = 60;
     width = 60;

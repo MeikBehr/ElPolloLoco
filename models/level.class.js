@@ -1,16 +1,16 @@
 class Level {
 
-    chicken_small;
+    chickenSmall;
     chicken;
     endboss;
     clouds;
     backgroundObjects;
     coins;
     bottles;
-    level_end_x = 2800;
+    EndOfLevel = 2800;
 
-    constructor(chicken_small, chicken, endboss, clouds, backgroundObjects, coins, bottles) {
-        this.chicken_small = chicken_small;
+    constructor(chickenSmall, chicken, endboss, clouds, backgroundObjects, coins, bottles) {
+        this.chickenSmall = chickenSmall;
         this.chicken = chicken;
         this.endboss = endboss;
         this.clouds = clouds;

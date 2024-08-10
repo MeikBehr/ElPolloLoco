@@ -36,21 +36,6 @@ class DrawableObjects {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
 
@@ -61,7 +46,7 @@ class DrawableObjects {
     drawFrame(ctx) {
         // if (this instanceof Character || this instanceof Chicken ||
         //     this instanceof Endboss || this instanceof Coin || 
-        //     this instanceof Bottle || this instanceof Chicken_small) {
+        //     this instanceof Bottle || this instanceof ChickenSmall) {
         //     ctx.beginPath();
         //     ctx.lineWidth = '3';
         //     ctx.strokeStyle = 'blue';
@@ -81,7 +66,7 @@ class DrawableObjects {
             ctx.stroke();
         }
 
-        if (this instanceof Chicken_small) {
+        if (this instanceof ChickenSmall) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'green';

@@ -10,8 +10,6 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 80;
-        // this.throw(this.x, this.y);
-        // this.animate();
     }
 
 
@@ -54,14 +52,6 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-      // this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
-
-      // if (this.isAboveGround()) {
-      //     this.playAnimation(this.IMAGES_BOTTLE_ROTATION);  
-      // }
-      // else {
-      //     this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
-      // }
 
   }
 

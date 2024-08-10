@@ -124,10 +124,10 @@ class Endboss extends MovableObject {
 
     animationHurt() {
         this.playAnimation(this.IMAGES_HURT);
-        if (this.world.sound_endboss.paused) {
-            this.world.sound_endboss.playbackRate = 1;
-            this.world.sound_endboss.volume = 0.05;
-            this.playSound(this.world.sound_endboss);
+        if (this.world.soundEndboss.paused) {
+            this.world.soundEndboss.playbackRate = 1;
+            this.world.soundEndboss.volume = 0.05;
+            this.playSound(this.world.soundEndboss);
         }
     }
 
