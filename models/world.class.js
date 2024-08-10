@@ -135,12 +135,19 @@ class World {
 
 
     checkCollisionsCharacterVsEndboss() {
+        // this.level.endboss.forEach((enemy) => {
+        //     if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
+        //         this.character.hit(enemy);
+        //         this.statusbarHealth.setPercentage(this.character.energy);
+        //     };
+        // });
+
         this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
                 this.character.hit(enemy);
                 this.statusbarHealth.setPercentage(this.character.energy);
             };
-        })
+        });
     }
 
 
