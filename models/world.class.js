@@ -69,14 +69,23 @@ class World {
 
 
     run() {
+
         setInterval(() => {
             this.checkCollisions();
         }, 100);                                // set this to 1000 / 60
+
         setInterval(() => {
             this.checkThrownObjects();
             this.checkCollisionsOfThrowObjects();
             this.checkIfCharacterOrEndbossIsDead();
             this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
+
+            // Loop chicken and clouds. If chicken runs out of canvas to the left, it will re-spawn at the right side
+            this.chickenLoop(this.level.chicken);
+            this.chickenLoop(this.level.chickenSmall);
+            this.cloudLoop(this.level.clouds);
+
+   
         }, 200);
     }
 
@@ -184,7 +193,7 @@ class World {
                 this.statusbarEndboss.setPercentage(endboss.energy);
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1)
-                }, 250);
+                }, 1000 / 60);
             };
         })
     }
@@ -295,12 +304,8 @@ class World {
         
         this.addObjectsToMap(this.level.chickenSmall); 
         this.addObjectsToMap(this.level.chicken);
-        // if (this.endboss_sightable) {
-        //     this.addObjectsToMap(this.level.endboss)
-        // };
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
-
         this.addObjectsToMap(this.throwableObjects);
         
         this.ctx.translate(-this.cameraX, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
@@ -316,17 +321,10 @@ class World {
         if (this.endboss_sightable) {this.addToMap(this.statusbarEndboss);}
 
 
-        // Chicken-Loop. If chicken runs out of canvas to the left, it will re-spawn at the right side
-        this.chickenLoop(this.level.chicken);
-        this.chickenLoop(this.level.chickenSmall);
-        this.cloudLoop(this.level.clouds);
-
-
         this.showCoins();
         this.showBottles();
         this.showHealth();
 
-        // this.gameOverTest();
 
         if (this.stopGame) {
             this.clearCanvas();
