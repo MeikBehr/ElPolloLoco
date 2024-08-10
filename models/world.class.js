@@ -193,7 +193,7 @@ class World {
                 this.statusbarEndboss.setPercentage(endboss.energy);
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1)
-                }, 1000 / 60);
+                }, 100);
             };
         })
     }
