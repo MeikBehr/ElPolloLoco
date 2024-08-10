@@ -14,12 +14,10 @@ class MovableObject extends DrawableObjects {
     objectIsColiding = false;
 
 
-    // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
     playAnimation(images) {
-        // % = Modulo-Berechnung, d.h. Rest-Berechnung: Ergibt eine Reihe i = 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5,...
         let i = this.currentImage % images.length;
         let path = images[i];
-        this.img = this.imageCache[path];   // img & imageCache sind in der moveable-object.class.js declariert
+        this.img = this.imageCache[path];
         this.currentImage++;
     }
 
@@ -28,7 +26,7 @@ class MovableObject extends DrawableObjects {
         setInterval(()=> {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                if (this instanceof Character) {        // Character is always on same level after jumping!
+                if (this instanceof Character) {
                     this.y > 180 ? this.y = 180 : this.y = this.y; 
                 }
                 this.speedY -= this.acceleration;
@@ -38,8 +36,7 @@ class MovableObject extends DrawableObjects {
 
 
     isAboveGround() {
-        if(this instanceof ThrowableObject) {     // Throwable Objects should always fall
-            // return true;
+        if(this instanceof ThrowableObject) {
             return this.y <= 350;
         } else {
             return this.y < 180;
@@ -72,33 +69,23 @@ class MovableObject extends DrawableObjects {
     hit(enemy) {
 
         if (enemy instanceof ChickenSmall) {
-            this.energy -= 1;
-        };
-
-        if (enemy instanceof Chicken) {
             this.energy -= 5;
         };
 
-        if (enemy instanceof Endboss) {
+        if (enemy instanceof Chicken) {
             this.energy -= 10;
         };
-        
+
+        if (enemy instanceof Endboss) {
+            this.energy -= 20;
+        };
 
         if (this.energy < 0) {
             this.energy = 0;
-
-            // Auferstehung nach 3 Sekunden!
-            // const myResurrection = setTimeout(() => {
-            //     this.energy = 100;
-            //     this.characterIsDead = false;
-            // }, 3000);
-            /////////////////////////////////////////////
         } else {
             this.lastHit = new Date().getTime();
         }
-
-        console.log(this.energy);
-        
+       
     }
 
 
@@ -108,15 +95,15 @@ class MovableObject extends DrawableObjects {
 
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;   // difference in ms
-        timepassed = timepassed / 1000                          // difference in s
-        return timepassed < 2;                                  // kleiner 5s true, größer false
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000
+        return timepassed < 2;
     }
 
     isHurtEndboss() {
-        let timepassed = new Date().getTime() - this.lastHitEndBoss;   // difference in ms
-        timepassed = timepassed / 1000                          // difference in s
-        return timepassed < 2;                                  // kleiner 5s true, größer false
+        let timepassed = new Date().getTime() - this.lastHitEndBoss;
+        timepassed = timepassed / 1000
+        return timepassed < 2;
     }
 
     playSound(sound) {

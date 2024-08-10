@@ -40,11 +40,6 @@ class World {
     soundBottleThrow = new Audio('./assets/audio/bottle_throw.mp3');
     soundHitChicken = new Audio('./assets/audio/hit_chicken.mp3');
     soundSnoring = new Audio('./assets/audio/snoring.mp3');
-    // soundEndboss = new Audio('./assets/audio/endboss.mp3');
-    
-
-
-
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -135,8 +130,6 @@ class World {
                 this.character.hit(enemy);
                 enemy.animationAttack();
                 this.statusbarHealth.setPercentage(this.character.energy);
-                console.log(this.character.energy);
-                
             };
         });
     }
@@ -283,22 +276,20 @@ class World {
 
 
         // MOVEABLE OBJECTS
-        this.ctx.translate(this.cameraX, 0);                   // Kameraverschiebung bzw. Verschiebung Koordinatensystem
-        this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
-        this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
-        this.addObjectsToMap(this.level.coins);                  // coin zeichnen
-        this.addObjectsToMap(this.level.bottles);                // bottles zeichnen
+        this.ctx.translate(this.cameraX, 0);
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.chickenSmall); 
         this.addObjectsToMap(this.level.chicken);
         this.addObjectsToMap(this.level.endboss);
-        this.addToMap(this.character);                          // charakter zeichnen
+        this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.cameraX, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
+        this.ctx.translate(-this.cameraX, 0);
 
 
         // FIXED OBJECTS
-        // AUssERHALB der VERSCHIEBUNG der KAMERA
-        // behind this.ctx.translate(-this.camera_x, 0) because now its pinned to canvas and not moving while character is moving!!!!
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoin);
         this.addToMap(this.statusbarBottle);
@@ -318,7 +309,7 @@ class World {
         };
         
 
-        requestAnimationFrame(() => {                           // draw() wird immer wieder aufgerufen!
+        requestAnimationFrame(() => {
             this.draw();
         });
 
@@ -347,37 +338,34 @@ class World {
 
 
     
-    addObjectsToMap(objects) {              // funktion zum Zeichnen von Arrays von Objekten - X, Y, Width, Height sind zwingend erforderlich
+    addObjectsToMap(objects) {
         objects.forEach((object) => {
             this.addToMap(object);
         });
     }
 
-    // funktion zum Zeichnen von einzelnen Objekten - X, Y, Width, Height sind zwingend erforderlich
     addToMap(mo) {
-        if (mo.otherDirection) {    // nur der Character hat otherDirection als true => das hier kann nur für ihn gelten. Wir ändern alles für ihn...
+        if (mo.otherDirection) {
             this.flipImage(mo);
         }     
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
-        // mo.drawOffsetFrame(this.ctx);
-        if (mo.otherDirection) {        // ... und setzen alles andere wieder auf Standard zurück z.B. für die enemies.
+        if (mo.otherDirection) {
             this.flipImageBack(mo)
         }
     }
 
 
     flipImage(mo) {
-        this.ctx.save();                        // Speichert den aktuellen Zustand des Kontextes
-        this.ctx.translate(mo.width, 0);        // Verschiebt den Ursprung des Koordinatensystems um die Breite des Bildes
-        this.ctx.scale(-1, 1);                  // Spiegelt das Koordinatensystem an der Y-Achse
-        mo.x = mo.x * -1;                       // Multipliziert die X-Koordinate des Objekts mit -1
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
     }
 
 
     flipImageBack(mo) {
-        mo.x = mo.x * -1;                       // Setzt die X-Koordinate wieder auf den ursprünglichen Wert zurück
-        this.ctx.restore();                     // Stellt den ursprünglichen Zustand des Kontextes wieder her
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 
 
@@ -437,8 +425,11 @@ class World {
 
     checkIfCharacterOrEndbossIsDead() {
         if (this.character.characterIsDead) {
-            // console.log('Character is Dead');
-            // this.stopGame = true;
+            this.gameOverTest();
+            this.final();
+            setTimeout(() => {
+                this.stopGame = true;
+            }, 1500);
         } else if (this.level.endboss[0].endbossIsDead) {
             this.gameOverTest();
             this.final();

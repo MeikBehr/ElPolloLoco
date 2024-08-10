@@ -1,7 +1,7 @@
 class ThrowableObject extends MovableObject {
 
-    speedX = 8; // 10
-    speedY = 20; //25
+    speedX = 8;
+    speedY = 20;
 
     constructor(x, y) {
         super();
@@ -33,9 +33,6 @@ class ThrowableObject extends MovableObject {
             }
         }, 25)
 
-        // setInterval(() => {
-        //   this.animate();
-        // }, 100);          // Geschwindigkeit der Rotation der geworfenen Flasche
     }
 
 

@@ -87,7 +87,7 @@ class Character extends MovableObject {
 
 
     
-    world;                                                          // damit Variablen von world.class.js übergeben werden können => hier besonders das keyboard
+    world;
 
     constructor() {
         super();
@@ -101,7 +101,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.x = 0;
-        this.energy = 10000;
+        this.energy = 100;
     };
 
     
