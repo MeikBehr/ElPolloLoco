@@ -10,7 +10,6 @@ class World {
     arrayOfEnemies = [
         this.level.chickenSmall,
         this.level.chicken,
-        // this.level.endboss,
     ];
 
     arrayOfItems = [
@@ -320,6 +319,7 @@ class World {
 
         if (this.stopGame) {
             this.clearCanvas();
+            this.gameOverTest2();
         };
         
 

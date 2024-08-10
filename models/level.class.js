@@ -7,7 +7,7 @@ class Level {
     backgroundObjects;
     coins;
     bottles;
-    EndOfLevel = 2800;
+    EndOfLevel = 3000;
 
     constructor(chickenSmall, chicken, endboss, clouds, backgroundObjects, coins, bottles) {
         this.chickenSmall = chickenSmall;
