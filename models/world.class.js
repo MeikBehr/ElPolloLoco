@@ -17,7 +17,7 @@ class World {
         this.level.bottles,
     ];
 
-    endboss_sightable = true;
+    endbossSightable = false;
     coinsCounter = 0;
     cameraX = 0;
     throwableObjects = [];
@@ -48,18 +48,18 @@ class World {
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
-        this.canvas = canvas;               // so, damit draw() das canvas hat und dort clearRect ausführen kann
+        this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.setWorld();                    // damit übergeben ich die Variablen von world eine Ebene tiefer (hier besonders das Keyboard (Spiellogic - 07))
+        this.setWorld();
         this.run();
 
     }
 
 
     setWorld() {
-        this.character.world = this;                        // character hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
-        this.level.endboss[0].world = this;                          // endboss hat damit die Variablen von world => keyboard z.B. ACHTUNG: wir übergeben 'this' ... also world komplett!
+        this.character.world = this;
+        this.level.endboss[0].world = this;
         if (!this.ismuted) {
             this.backgroundSound.volume = this.backgroundSoundVolume;
             this.backgroundSound.play();
@@ -71,20 +71,16 @@ class World {
 
         setInterval(() => {
             this.checkCollisions();
-        }, 100);                                // set this to 1000 / 60
+        }, 100);
 
         setInterval(() => {
             this.checkThrownObjects();
             this.checkCollisionsOfThrowObjects();
             this.checkIfCharacterOrEndbossIsDead();
-            this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
-
-            // Loop chicken and clouds. If chicken runs out of canvas to the left, it will re-spawn at the right side
+            this.deleteThrowingObjects();
             this.chickenLoop(this.level.chicken);
             this.chickenLoop(this.level.chickenSmall);
             this.cloudLoop(this.level.clouds);
-
-   
         }, 200);
     }
 
@@ -246,13 +242,6 @@ class World {
 
 
 
-
-
-
-
-
-
-
     deleteThrowingObjects() {
         this.throwableObjects = this.throwableObjects.filter((object) => {
             return object.y <= 1000;
@@ -272,16 +261,13 @@ class World {
             bottle.isThrown = true;
             this.throwableObjects.push(bottle);
             this.character.idleTime = 0;
-    
             if (this.soundBottleThrow.paused) {
                 this.soundBottleThrow.playbackRate = 1;
                 this.soundBottleThrow.volume = 0.1;
                 bottle.playSound(this.soundBottleThrow);
             }
-
             this.character.bottles = this.character.bottles - 20;
             this.statusbarBottle.setPercentage(this.character.bottles);
-
             this.throwCooldown = true;
             setTimeout(() => {
                 this.throwCooldown = false;
@@ -298,20 +284,16 @@ class World {
 
         // MOVEABLE OBJECTS
         this.ctx.translate(this.cameraX, 0);                   // Kameraverschiebung bzw. Verschiebung Koordinatensystem
-        
         this.addObjectsToMap(this.level.backgroundObjects);     // background zeichnen
         this.addObjectsToMap(this.level.clouds);                 // this.addToMap(this.level.clouds[0]);     // addObjectsToMap nehmen, oder bei addToMap muß light[0] angegeben werden!!!!
         this.addObjectsToMap(this.level.coins);                  // coin zeichnen
         this.addObjectsToMap(this.level.bottles);                // bottles zeichnen
-        
         this.addObjectsToMap(this.level.chickenSmall); 
         this.addObjectsToMap(this.level.chicken);
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
         this.addObjectsToMap(this.throwableObjects);
-        
         this.ctx.translate(-this.cameraX, 0);                  // Kamera-Verschiebung zurück bzw. Koordinatensystem zurück
-
 
 
         // FIXED OBJECTS
@@ -320,7 +302,9 @@ class World {
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoin);
         this.addToMap(this.statusbarBottle);
-        if (this.endboss_sightable) {this.addToMap(this.statusbarEndboss);}
+        if (this.level.endboss[0].hadFirstContact) {
+            this.addToMap(this.statusbarEndboss);
+        }
 
 
         this.showCoins();
