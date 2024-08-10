@@ -3,7 +3,7 @@ class ChickenSmall extends NormalEnemies {
     height = 60;
     width = 60;
     y = 366;
-    speed = 0.7;
+    speed = 1;
 
     enemyIsDead = false;
 

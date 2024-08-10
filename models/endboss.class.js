@@ -81,7 +81,8 @@ class Endboss extends MovableObject {
 
 
     endbossHit(endboss) {
-        endboss.energy -= 20;    
+        endboss.energy -= 20;
+        this.i = 22;
         if (endboss.energy < 0) {
             endboss.energy = 0;
         }
@@ -101,7 +102,7 @@ class Endboss extends MovableObject {
         }, 170);
 
         setInterval(() => {
-            if (this.hadFirstContact && this.i > 21 && !this.isDead() && !this.isHurtEndboss()) {
+            if (this.hadFirstContact && this.i > 21 && !this.isDead()) {
                 if (this.x > this.world.character.x + 50) {
                     this.x -= this.speed;
                     this.otherDirection = false;
