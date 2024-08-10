@@ -33,9 +33,9 @@ class ThrowableObject extends MovableObject {
             }
         }, 25)
 
-        setInterval(() => {
-          this.animate();
-        }, 100);
+        // setInterval(() => {
+        //   this.animate();
+        // }, 100);          // Geschwindigkeit der Rotation der geworfenen Flasche
     }
 
 
@@ -51,8 +51,5 @@ class ThrowableObject extends MovableObject {
     }
 
 
-    animate() {
-
-  }
 
 }

@@ -75,9 +75,7 @@ class World {
         setInterval(() => {
             this.checkThrownObjects();
             this.checkCollisionsOfThrowObjects();
-
             this.checkIfCharacterOrEndbossIsDead();
-
             this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
         }, 200);
     }
@@ -158,9 +156,9 @@ class World {
 
     checkCollisionsOfThrowObjects () {
         this.throwableObjects.forEach((bottle, index) => {
-            this.checkCollisionsBottleGround(bottle, index);
-            this.checkCollisionsBottleEndboss(bottle, index);
             this.checkCollisionsBottleEnemie(bottle, index);
+            this.checkCollisionsBottleEndboss(bottle, index);
+            this.checkCollisionsBottleGround(bottle, index);
         });
     }
 
@@ -186,7 +184,7 @@ class World {
                 this.statusbarEndboss.setPercentage(endboss.energy);
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1)
-                }, 1000 / 60);
+                }, 250);
             };
         })
     }
@@ -202,7 +200,7 @@ class World {
                     enemy.enemyIsDead = true;
                     setTimeout(() => {
                         this.throwableObjects.splice(index, 1)
-                    }, 1000 / 60);
+                    }, 250);
                 };
             });
         });

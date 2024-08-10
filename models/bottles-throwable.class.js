@@ -40,17 +40,21 @@ class BottleThrowable extends ThrowableObject {
         this.otherDirection = otherDirection;
 
         this.throw(this.x, this.y, this.otherDirection);
-
         this.animate();
     }
 
     animate() {
-        if (this.isAboveGround() && !this.objectIsColiding) {
-            this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
-        } 
-        else {
-            this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
-        }
+        let intervalId = setInterval(() => {
+            if (this.isAboveGround() && !this.objectIsColiding) {
+                this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+            } else {
+                this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+                clearInterval(intervalId);
+            }
+        }, 100);    // hier wird die Rotation der Flasche gesetzt
+
+
+
     }
 
 }
