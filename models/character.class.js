@@ -12,6 +12,7 @@ class Character extends MovableObject {
     characterIsDead = false;
     killCountChicken = 0;
     killCountSmallChicken = 0;
+    soundHurtPlayed;
 
 
     offset = {
@@ -169,21 +170,26 @@ class Character extends MovableObject {
     characterAnimations() {
         if (this.isDead()) {
             this.animationDying();
+            this.soundHurtPlayed = false;
         }
         else if (this.isHurt()) {
             this.animationHurt();
         }
         else if (this.isAboveGround()) {
             this.animationJump();
+            this.soundHurtPlayed = false;
         } else {
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.animationWalk();
+                this.soundHurtPlayed = false;
             }
             else {
-               this.animationIdle(); 
+                this.animationIdle();
+                this.soundHurtPlayed = false;
             }         
         }
     }
+    
 
 
     animationWalk() {
@@ -202,18 +208,21 @@ class Character extends MovableObject {
     }
 
 
-
     animationHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.stopSound(this.world.soundSnoring);
-        if (this.world.soundHurt.paused) {
-            this.world.soundHurt.playbackRate = 1;
-            this.world.soundHurt.volume = 0.02;
-            this.playSound(this.world.soundHurt);
+        if (!this.soundHurtPlayed) {
+            if (this.world.soundHurt.paused) {
+                this.world.soundHurt.playbackRate = 1;
+                this.world.soundHurt.volume = 0.02;
+                this.playSound(this.world.soundHurt);
+            }
+            this.soundHurtPlayed = true;
         }
+    
         this.idleTime = 0;
     }
-
+    
 
     animationIdle() {
         this.playAnimation(this.IMAGES_STANDING);
