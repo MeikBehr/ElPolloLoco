@@ -202,7 +202,7 @@ class Character extends MovableObject {
         this.stopSound(this.world.sound_snoring);
         if (this.world.sound_hurt.paused) {
             this.world.sound_hurt.playbackRate = 1;
-            this.world.sound_hurt.volume = 0.05;
+            this.world.sound_hurt.volume = 0.02;
             this.playSound(this.world.sound_hurt);
         }
         this.idleTime = 0;

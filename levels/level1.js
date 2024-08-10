@@ -1,7 +1,7 @@
 let level1;
 
 // dieser Aufruf erst dann, wenn START gedrückt wurde, sonst laufen die Gegner sofort los!
-initLevel();
+// initLevel();
 
 function initLevel() {
     level1 = new Level(

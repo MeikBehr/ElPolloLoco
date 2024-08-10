@@ -73,53 +73,53 @@ class DrawableObjects {
 
 
     drawOffsetFrame(ctx) {
-        // if (this instanceof Chicken) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
 
-        // if (this instanceof Chicken_small) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Chicken_small) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
 
-        // if (this instanceof Coin) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Coin) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
 
-        // if (this instanceof Bottle) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Bottle) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
 
-        // if (this instanceof Endboss) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
 
-        // if (this instanceof Character) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '3';
-        //     ctx.strokeStyle = 'green';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
-        //     ctx.stroke();
-        // }
+        if (this instanceof Character) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'green';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
     }
 
 }

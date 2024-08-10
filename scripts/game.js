@@ -9,10 +9,15 @@ let isMuted = false;
 let fullscreen = false;
 
 
+
 function init() {
 	canvas = document.getElementById('canvas');
-	world = new World(canvas, keyboard);
+	checkOrientation();
+	// initLevel();
+	startGame();
+	// world = new World(canvas, keyboard);
 }
+
 
 
 window.addEventListener('keydown', (event) => {
@@ -57,4 +62,39 @@ window.addEventListener('keyup', (event) => {
 		keyboard.D = false;
 	};
 })
+
+
+
+
+function checkOrientation() {
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        if (window.innerHeight < 480) {
+            newHeight = window.innerHeight;
+            document.getElementById('canvas').style.height = `${newHeight}px`;
+        }
+    }
+    else {
+        document.getElementById('canvas').style.height = `100%`;
+    }
+}
+
+
+
+async function startGame() {
+    if (!isLoading) {
+        await newGame();
+        setTimeout(() => {
+            isLoading = true;
+        }, 3000);
+    }
+}
+
+
+async function newGame() {
+    canvas = document.getElementById('canvas');
+    initLevel();
+    world = new World(canvas, keyboard);
+}
+
+
 
