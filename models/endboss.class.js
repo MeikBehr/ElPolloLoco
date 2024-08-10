@@ -186,7 +186,7 @@ class Endboss extends MovableObject {
 
 
     characterAnimatesEndboss() {
-        if (this.world.character.x > 2600 && !this.hadFirstContact) {
+        if (this.world.character.x > 3000 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
         }

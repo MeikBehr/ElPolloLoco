@@ -31,7 +31,6 @@ class ChickenSmall extends NormalEnemies {
         this.loadImages(this.IMAGES_DEAD);
         this.x = x + Math.random() * 500;
         this.speed = this.speed + Math.random() * 0.25;
-
         this.animate();
     }
 

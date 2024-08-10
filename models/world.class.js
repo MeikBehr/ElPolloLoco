@@ -77,6 +77,43 @@ class World {
             this.chickenLoop(this.level.chickenSmall);
             this.cloudLoop(this.level.clouds);
         }, 200);
+
+        setInterval(() => {
+            this.checkForBottles();
+            this.checkForEnemies();
+            this.deleteDeadEnemies();
+        }, 5000);
+    }
+
+
+    deleteDeadEnemies() {
+        this.arrayOfEnemies.forEach((enemyArray) => {
+            for (let i = enemyArray.length - 1; i >= 0; i--) {
+                if (enemyArray[i].enemyIsDead) {
+                    enemyArray.splice(i, 1);
+                }
+            }
+        });
+    }
+    
+
+
+    checkForBottles() {
+        if (this.level.bottles.length <= 0) {
+            let x = Math.random() * 1500;
+            let y = 120 + Math.random() * 200;
+            this.level.bottles.push(new Bottle(x, y));
+        };
+    }
+
+
+    checkForEnemies() {
+        if (this.level.chickenSmall.length <= 0) {
+            this.level.chickenSmall.push(new ChickenSmall(3800));
+        }
+        if (this.level.chicken.length <= 0) {
+            this.level.chicken.push(new Chicken(3800));
+        }
     }
 
 
@@ -372,7 +409,7 @@ class World {
     chickenLoop(chicken) {
         chicken.forEach((chick) => {
             if (chick.x <= -150) {
-                chick.x = 3500;
+                chick.x = 4000;
             }
         })
     }
@@ -380,7 +417,7 @@ class World {
     cloudLoop() {
         this.level.clouds.forEach((cloud) => {
             if (cloud.x <= -150) {
-                cloud.x = 3500;
+                cloud.x = 4000;
             }
         })
     }

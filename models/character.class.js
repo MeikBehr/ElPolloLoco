@@ -101,7 +101,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.x = 0;
-        this.energy = 100;
+        this.energy = 1000;
     };
 
     
