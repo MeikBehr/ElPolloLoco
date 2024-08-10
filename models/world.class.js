@@ -232,6 +232,7 @@ class World {
         this.throwableObjects.forEach((bottle, index) => {
             this.checkCollisionsBottleGround(bottle, index);
             this.checkCollisionsBottleEndboss(bottle, index);
+            this.checkCollisionsBottleEnemie(bottle, index);
         });
     }
 
@@ -250,18 +251,33 @@ class World {
     checkCollisionsBottleEndboss(bottle, index) {
         this.level.endboss.forEach((endboss) => {
             if (bottle.isColliding(endboss)) {
+                bottle.objectIsColiding = true;
                 this.soundBottleSplash.volume = 0.1;
                 bottle.playSound(this.soundBottleSplash);
                 endboss.endbossHit(endboss);
                 this.statusbarEndboss.setPercentage(endboss.energy);
-                bottle.isColliding = true;
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1)
                 }, 1000 / 60);
             };
         })
+    }
 
 
+    checkCollisionsBottleEnemie(bottle, index) {
+        this.arrayOfEnemies.forEach(array => {
+            array.forEach(enemy => {
+                if (bottle.isColliding(enemy) && !enemy.enemyIsDead) {
+                    bottle.objectIsColiding = true;
+                    this.soundBottleSplash.volume = 0.1;
+                    bottle.playSound(this.soundBottleSplash);
+                    enemy.enemyIsDead = true;
+                    setTimeout(() => {
+                        this.throwableObjects.splice(index, 1)
+                    }, 1000 / 60);
+                };
+            });
+        });
     }
     
 
@@ -282,7 +298,10 @@ class World {
         
         this.addObjectsToMap(this.level.chickenSmall); 
         this.addObjectsToMap(this.level.chicken);
-        if (this.endboss_sightable) {this.addObjectsToMap(this.level.endboss)};
+        // if (this.endboss_sightable) {
+        //     this.addObjectsToMap(this.level.endboss)
+        // };
+        this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);                          // charakter zeichnen
 
         this.addObjectsToMap(this.throwableObjects);

@@ -11,6 +11,7 @@ class MovableObject extends DrawableObjects {
     lastHit = 0;
     lastHitEndBoss = 0;
     standingStill = 0;
+    objectIsColiding = false;
 
 
     // spielt die gecachten Bilder ab z.B. Animation beim Schwimmen
