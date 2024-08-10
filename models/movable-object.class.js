@@ -90,6 +90,7 @@ class MovableObject extends DrawableObjects {
             // Auferstehung nach 3 Sekunden!
             const myResurrection = setTimeout(() => {
                 this.energy = 100;
+                this.characterIsDead = false;
             }, 3000);
             /////////////////////////////////////////////
         } else {
@@ -106,13 +107,13 @@ class MovableObject extends DrawableObjects {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;   // difference in ms
         timepassed = timepassed / 1000                          // difference in s
-        return timepassed < 3;                                  // kleiner 5s true, größer false
+        return timepassed < 2;                                  // kleiner 5s true, größer false
     }
 
     isHurtEndboss() {
         let timepassed = new Date().getTime() - this.lastHitEndBoss;   // difference in ms
         timepassed = timepassed / 1000                          // difference in s
-        return timepassed < 3;                                  // kleiner 5s true, größer false
+        return timepassed < 2;                                  // kleiner 5s true, größer false
     }
 
     playSound(sound) {

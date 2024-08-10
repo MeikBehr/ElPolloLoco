@@ -78,7 +78,7 @@ class World {
 
             this.checkIfCharacterOrEndbossIsDead();
 
-            // this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
+            this.deleteThrowingObjects();       // deleting ThrowableObjects, if y > 500 to be more performant
         }, 200);
     }
 
