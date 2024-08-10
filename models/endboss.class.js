@@ -4,6 +4,8 @@ class Endboss extends MovableObject {
     hadFirstContact = false;
     endbossIsDead = false;
 
+    soundEndboss = new Audio('./assets/audio/endboss.mp3');
+
 
     offset = {
         top: 60,
@@ -120,7 +122,6 @@ class Endboss extends MovableObject {
         else if (this.isHurtEndboss()) {
             this.animationHurt();
         } 
-
         else if (this.i < 10) {
             this.animationAlert();     
         }
@@ -137,10 +138,10 @@ class Endboss extends MovableObject {
 
     animationHurt() {
         this.playAnimation(this.IMAGES_HURT);
-        if (this.world.soundEndboss.paused) {
-            this.world.soundEndboss.playbackRate = 1;
-            this.world.soundEndboss.volume = 0.05;
-            this.playSound(this.world.soundEndboss);
+        if (this.soundEndboss.paused) {
+            this.soundEndboss.playbackRate = 1;
+            this.soundEndboss.volume = 0.05;
+            this.playSound(this.soundEndboss);
         }
     }
 
@@ -148,14 +149,25 @@ class Endboss extends MovableObject {
     animationDying() {
         this.playAnimation(this.IMAGES_DYING);
         this.endbossIsDead = true;
+        this.i = 0;
     }
 
     animationAlert() {
-        this.playAnimation(this.IMAGES_ALERT); 
+        this.playAnimation(this.IMAGES_ALERT);
+        if (this.soundEndboss.paused) {
+            this.soundEndboss.playbackRate = 1;
+            this.soundEndboss.volume = 0.05;
+            this.playSound(this.soundEndboss);
+        }
     }
 
     animationAttack() {
         this.playAnimation(this.IMAGES_ATTACK);
+        if (this.soundEndboss.paused) {
+            this.soundEndboss.playbackRate = 1;
+            this.soundEndboss.volume = 0.05;
+            this.playSound(this.soundEndboss);
+        }
     }
 
     animationWalk() {

@@ -40,8 +40,7 @@ class World {
     soundBottleThrow = new Audio('./assets/audio/bottle_throw.mp3');
     soundHitChicken = new Audio('./assets/audio/hit_chicken.mp3');
     soundSnoring = new Audio('./assets/audio/snoring.mp3');
-    soundEndboss = new Audio('./assets/audio/endboss.mp3');
-    
+    // soundEndboss = new Audio('./assets/audio/endboss.mp3');
     
 
 
@@ -135,16 +134,10 @@ class World {
 
 
     checkCollisionsCharacterVsEndboss() {
-        // this.level.endboss.forEach((enemy) => {
-        //     if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
-        //         this.character.hit(enemy);
-        //         this.statusbarHealth.setPercentage(this.character.energy);
-        //     };
-        // });
-
         this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
                 this.character.hit(enemy);
+                enemy.animationAttack();
                 this.statusbarHealth.setPercentage(this.character.energy);
             };
         });
