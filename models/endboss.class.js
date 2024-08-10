@@ -91,11 +91,17 @@ class Endboss extends MovableObject {
     
 
     animate() {
+        this.playAnimation(this.IMAGES_ALERT);
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ALERT);
             this.characterAnimatesEndboss();
             this.endbossAnimations();
-        }, 170)
+        }, 170);
+
+        setInterval(() => {
+            if (this.hadFirstContact && this.i > 21 && !this.isDead() && !this.isHurtEndboss()) {
+                this.x -= this.speed;
+            }        
+        }, 1000 / 60);
     }
 
 
@@ -116,6 +122,8 @@ class Endboss extends MovableObject {
         }
         else {        
             this.animationWalk();
+            console.log('Walking!');
+            
         }
         this.i++;    
         this.characterAnimatesEndboss();
