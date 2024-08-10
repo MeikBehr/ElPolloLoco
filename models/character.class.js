@@ -10,6 +10,9 @@ class Character extends MovableObject {
     idleTime = 0;
 
     characterIsDead = false;
+    killCountChicken = 0;
+    killCountSmallChicken = 0;
+
 
     offset = {
         top: 90,

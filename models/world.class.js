@@ -139,6 +139,7 @@ class World {
                     };
                     enemy.enemyIsDead = true;
                     (enemy instanceof Chicken) ? (enemy.y = enemy.y + 20) : (enemy.y = enemy.y + 5);
+                    (enemy instanceof Chicken) ? (this.character.killCountChicken++) : (this.character.killCountSmallChicken++);
                     this.soundHitChicken.playbackRate = 1;
                     this.soundHitChicken.volume = 0.03;
                     this.character.playSound(this.soundHitChicken);
@@ -443,7 +444,8 @@ class World {
 
         this.ctx.font="18px Comic Sans MS";
         this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("You've reached bottles " + this.character.bottles + " and your coins is " + this.character.coins + ".", this.canvas.width / 2, this.canvas.height/2 - 40);
+        this.ctx.fillText("You collected " + this.character.bottles / 20 + " bottles and " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
+        this.ctx.fillText("You killed " + this.character.killCountChicken + " Chicken and " + this.character.killCountSmallChicken + " small Chicken.", this.canvas.width / 2, this.canvas.height/2 - 80);
     
 	    this.ctx.font="36px Comic Sans MS";
         this.ctx.fillStyle = '#D7DF01';
