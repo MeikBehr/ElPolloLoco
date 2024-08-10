@@ -123,7 +123,7 @@ class World {
     checkCollisionsCharacterVsEnemy() {
         this.arrayOfEnemies.forEach(arrayOfEnemies => {
             arrayOfEnemies.forEach(enemy => {
-                if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
+                if (this.character.isColliding(enemy) && !enemy.enemyIsDead && !this.character.isHurt()) {
                     this.character.hit(enemy);
                     this.statusbarHealth.setPercentage(this.character.energy);
                 };
@@ -135,10 +135,12 @@ class World {
 
     checkCollisionsCharacterVsEndboss() {
         this.level.endboss.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.enemyIsDead) {
+            if (this.character.isColliding(enemy) && !enemy.enemyIsDead && !this.character.isHurt()) {
                 this.character.hit(enemy);
                 enemy.animationAttack();
                 this.statusbarHealth.setPercentage(this.character.energy);
+                console.log(this.character.energy);
+                
             };
         });
     }
@@ -265,7 +267,7 @@ class World {
             return;
         }
     
-        if (this.keyboard.D && this.character.bottles >= 0) {
+        if (this.keyboard.D && this.character.bottles > 0) {
             let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
             bottle.isThrown = true;
             this.throwableObjects.push(bottle);
@@ -454,7 +456,6 @@ class World {
             // console.log('Character is Dead');
             // this.stopGame = true;
         } else if (this.level.endboss[0].endbossIsDead) {
-            console.log('Endboss is Dead');
             this.gameOverTest();
             this.final();
             setTimeout(() => {
@@ -464,7 +465,7 @@ class World {
     }
 
     final() {
-        console.log('Still here');
+        
         
     }
 

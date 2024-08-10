@@ -88,14 +88,17 @@ class MovableObject extends DrawableObjects {
             this.energy = 0;
 
             // Auferstehung nach 3 Sekunden!
-            const myResurrection = setTimeout(() => {
-                this.energy = 100;
-                this.characterIsDead = false;
-            }, 3000);
+            // const myResurrection = setTimeout(() => {
+            //     this.energy = 100;
+            //     this.characterIsDead = false;
+            // }, 3000);
             /////////////////////////////////////////////
         } else {
             this.lastHit = new Date().getTime();
         }
+
+        console.log(this.energy);
+        
     }
 
 

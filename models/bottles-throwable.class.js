@@ -38,7 +38,6 @@ class BottleThrowable extends ThrowableObject {
         this.x = x;
         this.y = y;
         this.otherDirection = otherDirection;
-
         this.throw(this.x, this.y, this.otherDirection);
         this.animate();
     }
@@ -51,7 +50,7 @@ class BottleThrowable extends ThrowableObject {
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 clearInterval(intervalId);
             }
-        }, 100);    // hier wird die Rotation der Flasche gesetzt
+        }, 100);
 
 
 

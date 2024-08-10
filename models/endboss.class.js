@@ -189,7 +189,6 @@ class Endboss extends MovableObject {
         if (this.world.character.x > 2600 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
-            console.log('Endboss called!');
         }
     }
 
