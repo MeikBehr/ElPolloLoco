@@ -49,7 +49,6 @@ class World {
         this.setWorld();
         this.run();
         this.backgroundSound.volume = this.backgroundSoundVolume;
-        this.backgroundSound.play();
     }
 
 
@@ -58,7 +57,7 @@ class World {
         this.level.endboss[0].world = this;
         if (!this.ismuted) {
             this.backgroundSound.volume = this.backgroundSoundVolume;
-            this.backgroundSound.play();
+            this.playSound(this.backgroundSound);
         };
     }
 
@@ -77,6 +76,12 @@ class World {
             this.chickenLoop(this.level.chicken);
             this.chickenLoop(this.level.chickenSmall);
             this.cloudLoop(this.level.clouds);
+
+            if (!this.ismuted) {
+                this.backgroundSound.volume = this.backgroundSoundVolume;
+                this.playSound(this.backgroundSound);
+            };
+
         }, 200);
 
         setInterval(() => {
@@ -480,16 +485,18 @@ class World {
     }
 
 
-    // playSound(sound) {
-    //     if (!isMuted) {
-    //         sound.play();
-    //     }
-    // }
-
-    // stopSound(sound) {
-    //     sound.pause();
-    // }
-
+    playSound(sound) {
+        if (!isMuted) {
+            sound.play();
+            activeSounds.push(sound);
+        }
+    }
+    
+    stopSound(sound) {
+        sound.pause();
+        sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
+        activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
+    }
 
     final() {
         

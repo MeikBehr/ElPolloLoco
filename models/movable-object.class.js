@@ -106,14 +106,27 @@ class MovableObject extends DrawableObjects {
         return timepassed < 2;
     }
 
+    // playSound(sound) {
+    //     if (!isMuted) {
+    //         sound.play();
+    //     }
+    // }
+
+    // stopSound(sound) {
+    //     sound.pause();
+    // }
+
     playSound(sound) {
         if (!isMuted) {
             sound.play();
+            activeSounds.push(sound);
         }
     }
-
+    
     stopSound(sound) {
         sound.pause();
+        sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
+        activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
     }
 
     stopAnimation() {
