@@ -45,6 +45,10 @@ body {
   background-image: url("../assets/img/background.png");
 }
 
+.d-none {
+  display: none;
+}
+
 
 canvas {
   background-color: black;

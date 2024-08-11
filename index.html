@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta name="robots" content="noindex, nofollow">
 	    <meta name="description" content="This is a trainingswebside of a student from the Developers Akademie">
+        <link rel="icon" href="./assets/img/4_enemie_boss_chicken/1_walk/G1.png">
         <link rel="stylesheet" type="text/css" href="./styles/main.css">
         
         <script src="./models/drawable-objects.class.js"></script>
@@ -40,17 +41,94 @@
 
     </head>
 
-    <body onload="init()">
+    <!-- <body onload="init()">
+    </body> -->
+
+    <body onload="showScreen('game')">
+
+        <h1>El Pollo Loco</h1>
 
         <main>
-            <div>
-                <h1>El Pollo Loco</h1>
+
+            <!-- Canvas with game -->
+            <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
+
+            <!-- Start-Screen -->
+            <div id="game" class="game">
+                <button id="game__start-btn" class="game__start-btn" onclick="init(), showScreen('canvas')">Start Game</button>
+                <button id="game__controls-btn" class="game__controls-btn" onclick="showScreen('controls')">Controls</button>
+                <button id="game__about-btn" class="game__about-btn" onclick="showScreen('about')">About</button>
+                <button id="game__mute-btn" class="game__mute-btn" onclick="">Mute</button>
+                <button id="game__unmute-btn" class="game__unmute-btn d-none" onclick="">Un-Mute</button>
+                <button id="game__fullscreen-btn" class="game__fullscreen-btn" onclick="">Fullscreen</button>
+            </div>
+
+            <!-- Menu-Screen CONTROL-->
+            <div id="controls" class="controls d-none">
+                <div>
+                    <button class="" onclick="showScreen('game')">Back</button>
+                </div>
+                <div class="">
+                    <div>Controls</div>
+                </div>
+                <div class="controls__description">
+                    <div class="">
+                        <div>Image of Arrow left</div>
+                        <div>Image of Arrow right</div>
+                    </div>
+                    <div>Use LEFT and RIGHT arrow keys to move left or right</div>
+                </div>
+                <div class="controls__description">
+                    <div class="">
+                        <div>Image of Space</div>
+                    </div>
+                    <span>Press SPACE to jump</span>
+                </div>
+                <div class="controls__description">
+                    <div class="">
+                        <div>Image of D</div>
+                    </div>
+                    <span>Press D key to throw bottles at enemies</span>
+                </div>   
+                <div class="controls__description">
+                    <div class="">
+                        <div>Image of P ?</div>
+                        <div>Image of M ?</div>
+                    </div>
+                    <div>Press P key for pause and M key for Mute/Unmute</div>
+                </div>
+            </div>
+
+            <!-- Menu-Screen ABOUT-->
+            <div id="about" class="about d-none">
+                <div>
+                    <button class="" onclick="showScreen('game')">Back</button>
+                </div>
+                <div class="about__header">
+                    <div>About</div>
+                </div>
+                <div class="about__description">
+                    <a href="./impressum.html" target="_blank"><div id="impressum" class="about__button">Impressum</div></a>
+                    <a href="./datenschutz.html" target="_blank"><div id="impressum" class="about__button">Datenschutz</div></a>
+                    <!-- <button id="datenschutz" class="about__button" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>  -->
+                </div>
+            </div>
+
+            <!-- Screen LOST GAME-->
+            <div id="game__lost" class="game__lost d-none">
+                <button class="game__lost-btn" onclick="init()">Restart Game</button>
+                <button class="" onclick="showScreen('game')">Start Screen</button>
+            </div>
+
+            <!-- Screen WON GAME-->
+            <div id="game__won" class="game__won d-none">
+                <button class="game__won-btn" onclick="showScreen('game')">Start Screen</button>
             </div>
 
         </main>
 
-        <canvas id="canvas" width="720" height="480"></canvas>
-
     </body>
+
+
 
 </html>

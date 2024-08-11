@@ -13,9 +13,7 @@ let fullscreen = false;
 function init() {
 	canvas = document.getElementById('canvas');
 	checkOrientation();
-	// initLevel();
 	startGame();
-	// world = new World(canvas, keyboard);
 }
 
 
@@ -97,4 +95,13 @@ async function newGame() {
 }
 
 
+function showScreen(showMe) {
+	document.getElementById('canvas').classList.add('d-none');
+	document.getElementById('game').classList.add('d-none');
+	document.getElementById('controls').classList.add('d-none');
+	document.getElementById('about').classList.add('d-none');
+	document.getElementById('game__lost').classList.add('d-none');
+	document.getElementById('game__won').classList.add('d-none');
+    document.getElementById(showMe).classList.remove('d-none');
+}
 
