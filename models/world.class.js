@@ -57,7 +57,7 @@ class World {
         this.level.endboss[0].world = this;
         if (!this.ismuted) {
             this.backgroundSound.volume = this.backgroundSoundVolume;
-            this.backgroundSound.play();
+            this.playSound(this.backgroundSound);
         };
     }
 
@@ -477,6 +477,18 @@ class World {
             }, 1500);
         }
     }
+
+
+    playSound(sound) {
+        if (!isMuted) {
+            sound.play();
+        }
+    }
+
+    stopSound(sound) {
+        sound.pause();
+    }
+
 
     final() {
         

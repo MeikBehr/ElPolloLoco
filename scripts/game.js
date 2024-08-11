@@ -133,3 +133,13 @@ function toggleFullscreen() {
         }
     }
 }
+
+
+function toggleMute() {
+    const muteButton = document.getElementById('game__mute-btn');
+    const unmuteButton = document.getElementById('game__unmute-btn');
+    isMuted = !isMuted;
+    muteButton.classList.toggle('d-none', isMuted);
+    unmuteButton.classList.toggle('d-none', !isMuted);
+}
+

@@ -57,16 +57,18 @@
                 <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Start Game</button>
                 <button id="game__controls-btn" class="game-btn" onclick="showScreen('controls')">Controls</button>
                 <button id="game__about-btn" class="game-btn" onclick="showScreen('about')">About</button>
-                <button id="game__mute-btn" class="game-btn" onclick="">
+
+                <button id="game__mute-btn" class="game-btn" onclick="toggleMute()">
                     <div class="game__container-img">
-                        <img src="./assets/icons/mute.png">
+                        <img class="game__sound-btn" src="./assets/icons/audio.png" alt="Mute">
                     </div>
                 </button>
-                <button id="game__unmute-btn" class="game-btn d-none" onclick="">
+                <button id="game__unmute-btn" class="game-btn d-none" onclick="toggleMute()">
                     <div class="game__container-img">
-                        <img src="./assets/icons/audio.png">
+                        <img class="game__sound-btn" src="./assets/icons/mute.png" alt="Unmute">
                     </div>
                 </button>
+                
                 <button id="game__fullscreen-btn" class="game-btn" onclick="toggleFullscreen()">
                     <div class="game__container-img">
                         <img src="./assets/icons/fullscreen.png">

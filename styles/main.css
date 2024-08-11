@@ -179,7 +179,7 @@ h1 {
   width: 2rem;
 }
 
-#game__mute-btn  img {
+.game__sound-btn {
   filter: invert(1);
 }
 
