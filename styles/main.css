@@ -67,19 +67,32 @@ canvas {
 }
 
 /* Smartphones ---------------------- */
+
+@media only screen and (max-width: 1024px) {
+  header {
+    display: none !important;
+  }
+}
+
+
 @media only screen and (max-width: 720px) {
   canvas {
-    width: 100%;
+    width: 100%  !important;
   }
 }
 
 
-/* Smartphones ---------------------- */
 @media only screen and (max-height: 480px) {
   canvas {
-    height: 100vh;
+    height: 100dvh  !important;
+  }
+
+  .game, .controls, .about, .game__lost, .game__won {
+    width: 100vw !important;
+    height: 100dvh !important;
   }
 }
+
 /* ------------ ---------------------- */
 
 
