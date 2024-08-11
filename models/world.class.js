@@ -444,7 +444,7 @@ class World {
 
         this.ctx.font="18px Comic Sans MS";
         this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("You collected " + this.character.bottles / 20 + " bottles and " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
+        this.ctx.fillText("You have left " + this.character.bottles / 20 + " bottles and collected " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
         this.ctx.fillText("You killed " + this.character.killCountChicken + " Chicken and " + this.character.killCountSmallChicken + " small Chicken.", this.canvas.width / 2, this.canvas.height/2 - 80);
     
 	    this.ctx.font="36px Comic Sans MS";
