@@ -13,9 +13,26 @@ let fullscreen = false;
 function init() {
 	canvas = document.getElementById('canvas');
 	checkOrientation();
+	showScreen('canvas');
 	startGame();
 }
 
+
+async function startGame() {
+    if (!isLoading) {
+        await newGame();
+        setTimeout(() => {
+            isLoading = true;
+        }, 2000);
+    }
+}
+
+
+async function newGame() {
+    canvas = document.getElementById('canvas');
+    initLevel();
+    world = new World(canvas, keyboard);
+}
 
 
 window.addEventListener('keydown', (event) => {
@@ -77,22 +94,6 @@ function checkOrientation() {
 }
 
 
-
-async function startGame() {
-    if (!isLoading) {
-        await newGame();
-        setTimeout(() => {
-            isLoading = true;
-        }, 3000);
-    }
-}
-
-
-async function newGame() {
-    canvas = document.getElementById('canvas');
-    initLevel();
-    world = new World(canvas, keyboard);
-}
 
 
 function showScreen(showMe) {

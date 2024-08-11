@@ -13,6 +13,14 @@
 }
 
 
+:root {
+  --canvas-border-radius: 2rem;
+  --canvas-box-shadow: 0 0 8px 8px rgba(0,0,0,0.3);
+  --font-family: Zabars, Lucky, Arial, Helvetica, sans-serif;
+  --transition-time: 125ms;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -38,22 +46,23 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100vh;
+  width: 100%;
   font-family: Zabars, Lucky, Arial, Helvetica, sans-serif;
   background-size: cover;
   background-image: url("../assets/img/background.png");
+  background-repeat: no-repeat;
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 
 canvas {
   background-color: black;
-  box-shadow:  0 0 8px 8px rgba(0,0,0,0.3);
-  border-radius: 2rem;
+  box-shadow:  var(--canvas-box-shadow);
+  border-radius: var(--canvas-border-radius);
   display: block;
 }
 
@@ -71,7 +80,7 @@ canvas {
     height: 100vh;
   }
 }
-
+/* ------------ ---------------------- */
 
 
 
@@ -90,4 +99,45 @@ h1 {
     -webkit-text-stroke-color: rgba(0,0,0,0.6);
   }
 }
+
+
+
+/* Start-Screen ---------------------- */
+
+
+.game {
+  display: flex;
+  justify-content: space-around;
+  background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_2.png');
+  background-position: center;
+  background-size: 720px 480px;
+  background-repeat: no-repeat;
+  width: 720px;
+  height: 480px;
+  box-shadow:  var(--canvas-box-shadow);
+  border-radius: var(--canvas-border-radius);
+}
+
+.game-btn {
+  font-size: 2rem;
+  font-family: var(--font-family);
+  background-color: rgb(255, 179, 0);
+  height: 3rem;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1.5rem;
+  border: none;
+  box-shadow: var(--canvas-box-shadow);
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+}
+
+.game-btn:hover {
+  transition: all var(--transition-time) ease;
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+
 
