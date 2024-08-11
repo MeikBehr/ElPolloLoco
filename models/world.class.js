@@ -48,7 +48,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-
+        this.backgroundSound.volume = this.backgroundSoundVolume;
+        this.backgroundSound.play();
     }
 
 
@@ -57,7 +58,7 @@ class World {
         this.level.endboss[0].world = this;
         if (!this.ismuted) {
             this.backgroundSound.volume = this.backgroundSoundVolume;
-            this.playSound(this.backgroundSound);
+            this.backgroundSound.play();
         };
     }
 
@@ -479,15 +480,15 @@ class World {
     }
 
 
-    playSound(sound) {
-        if (!isMuted) {
-            sound.play();
-        }
-    }
+    // playSound(sound) {
+    //     if (!isMuted) {
+    //         sound.play();
+    //     }
+    // }
 
-    stopSound(sound) {
-        sound.pause();
-    }
+    // stopSound(sound) {
+    //     sound.pause();
+    // }
 
 
     final() {

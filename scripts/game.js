@@ -79,6 +79,12 @@ window.addEventListener('keyup', (event) => {
 })
 
 
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'M' || event.key === 'm') {
+        toggleMute();
+        stopAllSounds();
+    }
+});
 
 
 function checkOrientation() {
@@ -139,7 +145,37 @@ function toggleMute() {
     const muteButton = document.getElementById('game__mute-btn');
     const unmuteButton = document.getElementById('game__unmute-btn');
     isMuted = !isMuted;
+	if (isMuted) {
+        stopAllSounds();
+    };
     muteButton.classList.toggle('d-none', isMuted);
     unmuteButton.classList.toggle('d-none', !isMuted);
 }
 
+
+
+/* -------------------------------- */
+
+
+let activeSounds = [];
+
+function playSound(sound) {
+    if (!isMuted) {
+        sound.play();
+        activeSounds.push(sound);
+    }
+}
+
+function stopSound(sound) {
+    sound.pause();
+    sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
+    activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
+}
+
+function stopAllSounds() {
+    activeSounds.forEach(sound => {
+        sound.pause();
+        sound.currentTime = 0;
+    });
+    activeSounds = []; // Leert die Liste der aktiven Sounds
+}
