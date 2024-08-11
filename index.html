@@ -54,7 +54,7 @@
 
             <!-- Start-Screen -->
             <div id="game" class="game">
-                <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Start Game</button>
+                <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Play</button>
                 <button id="game__controls-btn" class="game-btn" onclick="showScreen('controls')">Controls</button>
                 <button id="game__about-btn" class="game-btn" onclick="showScreen('about')">About</button>
 
@@ -87,9 +87,14 @@
                 <div class="controls__description">
                     <div class="controls__container-img">
                         <img src="./assets/icons/arrow_left.png">
+                    </div>
+                    <div>Use LEFT arrow keys to move left</div>
+                </div>
+                <div class="controls__description">
+                    <div class="controls__container-img">
                         <img src="./assets/icons/arrow_right.png">
                     </div>
-                    <div>Use LEFT and RIGHT arrow keys to move left or right</div>
+                    <div>Use RIGHT arrow keys to move right</div>
                 </div>
                 <div class="controls__description">
                     <div class="controls__container-img">
@@ -106,9 +111,14 @@
                 <div class="controls__description">
                     <div class="controls__container-img">
                         <img src="./assets/icons/keyboard_P.png">
+                    </div>
+                    <div>Press P for pause</div>
+                </div>
+                <div class="controls__description">
+                    <div class="controls__container-img">
                         <img src="./assets/icons/keyboard_M.png">
                     </div>
-                    <div>Press P for pause and M for Mute/Unmute</div>
+                    <div>Press M for Mute/Unmute</div>
                 </div>
             </div>
 
