@@ -109,7 +109,7 @@ h1 {
   color: white;
   text-shadow: 0px 0px 8px rgba(0,0,0,0.8);
   letter-spacing: 1rem;
-  line-height: 10rem;
+  line-height: 6rem;
   font-size: 5rem;
 }
 
@@ -168,6 +168,22 @@ h1 {
   filter: brightness(1.1);
 }
 
+.game__container-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+}
+
+.game__container-img > img {
+  width: 2rem;
+}
+
+#game__mute-btn  img {
+  filter: invert(1);
+}
+
+
 .controls,
 .about {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
@@ -200,7 +216,6 @@ h1 {
 
 .controls__description {
   display: flex;
-  flex-direction: column;
   align-items: center;
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
@@ -210,6 +225,22 @@ h1 {
 }
 
 
+.controls__container-img,
+.controls__container-img {
+  display: flex;
+  justify-content: center;
+  filter: invert(1);
+  width: 5rem;
+  margin-left: 6rem;
+  margin-right: 3rem;
+}
+
+.controls__container-img > img {
+  width: 2rem;
+  margin-right: 1rem;
+  filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.6));
+}
+
 
 
 .about__description {
@@ -217,3 +248,16 @@ h1 {
   align-items: center;
   justify-content: space-around;
 }
+
+
+/* Game Lost -Screen ---------------------- */
+
+
+
+
+
+/* Game Won -Screen ---------------------- */
+
+
+
+

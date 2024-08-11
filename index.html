@@ -57,9 +57,21 @@
                 <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Start Game</button>
                 <button id="game__controls-btn" class="game-btn" onclick="showScreen('controls')">Controls</button>
                 <button id="game__about-btn" class="game-btn" onclick="showScreen('about')">About</button>
-                <button id="game__mute-btn" class="game-btn" onclick="">Mute</button>
-                <button id="game__unmute-btn" class="game-btn d-none" onclick="">Un-Mute</button>
-                <button id="game__fullscreen-btn" class="game-btn" onclick="">Fullscreen</button>
+                <button id="game__mute-btn" class="game-btn" onclick="">
+                    <div class="game__container-img">
+                        <img src="./assets/icons/mute.png">
+                    </div>
+                </button>
+                <button id="game__unmute-btn" class="game-btn d-none" onclick="">
+                    <div class="game__container-img">
+                        <img src="./assets/icons/audio.png">
+                    </div>
+                </button>
+                <button id="game__fullscreen-btn" class="game-btn" onclick="">
+                    <div class="game__container-img">
+                        <img src="./assets/icons/fullscreen.png">
+                    </div>
+                </button>
             </div>
 
             <!-- Menu-Screen CONTROL-->
@@ -71,30 +83,30 @@
                     <div class="text-stroke">Controls</div>
                 </div>
                 <div class="controls__description">
-                    <div class="">
-                        <div>Image of Arrow left</div>
-                        <div>Image of Arrow right</div>
+                    <div class="controls__container-img">
+                        <img src="./assets/icons/arrow_left.png">
+                        <img src="./assets/icons/arrow_right.png">
                     </div>
                     <div>Use LEFT and RIGHT arrow keys to move left or right</div>
                 </div>
                 <div class="controls__description">
-                    <div class="">
-                        <div>Image of Space</div>
+                    <div class="controls__container-img">
+                        <img src="./assets/icons/keyboard_space.png">
                     </div>
-                    <span>Press SPACE to jump</span>
+                    <div>Press SPACE to jump</div>
                 </div>
                 <div class="controls__description">
-                    <div class="">
-                        <div>Image of D</div>
+                    <div class="controls__container-img">
+                        <img src="./assets/icons/keyboard_D.png">
                     </div>
-                    <span>Press D key to throw bottles at enemies</span>
+                    <div>Press D to throw bottles at enemies</div>
                 </div>   
                 <div class="controls__description">
-                    <div class="">
-                        <div>Image of P ?</div>
-                        <div>Image of M ?</div>
+                    <div class="controls__container-img">
+                        <img src="./assets/icons/keyboard_P.png">
+                        <img src="./assets/icons/keyboard_M.png">
                     </div>
-                    <div>Press P key for pause and M key for Mute/Unmute</div>
+                    <div>Press P for pause and M for Mute/Unmute</div>
                 </div>
             </div>
 
