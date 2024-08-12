@@ -33,16 +33,16 @@ function init() {
 function styleChangeForFullScreen() {
     if (fullscreen && gameStart) {
         let element = document.getElementById('content');
-        element.classList.toggle('d-none');
+        element.classList.add('d-none');
         
         element = document.getElementById('header');
-        element.classList.toggle('d-none');
+        element.classList.add('d-none');
         
         element = document.getElementById('canvas');
         element.style.borderRadius = "0px";
 
         element = document.getElementById('canvas');
-        element.classList.toggle('fullscreen-mode');
+        element.classList.add('fullscreen-mode');
 
         element = document.getElementById('main');
         element.style.width = '100%'
@@ -55,15 +55,16 @@ function styleChangeForFullScreen() {
 function styleChangeForNormalScreen() {
     if (!fullscreen && gameStart) {
         let element = document.getElementById('content');
-        element.classList.toggle('d-none');
+        element.classList.remove('d-none');
+
         element = document.getElementById('header');
-        element.classList.toggle('d-none');
+        element.classList.remove('d-none');
         
         element = document.getElementById('canvas');
         element.style.borderRadius = "10px";
 
         element = document.getElementById('canvas');
-        element.classList.toggle('fullscreen-mode');
+        element.classList.remove('fullscreen-mode');
 
         element = document.getElementById('main');
         element.style.width = '720px'
@@ -153,6 +154,10 @@ document.addEventListener('keydown', function(event) {
         stopAllSounds();
     }
 
+    if (event.key === 'V' || event.key === 'v') {
+        toggleFullscreen();
+    }
+
 });
 
 
@@ -228,6 +233,7 @@ document.addEventListener('MSFullscreenChange', handleFullscreenChange); // IE/E
 function handleFullscreenChange() {
     if (document.fullscreenElement) {
         fullscreen = true;
+        styleChangeForFullScreen();
     } else {
         fullscreen = false;
         styleChangeForNormalScreen();
