@@ -48,6 +48,17 @@ function styleChangeForFullScreen() {
         element.style.width = '100%'
         element.style.height = '100%'
     }
+
+
+    // Test
+    if (fullscreen && !gameStart) {
+        let element = document.querySelectorAll('.bordRad');
+        element.forEach((ele) => {
+            ele.style.borderRadius = '0px';
+        })
+       
+
+    }
 }
 
 
@@ -73,6 +84,18 @@ function styleChangeForNormalScreen() {
         element = document.getElementById('content');
         element.classList.toggle('content__size');
     }
+
+    // Test
+    if (!fullscreen && !gameStart) {
+        let element = document.querySelectorAll('.bordRad');
+        element.forEach((ele) => {
+            ele.style.borderRadius = '2rem';
+        })
+        
+        
+
+    }
+
 }
 
 
@@ -238,6 +261,7 @@ function handleFullscreenChange() {
         fullscreen = false;
         styleChangeForNormalScreen();
     }
+
 }
 
 
