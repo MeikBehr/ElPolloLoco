@@ -43,15 +43,16 @@
 
     <body onload="showScreen('game')">
 
-        <header>
+        <header id="header">
             <h1>El Pollo Loco</h1>
         </header>
 
-        <main>
+        <main id="main">
 
             <!-- Canvas with game -->
             <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
+        <div id="content" class="content__size">
             <!-- Start-Screen -->
             <div id="game" class="game">
                 <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Play</button>
@@ -146,6 +147,8 @@
             <div id="game__won" class="game__won d-none">
                 <button class="game__won-btn" onclick="showScreen('game')">Start Screen</button>
             </div>
+
+        </div>
 
         </main>
 

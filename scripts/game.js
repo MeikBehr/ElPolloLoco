@@ -8,15 +8,73 @@ let isLoading = false;
 let isMuted = false;
 let fullscreen = false;
 let isPaused = false;    // this
+let gameStart = false;
 
 
 
 function init() {
 	canvas = document.getElementById('canvas');
 	checkOrientation();
-	showScreen('canvas');
 	startGame();
+	showScreen('canvas');
+    gameStart = true;
+
+    if (fullscreen) {
+        styleChangeForFullScreen();
+    } else {
+        styleChangeForNormalScreen();
+    }
+
 }
+
+
+
+
+function styleChangeForFullScreen() {
+    if (fullscreen && gameStart) {
+        let element = document.getElementById('content');
+        element.classList.toggle('d-none');
+        
+        element = document.getElementById('header');
+        element.classList.toggle('d-none');
+        
+        element = document.getElementById('canvas');
+        element.style.borderRadius = "0px";
+
+        element = document.getElementById('canvas');
+        element.classList.toggle('fullscreen-mode');
+
+        element = document.getElementById('main');
+        element.style.width = '100%'
+        element.style.height = '100%'
+    }
+}
+
+
+
+function styleChangeForNormalScreen() {
+    if (!fullscreen && gameStart) {
+        let element = document.getElementById('content');
+        element.classList.toggle('d-none');
+        element = document.getElementById('header');
+        element.classList.toggle('d-none');
+        
+        element = document.getElementById('canvas');
+        element.style.borderRadius = "10px";
+
+        element = document.getElementById('canvas');
+        element.classList.toggle('fullscreen-mode');
+
+        element = document.getElementById('main');
+        element.style.width = '720px'
+        element.style.height = '480px'
+
+        element = document.getElementById('content');
+        element.classList.toggle('content__size');
+    }
+}
+
+
 
 
 async function startGame() {
@@ -95,7 +153,6 @@ document.addEventListener('keydown', function(event) {
         stopAllSounds();
     }
 
-
 });
 
 
@@ -114,43 +171,71 @@ function checkOrientation() {
 
 
 
-function showScreen(showMe) {
-	document.getElementById('canvas').classList.add('d-none');
-	document.getElementById('game').classList.add('d-none');
-	document.getElementById('controls').classList.add('d-none');
-	document.getElementById('about').classList.add('d-none');
-	document.getElementById('game__lost').classList.add('d-none');
-	document.getElementById('game__won').classList.add('d-none');
-    document.getElementById(showMe).classList.remove('d-none');
+
+function showScreen(screenId) {
+    const screens = ['game', 'controls', 'about', 'canvas'];
+    screens.forEach(screen => {
+        const element = document.getElementById(screen);
+        if (element) {
+            element.classList.add('d-none');
+        }
+    });
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.remove('d-none');
+    }
 }
 
 
 
 
 function toggleFullscreen() {
-    const element = document.documentElement;
+    fullscreen = !fullscreen;
+    let content = document.getElementById('content');
     if (!document.fullscreenElement) {
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.mozRequestFullScreen) { // Firefox
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullscreen) { // Chrome, Safari und Opera
-            element.webkitRequestFullscreen();
-        } else if (element.msRequestFullscreen) { // IE/Edge
-            element.msRequestFullscreen();
+        if (content.requestFullscreen) {
+            content.requestFullscreen();
+        } else if (content.mozRequestFullScreen) { // Firefox
+            content.mozRequestFullScreen();
+        } else if (content.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            content.webkitRequestFullscreen();
+        } else if (content.msRequestFullscreen) { // IE/Edge
+            content.msRequestFullscreen();
         }
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.mozCancelFullScreen) { // Firefox
             document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari und Opera
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
             document.webkitExitFullscreen();
         } else if (document.msExitFullscreen) { // IE/Edge
             document.msExitFullscreen();
         }
     }
+
 }
+
+
+
+// Event-Listener hinzufügen
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange); // Chrome, Safari und Opera
+document.addEventListener('mozfullscreenchange', handleFullscreenChange); // Firefox
+document.addEventListener('MSFullscreenChange', handleFullscreenChange); // IE/Edge
+
+// Funktion zum Verarbeiten von Änderungen des Vollbildmodus
+function handleFullscreenChange() {
+    if (document.fullscreenElement) {
+        fullscreen = true;
+    } else {
+        fullscreen = false;
+        styleChangeForNormalScreen();
+    }
+}
+
+
+
 
 
 function toggleMute() {
