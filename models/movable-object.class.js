@@ -24,7 +24,7 @@ class MovableObject extends DrawableObjects {
 
     applyGravity() {
         setInterval(()=> {
-            if (this.isAboveGround() || this.speedY > 0) {
+            if ((this.isAboveGround() || this.speedY > 0) && !isPaused) {
                 this.y -= this.speedY;
                 if (this instanceof Character) {
                     this.y > 180 ? this.y = 180 : this.y = this.y; 
@@ -45,16 +45,22 @@ class MovableObject extends DrawableObjects {
 
 
     moveRight() {
-        this.x += this.speed;
+        if(!isPaused) {
+            this.x += this.speed;
+        }
     }
     
 
     moveLeft() {
-        this.x -= this.speed;
+        if(!isPaused) {
+            this.x -= this.speed;
+        }
     }
     
     jump() {
-        this.speedY = 26;
+        if(!isPaused) {
+            this.speedY = 26;
+        }
     }
 
     

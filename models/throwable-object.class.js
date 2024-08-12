@@ -25,28 +25,21 @@ class ThrowableObject extends MovableObject {
         x = x;
         y = y;
         this.applyGravity();
-        setInterval(() => {
-            if (otherDirection) {
-              this.x -=this.speedX;
-            } else {
-              this.x += this.speedX;
-            }
-        }, 25)
+        if (!isPaused) {
+          setInterval(() => {
+              if (otherDirection) {
+                if (!isPaused) {
+                  this.x -=this.speedX;
+                }
+              } else {
+                if (!isPaused) {
+                  this.x += this.speedX;
+                }
+              }
+          }, 25)
+        }
 
     }
-
-
-    moveThrowableObject(direction) {
-        setInterval(() => {
-          if (direction == "right") {
-            this.x += 10;
-          }
-          if (direction == "left") {
-            this.x -= 10;
-          }
-        }, 25);
-    }
-
 
 
 }

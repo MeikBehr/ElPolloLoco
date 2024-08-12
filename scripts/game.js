@@ -7,6 +7,7 @@ let keyboard = new Keyboard();
 let isLoading = false;
 let isMuted = false;
 let fullscreen = false;
+let isPaused = false;    // this
 
 
 
@@ -36,24 +37,27 @@ async function newGame() {
 
 
 window.addEventListener('keydown', (event) => {
-	if (event.key =='ArrowUp') {
-		keyboard.UP = true;
-	};
-	if (event.key =='ArrowDown') {
-		keyboard.DOWN = true;
-	};
-	if (event.key =='ArrowLeft') {
-		keyboard.LEFT = true;
-	};
-	if (event.key =='ArrowRight') {
-		keyboard.RIGHT = true;
-	};
-	if (event.key ==' ') {
-		keyboard.SPACE = true;
-	};
-	if (event.key =='D' || event.key =='d') {
-		keyboard.D = true;
-	};
+    if (!isPaused) {
+        if (event.key =='ArrowUp') {
+            keyboard.UP = true;
+        };
+        if (event.key =='ArrowDown') {
+            keyboard.DOWN = true;
+        };
+        if (event.key =='ArrowLeft') {
+            keyboard.LEFT = true;
+        };
+        if (event.key =='ArrowRight') {
+            keyboard.RIGHT = true;
+        };
+        if (event.key ==' ') {
+            keyboard.SPACE = true;
+        };
+        if (event.key =='D' || event.key =='d') {
+            keyboard.D = true;
+        };
+    }
+   
 })
 
 
@@ -84,6 +88,14 @@ document.addEventListener('keydown', function(event) {
         toggleMute();
         stopAllSounds();
     }
+
+    if (event.key === 'P' || event.key === 'p') {
+        isPaused = !isPaused;
+        toggleMute();
+        stopAllSounds();
+    }
+
+
 });
 
 
@@ -160,7 +172,7 @@ function toggleMute() {
 let activeSounds = [];
 
 function playSound(sound) {
-    if (!isMuted) {
+    if (!isMuted & !isPaused) {
         sound.play();
         activeSounds.push(sound);
     }

@@ -116,20 +116,22 @@ class Character extends MovableObject {
 
 
     animate() {
-        setInterval(() =>{
-            this.characterMovements();
-        }, 1000 / 60);
-
-        setInterval(() =>{    
-            this.characterAnimations();
-        }, 100);
+        if(!isPaused) {
+            setInterval(() =>{
+                this.characterMovements();
+            }, 1000 / 60);
+    
+            setInterval(() =>{    
+                this.characterAnimations();
+            }, 100);
+        }
 
     }
 
 
 
     characterMovements() {
-        if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
+        if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround() &&!isPaused) {
             if (this.world.soundWalk.paused) {
                 this.playSound(this.world.soundWalk);
             }
@@ -137,10 +139,12 @@ class Character extends MovableObject {
             this.world.soundWalk.pause();
         }
         
+        
         this.characterMovesRight();
         this.characterMovesLeft();
         this.characterJumps();
         this.world.cameraX = -this.x + 100;
+
     }
 
 
@@ -177,25 +181,27 @@ class Character extends MovableObject {
 
 
     characterAnimations() {
-        if (this.isDead()) {
-            this.animationDying();
-            this.soundHurtPlayed = false;
-        }
-        else if (this.isHurt()) {
-            this.animationHurt();
-        }
-        else if (this.isAboveGround()) {
-            this.animationJump();
-            this.soundHurtPlayed = false;
-        } else {
-            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.animationWalk();
+        if (!isPaused) {
+            if (this.isDead()) {
+                this.animationDying();
                 this.soundHurtPlayed = false;
             }
-            else {
-                this.animationIdle();
+            else if (this.isHurt()) {
+                this.animationHurt();
+            }
+            else if (this.isAboveGround()) {
+                this.animationJump();
                 this.soundHurtPlayed = false;
-            }         
+            } else {
+                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.animationWalk();
+                    this.soundHurtPlayed = false;
+                }
+                else {
+                    this.animationIdle();
+                    this.soundHurtPlayed = false;
+                }         
+            }
         }
     }
     

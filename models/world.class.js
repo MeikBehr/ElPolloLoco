@@ -55,7 +55,7 @@ class World {
     setWorld() {
         this.character.world = this;
         this.level.endboss[0].world = this;
-        if (!this.ismuted) {
+        if (!this.ismuted || !isPaused) {
             this.backgroundSound.volume = this.backgroundSoundVolume;
             this.playSound(this.backgroundSound);
         };
@@ -64,31 +64,37 @@ class World {
 
     run() {
 
-        setInterval(() => {
-            this.checkCollisions();
-        }, 100);
+        if(!isPaused) {
+        
+            setInterval(() => {
+                this.checkCollisions();
+            }, 100);
 
-        setInterval(() => {
-            this.checkThrownObjects();
-            this.checkCollisionsOfThrowObjects();
-            this.checkIfCharacterOrEndbossIsDead();
-            this.deleteThrowingObjects();
-            this.chickenLoop(this.level.chicken);
-            this.chickenLoop(this.level.chickenSmall);
-            this.cloudLoop(this.level.clouds);
+            setInterval(() => {
+                this.checkThrownObjects();
+                this.checkCollisionsOfThrowObjects();
+                this.checkIfCharacterOrEndbossIsDead();
+                this.deleteThrowingObjects();
+                this.chickenLoop(this.level.chicken);
+                this.chickenLoop(this.level.chickenSmall);
+                this.cloudLoop(this.level.clouds);
+    
+                if (!this.ismuted) {
+                    this.backgroundSound.volume = this.backgroundSoundVolume;
+                    this.playSound(this.backgroundSound);
+                };
+    
+            }, 200);
+    
+            setInterval(() => {
+                this.checkForBottles();
+                this.checkForEnemies();
+                this.deleteDeadEnemies();
+            }, 5000);
+        }
+        
 
-            if (!this.ismuted) {
-                this.backgroundSound.volume = this.backgroundSoundVolume;
-                this.playSound(this.backgroundSound);
-            };
-
-        }, 200);
-
-        setInterval(() => {
-            this.checkForBottles();
-            this.checkForEnemies();
-            this.deleteDeadEnemies();
-        }, 5000);
+        
     }
 
 
@@ -293,22 +299,24 @@ class World {
             return;
         }
     
-        if (this.keyboard.D && this.character.bottles > 0) {
-            let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
-            bottle.isThrown = true;
-            this.throwableObjects.push(bottle);
-            this.character.idleTime = 0;
-            if (this.soundBottleThrow.paused) {
-                this.soundBottleThrow.playbackRate = 1;
-                this.soundBottleThrow.volume = 0.1;
-                bottle.playSound(this.soundBottleThrow);
+        if (!isPaused) {
+            if (this.keyboard.D && this.character.bottles > 0) {
+                let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
+                bottle.isThrown = true;
+                this.throwableObjects.push(bottle);
+                this.character.idleTime = 0;
+                if (this.soundBottleThrow.paused) {
+                    this.soundBottleThrow.playbackRate = 1;
+                    this.soundBottleThrow.volume = 0.1;
+                    bottle.playSound(this.soundBottleThrow);
+                }
+                this.character.bottles = this.character.bottles - 20;
+                this.statusbarBottle.setPercentage(this.character.bottles);
+                this.throwCooldown = true;
+                setTimeout(() => {
+                    this.throwCooldown = false;
+                }, 1000);
             }
-            this.character.bottles = this.character.bottles - 20;
-            this.statusbarBottle.setPercentage(this.character.bottles);
-            this.throwCooldown = true;
-            setTimeout(() => {
-                this.throwCooldown = false;
-            }, 1000);
         }
     };
     
@@ -342,7 +350,7 @@ class World {
         this.showBottles();
         this.showHealth();
 
-        if (this.stopGame) {
+        if (this.stopGame && !isPaused) {
             this.clearCanvas();
             this.gameOverTest2();
         };
@@ -464,15 +472,13 @@ class World {
 
 
     checkIfCharacterOrEndbossIsDead() {
-        if (this.character.characterIsDead) {
+        if (this.character.characterIsDead && !isPaused) {
             this.gameOverTest();
-            this.final();
             setTimeout(() => {
                 this.stopGame = true;
             }, 1500);
-        } else if (this.level.endboss[0].endbossIsDead) {
+        } else if (this.level.endboss[0].endbossIsDead && !isPaused) {
             this.gameOverTest();
-            this.final();
             setTimeout(() => {
                 this.stopGame = true;
             }, 1500);
@@ -491,11 +497,6 @@ class World {
         sound.pause();
         sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
         activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
-    }
-
-    final() {
-        
-        
     }
 
 

@@ -3,7 +3,9 @@ class NormalEnemies extends MovableObject {
 
 
     animationIsWalking() {
-        this.playAnimation(this.IMAGES_WALKING);
+        if (!isPaused) {
+            this.playAnimation(this.IMAGES_WALKING);    
+        }
     }
 
 
@@ -14,6 +16,8 @@ class NormalEnemies extends MovableObject {
 
     animate() {
 
+        // this.moveLeft();
+        
         setInterval(() => { 
             this.moveLeft();
         }, 1000 / 60)

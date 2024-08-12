@@ -43,16 +43,21 @@ class BottleThrowable extends ThrowableObject {
     }
 
     animate() {
-        let intervalId = setInterval(() => {
-            if (this.isAboveGround() && !this.objectIsColiding) {
-                this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
-            } else {
-                this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
-                clearInterval(intervalId);
-            }
-        }, 100);
 
-
+        if (!isPaused) {
+            let intervalId = setInterval(() => {
+                if (this.isAboveGround() && !this.objectIsColiding) {
+                    if(!isPaused) {
+                        this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+                    }
+                } else {
+                    if(!isPaused) {
+                        this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+                        clearInterval(intervalId);
+                    }
+                }
+            }, 100);
+        }
 
     }
 
