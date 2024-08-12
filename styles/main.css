@@ -18,8 +18,21 @@
   --canvas-box-shadow: 0 0 8px 8px rgba(0,0,0,0.3);
   --font-family: Zabars, Lucky, Arial, Helvetica, sans-serif;
   --transition-time: 125ms;
+  --color-btn-bright: #ffde00;
+  --color-btn-med: #ffcb1a;
+  --color-btn-dark: #ffa300;
+  --color-btn: var(--color-btn-med);
 }
 
+/* 
+Color:
+
+Hut Pepe = #ff9600
+L-hell = #ffde00
+L-Mittel = #ffcb1a
+L-dunkel = #ffa300
+
+*/
 
 * {
   margin: 0;
@@ -150,7 +163,7 @@ h1 {
 .game-btn {
   font-size: 2rem;
   font-family: var(--font-family);
-  background-color: rgb(255, 179, 0);
+  background: linear-gradient(to bottom, var(--color-btn-bright), var(--color-btn-dark));
   height: 3rem;
   border-radius: 1rem;
   padding-left: 1rem;
