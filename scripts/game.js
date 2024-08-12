@@ -178,7 +178,7 @@ function checkOrientation() {
 
 
 function showScreen(screenId) {
-    const screens = ['game', 'controls', 'about', 'canvas'];
+    const screens = ['game', 'controls', 'about', 'canvas', 'section__controls'];
     screens.forEach(screen => {
         const element = document.getElementById(screen);
         if (element) {
