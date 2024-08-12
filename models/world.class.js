@@ -47,8 +47,8 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.run();
         this.backgroundSound.volume = this.backgroundSoundVolume;
+        this.run();
     }
 
 
@@ -315,9 +315,7 @@ class World {
 
 
     draw() {
-
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-
 
         // MOVEABLE OBJECTS
         this.ctx.translate(this.cameraX, 0);
@@ -332,7 +330,6 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.cameraX, 0);
 
-
         // FIXED OBJECTS
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoin);
@@ -341,24 +338,22 @@ class World {
             this.addToMap(this.statusbarEndboss);
         }
 
-
         this.showCoins();
         this.showBottles();
         this.showHealth();
-
 
         if (this.stopGame) {
             this.clearCanvas();
             this.gameOverTest2();
         };
         
-
         requestAnimationFrame(() => {
             this.draw();
         });
 
 
     }
+
 
     showCoins() {
         this.ctx.font="24px Zabars";
