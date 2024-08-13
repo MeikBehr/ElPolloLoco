@@ -50,7 +50,7 @@
         <main id="main">
 
             <!-- Canvas with game -->
-            <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
+        <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
         <div id="content" class="content__size">
             <!-- Start-Screen -->
@@ -82,7 +82,7 @@
             <div id="controls" class="controls d-none bordRad">
 
                 <div>
-                    <button class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
+                    <button id="controls__back-btn" class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
                 </div>
 
                 <section class="controls__section">
@@ -172,6 +172,13 @@
             <!-- Screen WON GAME-->
             <div id="game__won" class="game__won bordRad d-none">
                 <button class="game__won-btn" onclick="showScreen('game')">Start Screen</button>
+            </div>
+
+            <!-- Buttons INGAME -->
+            <div id="ingame__button__container" class="ingame__buttons d-none">
+                <!-- <img id="audio-btn" src="./assets/icons/audio.png" alt="" onclick="toggleMute()"> -->
+                <!-- <img id="fullscreen-btn" src="./assets/icons/fullscreen.png" alt="" onclick="toggleFullscreen()"> -->
+                <img id="settings-btn" src="./assets/icons/option.png" alt="" onclick="showControlsIngame()">
             </div>
 
         </div>

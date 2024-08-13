@@ -17,6 +17,7 @@ function init() {
 	checkOrientation();
 	startGame();
 	showScreen('canvas');
+    showButtonsIngame();
     gameStart = true;
 
     if (fullscreen) {
@@ -74,7 +75,7 @@ function styleChangeForNormalScreen() {
         element.classList.remove('d-none');
         
         element = document.getElementById('canvas');
-        element.style.borderRadius = "10px";
+        element.style.borderRadius = "2rem";
 
         element = document.getElementById('canvas');
         element.classList.remove('fullscreen-mode');
@@ -309,4 +310,33 @@ function stopAllSounds() {
         sound.currentTime = 0;
     });
     activeSounds = []; // Leert die Liste der aktiven Sounds
+}
+
+/* -------------------------------- */
+
+function showButtonsIngame() {
+    const container = document.getElementById('ingame__button__container');
+    container.classList.remove('d-none');
+
+}
+
+
+function showControlsIngame() {
+    const container = document.getElementById('controls');
+    container.classList.toggle('d-none');
+    container.style.position = 'absolute';
+    container.style.inset = '0';
+    isPaused = !isPaused;
+    isMuted = !isMuted;
+
+    const containerButton = document.getElementById('controls__back-btn');
+    containerButton.onclick = null;
+    containerButton.removeAttribute('onclick');
+    containerButton.onclick = () => showControlsIngameBackButton(containerButton);
+}
+
+
+function showControlsIngameBackButton(containerButton) {
+    containerButton.onclick = () => showScreen('game');
+    showControlsIngame();
 }
