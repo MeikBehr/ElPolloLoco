@@ -9,6 +9,7 @@ let isMuted = false;
 let fullscreen = false;
 let isPaused = false;    // this
 let gameStart = false;
+let back = false;
 
 
 
@@ -327,16 +328,22 @@ function showControlsIngame() {
     container.style.position = 'absolute';
     container.style.inset = '0';
     isPaused = !isPaused;
-    isMuted = !isMuted;
 
-    const containerButton = document.getElementById('controls__back-btn');
-    containerButton.onclick = null;
-    containerButton.removeAttribute('onclick');
-    containerButton.onclick = () => showControlsIngameBackButton(containerButton);
+    if (!back) {
+        const containerButton = document.getElementById('controls__back-btn');
+        containerButton.onclick = null;
+        containerButton.removeAttribute('onclick');
+        containerButton.onclick = () => showControlsIngameBackButton(containerButton);
+    }
+
+    back = !back;
 }
 
 
 function showControlsIngameBackButton(containerButton) {
+    containerButton.onclick = null;
+    containerButton.removeAttribute('onclick');
     containerButton.onclick = () => showScreen('game');
+    // back = true;
     showControlsIngame();
 }
