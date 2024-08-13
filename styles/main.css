@@ -67,6 +67,25 @@ body {
   background-repeat: no-repeat;
 }
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+
+a:focus {
+  text-decoration: none;
+}
+
+
+a:link,
+a:visited,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
 .d-none {
   display: none !important;
 }
@@ -329,4 +348,12 @@ h1 {
 
 .about-btn {
   margin-top: 15%;
+}
+
+.credits {
+  font-size: 2rem;
+}
+
+.credits p {
+  line-height: 2.5rem;
 }
