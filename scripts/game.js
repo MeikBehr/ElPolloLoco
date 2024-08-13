@@ -211,7 +211,7 @@ function showScreen(screenId) {
     const targetScreen = document.getElementById(screenId);
     if (targetScreen) {
         targetScreen.classList.remove('d-none');
-    }
+    };
 }
 
 
@@ -313,7 +313,6 @@ function stopAllSounds() {
     activeSounds = []; // Leert die Liste der aktiven Sounds
 }
 
-/* -------------------------------- */
 
 function showButtonsIngame() {
     const container = document.getElementById('ingame__button__container');
@@ -346,4 +345,29 @@ function showControlsIngameBackButton(containerButton) {
     containerButton.onclick = () => showScreen('game');
     // back = true;
     showControlsIngame();
+}
+
+
+/* -- Landscape - check  -------------------- */
+
+
+window.addEventListener('load', checkOrientation);
+window.addEventListener('resize', checkOrientation);
+
+function checkOrientation() {
+    const container = document.getElementById('landscapeWarning');
+
+    if (window.innerHeight < 933) {
+        // Bedingung für Mobiltelefone und Tablets (Höhe < 933px)
+        if (window.innerWidth < window.innerHeight) {
+            // Wenn das Gerät im Hochformat ist (Breite < Höhe)
+            container.classList.remove('d-none');
+        } else {
+            // Wenn das Gerät im Querformat ist (Breite > Höhe)
+            container.classList.add('d-none');
+        }
+    } else {
+        // Wenn das Gerät eine Höhe >= 933px hat (z.B. Desktop), wird die Warnung ausgeblendet
+        container.classList.add('d-none');
+    }
 }
