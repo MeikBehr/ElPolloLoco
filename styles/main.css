@@ -103,39 +103,6 @@ main {
   height: 480px;
 }
 
-/* Smartphones ---------------------- */
-
-@media only screen and (max-width: 1024px) {
-  header {
-    display: none !important;
-  }
-}
-
-
-@media only screen and (max-width: 720px) {
-  canvas,
-  main {
-    width: 100%  !important;
-  }
-}
-
-
-@media only screen and (max-height: 480px) {
-  canvas,
-  main {
-    height: 100dvh  !important;
-    border-radius: 0px;
-  }
-
-  .main {
-    width: 100vw !important;
-    height: 100dvh !important;
-  }
-}
-
-/* ------------ ---------------------- */
-
-
 
 h1 {
   color: white;
@@ -295,16 +262,6 @@ h1 {
 }
 
 
-/* Game Lost -Screen ---------------------- */
-
-
-
-
-
-/* Game Won -Screen ---------------------- */
-
-
-
 
 /* --- Fullscreen  */
 
@@ -323,8 +280,6 @@ h1 {
   object-fit: contain;
 }
 
-
-/* --- TEST --- */
 
 
 .controls__section {
@@ -363,3 +318,54 @@ h1 {
   font-size: 1rem;
   line-height: 1.5rem;
 }
+
+
+
+
+/* Game Lost -Screen ---------------------- */
+
+
+
+
+
+/* Game Won -Screen ---------------------- */
+
+
+
+
+
+/* Smartphones ---------------------- */
+
+@media only screen and (max-width: 1024px) {
+  header {
+    display: none !important;
+  }
+}
+
+
+@media only screen and (max-width: 720px) {
+  canvas,
+  main {
+    width: 100%  !important;
+  }
+
+  .game {
+    border-radius: 0px;
+  }
+}
+
+
+@media only screen and (max-height: 480px) {
+  canvas,
+  main {
+    height: 100dvh  !important;
+    border-radius: 0px;
+  }
+
+  .main {
+    width: 100vw !important;
+    height: 100dvh !important;
+  }
+}
+
+/* ------------ ---------------------- */

@@ -85,15 +85,11 @@ function styleChangeForNormalScreen() {
         element.classList.toggle('content__size');
     }
 
-    // Test
     if (!fullscreen && !gameStart) {
         let element = document.querySelectorAll('.bordRad');
         element.forEach((ele) => {
-            ele.style.borderRadius = '2rem';
+            ele.style.borderRadius = '';
         })
-        
-        
-
     }
 
 }
