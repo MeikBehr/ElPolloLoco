@@ -336,6 +336,13 @@ h1 {
 
 /* Smartphones ---------------------- */
 
+
+/* Desktops (größer als 1024px) */
+@media only screen and (min-width: 1025px) {
+  
+}
+
+
 @media only screen and (max-width: 1024px) {
   header {
     display: none !important;
@@ -343,7 +350,23 @@ h1 {
 }
 
 
-@media only screen and (max-width: 720px) {
+/* Tablets (768px bis 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  canvas,
+  main {
+    width: 100%  !important;
+  }
+
+  .game {
+    border-radius: 0px;
+  }
+}
+
+
+
+
+/* Smartphones (maximale Breite 767px) */
+@media only screen and (max-width: 767px) {
   canvas,
   main {
     width: 100%  !important;

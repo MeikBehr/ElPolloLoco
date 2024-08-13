@@ -56,6 +56,8 @@ function styleChangeForFullScreen() {
         element.forEach((ele) => {
             ele.style.borderRadius = '0px';
         })
+
+
        
 
     }
@@ -216,6 +218,7 @@ function showScreen(screenId) {
 function toggleFullscreen() {
     fullscreen = !fullscreen;
     let content = document.getElementById('content');
+    let fullscreenIcon = document.getElementById('fullscreen');
     if (!document.fullscreenElement) {
         if (content.requestFullscreen) {
             content.requestFullscreen();
@@ -226,6 +229,9 @@ function toggleFullscreen() {
         } else if (content.msRequestFullscreen) { // IE/Edge
             content.msRequestFullscreen();
         }
+
+        fullscreenIcon.src = "http://127.0.0.1:5500/assets/icons/normalscreen.png"
+
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -236,6 +242,8 @@ function toggleFullscreen() {
         } else if (document.msExitFullscreen) { // IE/Edge
             document.msExitFullscreen();
         }
+
+        fullscreenIcon.src = "http://127.0.0.1:5500/assets/icons/fullscreen.png"
     }
 
 }
