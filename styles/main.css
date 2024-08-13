@@ -333,64 +333,6 @@ h1 {
 
 
 
-
-/* Smartphones ---------------------- */
-
-
-/* Desktops (größer als 1024px) */
-@media only screen and (min-width: 1025px) {
-  
-}
-
-
-@media only screen and (max-width: 1024px) {
-  header {
-    display: none !important;
-  }
-}
-
-
-/* Tablets (768px bis 1024px) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  canvas,
-  #main {
-    width: 100%  !important;
-  }
-
-  .game {
-    border-radius: 0px;
-  }
-}
-
-
-
-
-/* Smartphones (maximale Breite 767px) */
-@media only screen and (max-width: 767px) {
-  canvas,
-  #main {
-    width: 100%  !important;
-  }
-
-  .game {
-    border-radius: 0px;
-  }
-}
-
-
-@media only screen and (max-height: 480px) {
-  canvas,
-  main {
-    height: 100dvh  !important;
-    border-radius: 0px;
-  }
-
-  #main {
-    width: 100vw !important;
-    height: 100dvh !important;
-  }
-}
-
 /* ------------ ---------------------- */
 
 
@@ -444,4 +386,75 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+
+
+/* -------------------------------------- */
+
+
+
+
+/* Smartphones ---------------------- */
+
+
+/* Desktops (größer als 1024px) */
+@media only screen and (min-width: 1025px) {
+  
+}
+
+
+@media only screen and (max-width: 1024px) {
+  header {
+    display: none !important;
+  }
+}
+
+
+/* Tablets (768px bis 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  canvas,
+  #main {
+    width: 100%  !important;
+  }
+
+  .game {
+    border-radius: 0px;
+  }
+}
+
+
+
+
+/* Smartphones (maximale Breite 767px) */
+@media only screen and (max-width: 767px) {
+  canvas,
+  #main {
+    width: 100%  !important;
+  }
+
+  canvas {
+    border-radius: 0;
+  }
+
+  .game {
+    border-radius: 0px;
+  }
+}
+
+
+@media only screen and (max-height: 480px) {
+  canvas,
+  main {
+    height: 100dvh  !important;
+    border-radius: 0px;
+  }
+
+  canvas {
+    border-radius: 0;
+  }
+
+  #main {
+    width: 100vw !important;
+    height: 100dvh !important;
+  }
 }
