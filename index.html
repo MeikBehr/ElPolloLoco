@@ -54,6 +54,7 @@
 
         <div id="content" class="content__size">
             <!-- Start-Screen -->
+
             <div id="game" class="game bordRad">
                 <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Play</button>
                 <button id="game__controls-btn" class="game-btn" onclick="showScreen('controls')">Controls</button>
@@ -79,63 +80,88 @@
 
             <!-- Menu-Screen CONTROL-->
             <div id="controls" class="controls d-none bordRad">
+
                 <div>
                     <button class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
                 </div>
-                <div class="controls__headline">
-                    <div class="text-stroke">Controls</div>
-                </div>
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/arrow_left.png">
+
+                <section class="controls__section">
+
+                    <div class="controls__section__content">
+
+                        <div class="controls__headline">
+                            <div class="text-stroke">Controls</div>
+                        </div>
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/arrow_left.png">
+                            </div>
+                            <div>Use cursor LEFT to move left</div>
+                        </div>
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/arrow_right.png">
+                            </div>
+                            <div>Use cursor RIGHT to move right</div>
+                        </div>
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/keyboard_space.png">
+                            </div>
+                            <div>Press SPACE to jump</div>
+                        </div>
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/keyboard_D.png">
+                            </div>
+                            <div>Press D to throw a bottle</div>
+                        </div>   
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/keyboard_P.png">
+                            </div>
+                            <div>Press P for pause</div>
+                        </div>
+                        <div class="controls__description">
+                            <div class="controls__container-img">
+                                <img src="./assets/icons/keyboard_M.png">
+                            </div>
+                            <div>Press M for Mute/Unmute</div>
+                        </div>
+
                     </div>
-                    <div>Use cursor LEFT to move left</div>
-                </div>
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/arrow_right.png">
-                    </div>
-                    <div>Use cursor RIGHT to move right</div>
-                </div>
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/keyboard_space.png">
-                    </div>
-                    <div>Press SPACE to jump</div>
-                </div>
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/keyboard_D.png">
-                    </div>
-                    <div>Press D to throw a bottle</div>
-                </div>   
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/keyboard_P.png">
-                    </div>
-                    <div>Press P for pause</div>
-                </div>
-                <div class="controls__description">
-                    <div class="controls__container-img">
-                        <img src="./assets/icons/keyboard_M.png">
-                    </div>
-                    <div>Press M for Mute/Unmute</div>
-                </div>
+
+                </section>
+
             </div>
 
             <!-- Menu-Screen ABOUT-->
-            <div id="about" class="about d-none bordRad">
-                <div>
-                    <button class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
-                </div>
-                <div class="about__header">
-                    <div class="text-stroke">About</div>
-                </div>
-                <div class="about__description">
-                    <button id="datenschutz" class="game-btn" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>
-                    <button id="impressum" class="game-btn" onclick="window.open('./impressum.html', '_blank')">Impressum</button>
-                </div>
-            </div>
+            
+                    <div id="about" class="about d-none bordRad">
+
+                        <div>
+                            <button class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
+                        </div>
+
+                        <section class="controls__section">
+
+                            <div class="controls__section__content about__content">
+                                
+                                <div class="about__header">
+                                    <div class="text-stroke">About</div>
+                                </div>
+
+                                <div class="about__description">
+                                    <button id="datenschutz" class="game-btn about-btn" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>
+                                    <button id="impressum" class="game-btn about-btn" onclick="window.open('./impressum.html', '_blank')">Impressum</button>
+                                    <button id="credits" class="game-btn about-btn" onclick="window.open('./credits.html', '_blank')">Credits</button>
+                                </div>
+
+                            </div>
+
+                        </section>   
+                    </div>
+                
 
             <!-- Screen LOST GAME-->
             <div id="game__lost" class="game__lost bordRad d-none">

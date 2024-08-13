@@ -216,7 +216,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .bordRad {
@@ -224,7 +224,7 @@ h1 {
 }
 
 .controls-btn-marL {
-  margin-left: 2rem;
+  margin-left: 7%;
 }
 
 
@@ -270,6 +270,7 @@ h1 {
 
 .about__description {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
@@ -305,3 +306,27 @@ h1 {
 
 
 /* --- TEST --- */
+
+
+.controls__section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 7%;
+}
+
+.controls__section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about__content {
+  flex-direction: column;
+}
+
+.about-btn {
+  margin-top: 15%;
+}
