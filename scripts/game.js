@@ -7,6 +7,7 @@ let keyboard = new Keyboard();
 let isLoading = false;
 let isMuted = false;
 let fullscreen = false;
+let isPausedResistent = false;
 let isPaused = false;    // this
 let gameStart = false;
 let back = false;
@@ -176,13 +177,13 @@ window.addEventListener('keyup', (event) => {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'M' || event.key === 'm') {
         toggleMute();
-        stopAllSounds();
+        // stopAllSounds();
     }
 
     if (event.key === 'P' || event.key === 'p') {
         isPaused = !isPaused;
+        isPausedResistent = isPaused;
         toggleMute();
-        stopAllSounds();
     }
 
     if (event.key === 'V' || event.key === 'v') {
@@ -193,28 +194,9 @@ document.addEventListener('keydown', function(event) {
 });
 
 
-// function checkOrientation() {
-//     if (window.matchMedia("(orientation: landscape)").matches) {
-//         if (window.innerHeight < 480) {
-//             newHeight = window.innerHeight;
-//             document.getElementById('canvas').style.height = `${newHeight}px`;
-//         }
-//     }
-//     else {
-//         document.getElementById('canvas').style.height = `100%`;
-//     }
-// }
-
-
-
-
 
 function showScreen(screenId) {
-    
-    // const content = document.getElementById('content');
-    // content.classList.add('content__size');
-    
-    
+ 
     const screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls'];
     screens.forEach(screen => {
         const element = document.getElementById(screen);
@@ -272,7 +254,8 @@ document.addEventListener('webkitfullscreenchange', handleFullscreenChange); // 
 document.addEventListener('mozfullscreenchange', handleFullscreenChange); // Firefox
 document.addEventListener('MSFullscreenChange', handleFullscreenChange); // IE/Edge
 
-// Funktion zum Verarbeiten von Änderungen des Vollbildmodus
+
+
 function handleFullscreenChange() {
     if (document.fullscreenElement) {
         fullscreen = true;
@@ -282,7 +265,16 @@ function handleFullscreenChange() {
         styleChangeForNormalScreen();
     }
 
+    if (isPausedResistent) {
+        isPaused = true;
+        if (!isMuted) {
+            toggleMute();
+        }
+    }
 }
+
+
+
 
 
 
@@ -315,8 +307,8 @@ function playSound(sound) {
 
 function stopSound(sound) {
     sound.pause();
-    sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
-    activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
+    sound.currentTime = 0;
+    activeSounds = activeSounds.filter(s => s !== sound);
 }
 
 function stopAllSounds() {
@@ -324,7 +316,7 @@ function stopAllSounds() {
         sound.pause();
         sound.currentTime = 0;
     });
-    activeSounds = []; // Leert die Liste der aktiven Sounds
+    activeSounds = [];
 }
 
 
@@ -380,11 +372,15 @@ function checkOrientation() {
         } else {
             // Wenn das Gerät im Querformat ist (Breite > Höhe)
             container.classList.add('d-none');
-            isPaused = false;
+            if (!isPausedResistent) {
+                isPaused = false;
+            }
         }
     } else {
         // Wenn das Gerät eine Höhe >= 933px hat (z.B. Desktop), wird die Warnung ausgeblendet
         container.classList.add('d-none');
-        isPaused = false;
+        if (!isPausedResistent) {
+            isPaused = false;
+        }
     }
 }
