@@ -4,7 +4,6 @@ let canvas;
 let world;
 let level;
 let keyboard = new Keyboard();
-let isLoading = false;
 let isMuted = false;
 let fullscreen = false;
 let isPausedResistent = false;
@@ -21,7 +20,9 @@ function init() {
     // content.classList.add('d-none');
 	// checkOrientation();
 
+    world = null;
     gameStart = true;
+    isPaused = false;
 
 	startGame();
 	showScreen('canvas');
@@ -111,18 +112,14 @@ function styleChangeForNormalScreen() {
 
 
 async function startGame() {
-    if (!isLoading) {
-        await newGame();
-        setTimeout(() => {
-            isLoading = true;
-        }, 2000);
-    }
+    await newGame();
 }
 
 
 async function newGame() {
-    canvas = document.getElementById('canvas');
     initLevel();
+    canvas = document.getElementById('canvas');
+    canvas.value = '';
     world = new World(canvas, keyboard);
 }
 
@@ -197,7 +194,7 @@ document.addEventListener('keydown', function(event) {
 
 function showScreen(screenId) {
  
-    const screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls'];
+    const screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won', 'ingame__button__container'];
     screens.forEach(screen => {
         const element = document.getElementById(screen);
         if (element) {
@@ -388,28 +385,36 @@ function checkOrientation() {
 
 
 function gameWon() {
-    document.getElementById("game__won").classList.remove("d-none");
+    document.getElementById('game__won').classList.remove("d-none");
+    toggleFullscreen();
 }
 
 
 
 function gameLost() {
-    document.getElementById("game__lost").classList.remove("d-none");
+    document.getElementById('game__lost').classList.remove("d-none");
+    toggleFullscreen();
+}
+
+
+
+function backToStartScreen() {
+    gameStart = false;
+    showScreen('game');
+    document.getElementById('content').classList.add('content__size');
+    // document.getElementById('game__lost').classList.add('d-none');
 }
 
 
 function restartGame() {
-    console.log(world);
-    world = null;
-    console.log(world);
 
     document.getElementById("game__won").classList.add("d-none");
     document.getElementById("game__lost").classList.add("d-none");
 
 
-    showScreen('canvas');
-    startGame();
-    showButtonsIngame();
-    console.log(world);
+    init();
+
+    // showScreen('canvas');
+    // showButtonsIngame();
 
 }

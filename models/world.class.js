@@ -353,13 +353,10 @@ class World {
         this.showBottles();
         this.showHealth();
 
-        if (this.stopGame && !isPaused) {
-            // this.clearCanvas();
-            // this.gameOverTest2();
-            isPaused = true;
-            console.log('Game is over');
-            
-        };
+        // if (this.stopGame && !isPaused) {
+        //     isPaused = true;
+        //     console.log('Game is over');
+        // };
         
         requestAnimationFrame(() => {
             this.draw();
@@ -468,14 +465,12 @@ class World {
             this.gameOverTest();
             setTimeout(() => {
                 this.stopGame = true;
-                console.log('Character is dead, you lose!');
                 gameLost();
             }, 1000);
         } else if (this.level.endboss[0].endbossIsDead && !isPaused) {
             this.gameOverTest();
             setTimeout(() => {
                 this.stopGame = true;
-                console.log('Boss is dead, you won!');
                 gameWon();
             }, 1000);
         }
