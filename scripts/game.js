@@ -14,12 +14,19 @@ let back = false;
 
 
 function init() {
-	canvas = document.getElementById('canvas');
-	checkOrientation();
+	// canvas = document.getElementById('canvas');
+
+    // let content = document.getElementById('content');
+    // content.classList.remove('content__size');
+    // content.classList.add('d-none');
+
+
+	// checkOrientation();
 	startGame();
 	showScreen('canvas');
     showButtonsIngame();
     gameStart = true;
+
 
     if (fullscreen) {
         styleChangeForFullScreen();
@@ -86,7 +93,8 @@ function styleChangeForNormalScreen() {
         element.style.height = '480px'
 
         element = document.getElementById('content');
-        element.classList.toggle('content__size');
+        element.classList.remove('content__size');
+
     }
 
     if (!fullscreen && !gameStart) {
@@ -179,28 +187,34 @@ document.addEventListener('keydown', function(event) {
 
     if (event.key === 'V' || event.key === 'v') {
         toggleFullscreen();
+
     }
 
 });
 
 
-function checkOrientation() {
-    if (window.matchMedia("(orientation: landscape)").matches) {
-        if (window.innerHeight < 480) {
-            newHeight = window.innerHeight;
-            document.getElementById('canvas').style.height = `${newHeight}px`;
-        }
-    }
-    else {
-        document.getElementById('canvas').style.height = `100%`;
-    }
-}
+// function checkOrientation() {
+//     if (window.matchMedia("(orientation: landscape)").matches) {
+//         if (window.innerHeight < 480) {
+//             newHeight = window.innerHeight;
+//             document.getElementById('canvas').style.height = `${newHeight}px`;
+//         }
+//     }
+//     else {
+//         document.getElementById('canvas').style.height = `100%`;
+//     }
+// }
 
 
 
 
 
 function showScreen(screenId) {
+    
+    // const content = document.getElementById('content');
+    // content.classList.add('content__size');
+    
+    
     const screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls'];
     screens.forEach(screen => {
         const element = document.getElementById(screen);
@@ -232,7 +246,7 @@ function toggleFullscreen() {
             content.msRequestFullscreen();
         }
 
-        fullscreenIcon.src = "http://127.0.0.1:5500/assets/icons/normalscreen.png"
+        fullscreenIcon.src = "./assets/icons/normalscreen.png"
 
     } else {
         if (document.exitFullscreen) {
@@ -245,7 +259,7 @@ function toggleFullscreen() {
             document.msExitFullscreen();
         }
 
-        fullscreenIcon.src = "http://127.0.0.1:5500/assets/icons/fullscreen.png"
+        fullscreenIcon.src = "./assets/icons/fullscreen.png"
     }
 
 }
