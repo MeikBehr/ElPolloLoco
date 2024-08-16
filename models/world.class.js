@@ -68,12 +68,15 @@ class World {
         
             setInterval(() => {
                 this.checkCollisions();
+                this.checkCollisionsOfThrowObjects();
             }, 100);
 
             setInterval(() => {
-                this.checkThrownObjects();
-                this.checkCollisionsOfThrowObjects();
                 this.checkIfCharacterOrEndbossIsDead();
+            }, 20);
+
+            setInterval(() => {
+                this.checkThrownObjects();
                 this.deleteThrowingObjects();
                 this.chickenLoop(this.level.chicken);
                 this.chickenLoop(this.level.chickenSmall);
@@ -351,8 +354,11 @@ class World {
         this.showHealth();
 
         if (this.stopGame && !isPaused) {
-            this.clearCanvas();
-            this.gameOverTest2();
+            // this.clearCanvas();
+            // this.gameOverTest2();
+            isPaused = true;
+            console.log('Game is over');
+            
         };
         
         requestAnimationFrame(() => {
@@ -441,51 +447,6 @@ class World {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 
-
-    
-    gameOverTest2() {
-
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-        this.ctx.font="40px Comic Sans MS";
-        this.ctx.textAlign="center"; 
-        this.ctx.fillStyle = '#ffffff';
-        this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
-
-        this.ctx.font="18px Comic Sans MS";
-        this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("You have left " + this.character.bottles / 20 + " bottles and collected " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
-        this.ctx.fillText("You killed " + this.character.killCountChicken + " Chicken and " + this.character.killCountSmallChicken + " small Chicken.", this.canvas.width / 2, this.canvas.height/2 - 80);
-    
-	    this.ctx.font="36px Comic Sans MS";
-        this.ctx.fillStyle = '#D7DF01';
-        this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
-
-
-    }
-
-    gameOverTest() {
-        setTimeout(() => {
-            this.backgroundSound.pause();
-            this.clearAllIntervals();
-        }, 2000);   
-    }
-
-
-    checkIfCharacterOrEndbossIsDead() {
-        if (this.character.characterIsDead && !isPaused) {
-            this.gameOverTest();
-            setTimeout(() => {
-                this.stopGame = true;
-            }, 1500);
-        } else if (this.level.endboss[0].endbossIsDead && !isPaused) {
-            this.gameOverTest();
-            setTimeout(() => {
-                this.stopGame = true;
-            }, 1500);
-        }
-    }
-
-
     playSound(sound) {
         if (!isMuted) {
             sound.play();
@@ -500,11 +461,73 @@ class World {
     }
 
 
+
+
+    checkIfCharacterOrEndbossIsDead() {
+        if (this.character.characterIsDead && !isPaused) {
+            this.gameOverTest();
+            setTimeout(() => {
+                this.stopGame = true;
+                console.log('Character is dead, you lose!');
+                gameLost();
+            }, 1000);
+        } else if (this.level.endboss[0].endbossIsDead && !isPaused) {
+            this.gameOverTest();
+            setTimeout(() => {
+                this.stopGame = true;
+                console.log('Boss is dead, you won!');
+                gameWon();
+            }, 1000);
+        }
+    }
+
+
+
+
+
+
+
+    gameOverTest() {
+        setTimeout(() => {
+            this.backgroundSound.pause();
+            this.clearAllIntervals();
+        }, 2000);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    // gameOverTest2() {
+
+    //     this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+    //     this.ctx.font="40px Comic Sans MS";
+    //     this.ctx.textAlign="center"; 
+    //     this.ctx.fillStyle = '#ffffff';
+    //     this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
+
+    //     this.ctx.font="18px Comic Sans MS";
+    //     this.ctx.fillStyle = '#D7DF01';
+    //     this.ctx.fillText("You have left " + this.character.bottles / 20 + " bottles and collected " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
+    //     this.ctx.fillText("You killed " + this.character.killCountChicken + " Chicken and " + this.character.killCountSmallChicken + " small Chicken.", this.canvas.width / 2, this.canvas.height/2 - 80);
+    
+	//     this.ctx.font="36px Comic Sans MS";
+    //     this.ctx.fillStyle = '#D7DF01';
+    //     this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
+
+
+    // }
+
 }
-
-
-
-
 
 
 

@@ -16,17 +16,17 @@ let back = false;
 
 function init() {
 	// canvas = document.getElementById('canvas');
-
     // let content = document.getElementById('content');
     // content.classList.remove('content__size');
     // content.classList.add('d-none');
-
-
 	// checkOrientation();
+
+    gameStart = true;
+
 	startGame();
 	showScreen('canvas');
     showButtonsIngame();
-    gameStart = true;
+
 
 
     if (fullscreen) {
@@ -383,4 +383,33 @@ function checkOrientation() {
             isPaused = false;
         }
     }
+}
+
+
+
+function gameWon() {
+    document.getElementById("game__won").classList.remove("d-none");
+}
+
+
+
+function gameLost() {
+    document.getElementById("game__lost").classList.remove("d-none");
+}
+
+
+function restartGame() {
+    console.log(world);
+    world = null;
+    console.log(world);
+
+    document.getElementById("game__won").classList.add("d-none");
+    document.getElementById("game__lost").classList.add("d-none");
+
+
+    showScreen('canvas');
+    startGame();
+    showButtonsIngame();
+    console.log(world);
+
 }
