@@ -81,8 +81,8 @@
             <!-- Menu-Screen CONTROL-->
             <div id="controls" class="controls d-none bordRad">
 
-                <div>
-                    <button id="controls__back-btn" class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
+                <div class="back-btn-absolut">
+                    <button id="controls__back-btn" class="game-btn" onclick="showScreen('game')">Back</button>
                 </div>
 
                 <section class="controls__section">
@@ -139,8 +139,8 @@
             
                     <div id="about" class="about d-none bordRad">
 
-                        <div>
-                            <button class="game-btn controls-btn-marL" onclick="showScreen('game')">Back</button>
+                        <div class="back-btn-absolut">
+                            <button class="game-btn" onclick="showScreen('game')">Back</button>
                         </div>
 
                         <section class="controls__section">
@@ -152,6 +152,7 @@
                                 </div>
 
                                 <div class="about__description">
+                                    <button id="story__btn" class="game-btn about-btn" onclick="showScreen('story')">Story</button>
                                     <button id="datenschutz" class="game-btn about-btn" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>
                                     <button id="impressum" class="game-btn about-btn" onclick="window.open('./impressum.html', '_blank')">Impressum</button>
                                     <button id="credits" class="game-btn about-btn" onclick="window.open('./credits.html', '_blank')">Credits</button>
@@ -161,6 +162,33 @@
 
                         </section>   
                     </div>
+
+            <!-- Menu-Screen ABOUT-->
+            
+            <div id="story" class="story d-none bordRad">
+
+                <div class="back-btn-absolut">
+                    <button class="game-btn" onclick="showScreen('game')">Back</button>
+                </div>
+
+                <section class="controls__section">
+
+                    <div class="controls__section__content about__content">
+                        
+                        <div class="story__header">
+                            <div class="text-stroke">Story</div>
+                        </div>
+
+                        <div class="story__description">
+                            <div class="story__description-text text-stroke">
+                                <p>Our Mexican hero was absolutely thrilled to bits after winning a chicken-eating contest in his village. He thought the battle was over and he'd won the war! He had no idea that the real fight would begin in his dreams. That night, as he drifted off into a deep sleep, he was taken on a wild ride into a bizarre world where the chickens he had defeated came back as angry spirits. Guess what! Our hero is being chased through strange and twisted landscapes by a massive, menacing Chicken Boss and his feathered nightmares. With his big, bright sombrero on his head and armed with fiery Tabasco sauce, he must battle his way through and take down the giant Chicken Boss once and for all to escape this wild dream. Only by defeating the boss with his hot sauce can he end the nightmare and return to peaceful sleep. The contest is far from over, and now, his sanity is on the line. But he'll be ok!</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>   
+            </div>
                 
 
             <!-- Screen LOST GAME-->

@@ -188,6 +188,7 @@ h1 {
 
 .controls,
 .about,
+.story,
 .game__lost,
 .game__won {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
@@ -206,6 +207,13 @@ h1 {
   /* align-items: center; */
 }
 
+
+.story {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
+                    url('../assets/img/5_background/first_half_background.png');
+}
+
+
 .bordRad {
   border-radius: var(--canvas-border-radius);
 }
@@ -216,7 +224,8 @@ h1 {
 
 
 .controls__headline,
-.about__header {
+.about__header,
+.story__header {
   display: flex;
   justify-content: center;
   color: rgb(253, 253, 253);
@@ -255,12 +264,33 @@ h1 {
 
 
 
-.about__description {
+.about__description,
+.story__description {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
+
+
+.story__description-text {
+  padding-left: 10%;
+  padding-right: 10%;
+  font-size: 1.35rem;
+  text-overflow: ellipsis;
+  text-wrap: balance;
+  color: white;
+  letter-spacing: 0.1rem;
+  line-height: 1.5rem;
+}
+
+
+.back-btn-absolut {
+  position: absolute;
+  top: 0;
+  left: 4%;
+}
+
 
 
 
