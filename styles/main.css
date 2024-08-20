@@ -407,6 +407,61 @@ h1 {
 
 
 
+.game__won {
+  position: absolute;
+  inset: 0 0 0 0;
+  background-image: url('../assets/img/9_intro_outro_screens/win/win_2.png'),
+                    url('../assets/img/5_background/first_half_background.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  /* box-shadow:  var(--canvas-box-shadow); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+
+.game__won-btn {
+  font-size: 2rem;
+  font-family: var(--font-family);
+  background: linear-gradient(to bottom, var(--color-btn-bright), var(--color-btn-dark));
+  height: 3rem;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1.5rem;
+  border: none;
+  box-shadow: var(--canvas-box-shadow);
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+  z-index: 1000002;
+}
+
+
+.game__startscreen {
+  position: absolute;
+  inset: 0 35% 100% 35%;
+  z-index: 1000003;
+}
+
+.game__restart {
+  position: absolute;
+  inset: 80% 35% 0 35%;
+  z-index: 1000003;
+}
+
+
+
+
+
+
+
+
+
 /* ------------ ---------------------- */
 
 
