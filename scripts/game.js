@@ -41,41 +41,6 @@ function init() {
 
 
 
-function styleChangeForFullScreen() {
-    if (fullscreen && gameStart) {
-        let element = document.getElementById('content');
-        element.classList.add('d-none');
-        
-        element = document.getElementById('header');
-        element.classList.add('d-none');
-        
-        element = document.getElementById('canvas');
-        element.style.borderRadius = "0px";
-
-        element = document.getElementById('canvas');
-        element.classList.add('fullscreen-mode');
-
-        element = document.getElementById('main');
-        element.style.width = '100%'
-        element.style.height = '100%'
-    }
-
-
-    // Test
-    if (fullscreen && !gameStart) {
-        let element = document.querySelectorAll('.bordRad');
-        element.forEach((ele) => {
-            ele.style.borderRadius = '0px';
-        })
-
-
-       
-
-    }
-}
-
-
-
 function styleChangeForNormalScreen() {
     if (!fullscreen && gameStart) {
         let element = document.getElementById('content');
@@ -90,7 +55,10 @@ function styleChangeForNormalScreen() {
         element = document.getElementById('canvas');
         element.classList.remove('fullscreen-mode');
 
-        element = document.getElementById('main');
+        element = document.getElementById('content__canvas');
+        element.classList.remove('fullscreen-mode');
+
+        element = document.getElementById('content');
         element.style.width = '720px'
         element.style.height = '480px'
 
@@ -209,6 +177,41 @@ function showScreen(screenId) {
 
 
 
+/** ------------------------------------------------------------------------------- */
+/**   FULLSCREEN FUNCTION  */
+/** ------------------------------------------------------------------------------- */
+
+
+
+
+
+
+// Event-Listener hinzufügen
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange); // Chrome, Safari und Opera
+document.addEventListener('mozfullscreenchange', handleFullscreenChange); // Firefox
+document.addEventListener('MSFullscreenChange', handleFullscreenChange); // IE/Edge
+
+
+
+function handleFullscreenChange() {
+    if (document.fullscreenElement) {
+        fullscreen = true;
+        styleChangeForFullScreen();
+    } else {
+        fullscreen = false;
+        styleChangeForNormalScreen();
+    }
+
+    if (isPausedResistent) {
+        isPaused = true;
+        if (!isMuted) {
+            toggleMute();
+        }
+    }
+}
+
+
 
 function toggleFullscreen() {
     fullscreen = !fullscreen;
@@ -245,29 +248,38 @@ function toggleFullscreen() {
 
 
 
-// Event-Listener hinzufügen
-document.addEventListener('fullscreenchange', handleFullscreenChange);
-document.addEventListener('webkitfullscreenchange', handleFullscreenChange); // Chrome, Safari und Opera
-document.addEventListener('mozfullscreenchange', handleFullscreenChange); // Firefox
-document.addEventListener('MSFullscreenChange', handleFullscreenChange); // IE/Edge
 
 
+function styleChangeForFullScreen() {
+    if (fullscreen && gameStart) {
+        // let element = document.getElementById('content');
+        // element.classList.add('d-none');
+        
+        let element = document.getElementById('header');
+        element.classList.add('d-none');
+        
+        element = document.getElementById('content__canvas');
+        element.style.borderRadius = "0px";
+        element.classList.add('fullscreen-mode');
 
-function handleFullscreenChange() {
-    if (document.fullscreenElement) {
-        fullscreen = true;
-        styleChangeForFullScreen();
-    } else {
-        fullscreen = false;
-        styleChangeForNormalScreen();
+        element = document.getElementById('canvas');
+        element.style.borderRadius = "0px";
+        element.classList.add('fullscreen-mode');
+
+        element = document.getElementById('content');
+        element.style.width = '100%'
+        element.style.height = '100%'
     }
 
-    if (isPausedResistent) {
-        isPaused = true;
-        if (!isMuted) {
-            toggleMute();
-        }
+
+    // Test
+    if (fullscreen && !gameStart) {
+        let element = document.querySelectorAll('.bordRad');
+        element.forEach((ele) => {
+            ele.style.borderRadius = '0px';
+        })
     }
+
 }
 
 
@@ -275,7 +287,7 @@ function handleFullscreenChange() {
 
 
 
-
+/* -------------------------------- */
 
 function toggleMute() {
     const muteButton = document.getElementById('game__mute-btn');
@@ -287,10 +299,6 @@ function toggleMute() {
     muteButton.classList.toggle('d-none', isMuted);
     unmuteButton.classList.toggle('d-none', !isMuted);
 }
-
-
-
-/* -------------------------------- */
 
 
 let activeSounds = [];
