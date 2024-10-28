@@ -394,14 +394,14 @@ function checkOrientation() {
 
 function gameWon() {
     document.getElementById('game__won').classList.remove("d-none");
-    toggleFullscreen();
+    // toggleFullscreen();
 }
 
 
 
 function gameLost() {
     document.getElementById('game__lost').classList.remove("d-none");
-    toggleFullscreen();
+    // toggleFullscreen();
 }
 
 
