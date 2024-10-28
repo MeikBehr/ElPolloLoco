@@ -173,7 +173,15 @@ document.addEventListener('keydown', function(event) {
 
 function showScreen(screenId) {
  
-    const screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won', 'ingame__button__container'];
+    let screens = [];
+
+    if (screenId == ('canvas' || 'game__lost' || 'game__won')) {
+        screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won'];
+    } else {
+        screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won', 'ingame__button__container']; 
+    }
+
+    
     screens.forEach(screen => {
         const element = document.getElementById(screen);
         if (element) {
@@ -339,8 +347,11 @@ function stopAllSounds() {
 
 function showButtonsIngame() {
     const container = document.getElementById('ingame__button__container');
+    console.log(container);
     container.classList.remove('d-none');
-
+    console.log('Working');
+    console.log(container);
+    
 }
 
 
@@ -405,15 +416,15 @@ function checkOrientation() {
 
 
 function gameWon() {
-    document.getElementById('game__won').classList.remove("d-none");
-    // toggleFullscreen();
+    // document.getElementById('game__won').classList.remove("d-none");
+    showScreen('game__won');
 }
 
 
 
 function gameLost() {
     document.getElementById('game__lost').classList.remove("d-none");
-    // toggleFullscreen();
+    showScreen('game__lost');
 }
 
 
