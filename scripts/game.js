@@ -5,6 +5,7 @@ let world;
 let level;
 let keyboard = new Keyboard();
 let isMuted = false;
+// let isMutedBecausePaused = false;
 let fullscreen = false;
 let isPausedResistent = false;
 let isPaused = false;    // this
@@ -141,6 +142,8 @@ window.addEventListener('keyup', (event) => {
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'M' || event.key === 'm') {
+    // if ((event.key === 'M' || event.key === 'm') && !isPaused) {
+        isMuted = !isMuted;
         toggleMute();
         // stopAllSounds();
     }
@@ -148,6 +151,14 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'P' || event.key === 'p') {
         isPaused = !isPaused;
         isPausedResistent = isPaused;
+
+        // isMuted = !isMuted;
+        // if (!isMuted && isPaused) {
+        //     isMuted = true;
+        // } else if (isMuted && !isPaused) {
+        //     isMuted = false;
+        // }
+
         toggleMute();
     }
 
@@ -203,12 +214,13 @@ function handleFullscreenChange() {
         styleChangeForNormalScreen();
     }
 
-    if (isPausedResistent) {
-        isPaused = true;
-        if (!isMuted) {
-            toggleMute();
-        }
-    }
+    // if (isPausedResistent) {
+    //     isPaused = true;
+    //     if (!isMuted) {
+    //         isMuted = true;
+    //         toggleMute();
+    //     }
+    // }
 }
 
 
@@ -292,7 +304,7 @@ function styleChangeForFullScreen() {
 function toggleMute() {
     const muteButton = document.getElementById('game__mute-btn');
     const unmuteButton = document.getElementById('game__unmute-btn');
-    isMuted = !isMuted;
+    // isMuted = !isMuted;
 	if (isMuted) {
         stopAllSounds();
     };
