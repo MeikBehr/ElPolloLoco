@@ -30,6 +30,9 @@ function init() {
     showButtonsIngame();
 
 
+    touchScreenTouchStartEvent();
+    touchScreenTouchEndEvent();
+
 
     if (fullscreen) {
         styleChangeForFullScreen();
@@ -60,11 +63,11 @@ function styleChangeForNormalScreen() {
         element.classList.remove('fullscreen-mode');
 
         element = document.getElementById('content');
-        element.style.width = '720px'
-        element.style.height = '480px'
+        // element.style.width = '720px'
+        // element.style.height = '480px'
 
-        element = document.getElementById('content');
-        element.classList.remove('content__size');
+        // element = document.getElementById('content');
+        // element.classList.remove('content__size');
 
     }
 
@@ -143,7 +146,7 @@ window.addEventListener('keyup', (event) => {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'M' || event.key === 'm') {
     // if ((event.key === 'M' || event.key === 'm') && !isPaused) {
-        isMuted = !isMuted;
+        // isMuted = !isMuted;
         toggleMute();
         // stopAllSounds();
     }
@@ -159,7 +162,7 @@ document.addEventListener('keydown', function(event) {
         //     isMuted = false;
         // }
 
-        toggleMute();
+        // toggleMute();
     }
 
     if (event.key === 'V' || event.key === 'v') {
@@ -313,6 +316,7 @@ function toggleMute() {
     const muteButton = document.getElementById('game__mute-btn');
     const unmuteButton = document.getElementById('game__unmute-btn');
     // isMuted = !isMuted;
+    isMuted = !isMuted;
 	if (isMuted) {
         stopAllSounds();
     };
@@ -448,4 +452,50 @@ function restartGame() {
     // showScreen('canvas');
     // showButtonsIngame();
 
+}
+
+
+/* ------------------   Buttons Mobile -----------------------   */
+
+function touchScreenTouchStartEvent() {
+    const leftButton = document.getElementById('mobile__left');
+    leftButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    const rightButton = document.getElementById('mobile__right');
+    rightButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    const jump = document.getElementById('mobile__jump');
+    jump.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    const throwBottle = document.getElementById('mobile__throw');
+    throwBottle.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+}
+
+
+function touchScreenTouchEndEvent() {
+    const leftButton = document.getElementById('mobile__left');
+    leftButton.addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+    const rightButton = document.getElementById('mobile__right');
+    rightButton.addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
+    const jump = document.getElementById('mobile__jump');
+    jump.addEventListener('touchend', (e) => {
+        keyboard.SPACE = false;
+    });
+    const throwBottle = document.getElementById('mobile__throw');
+    throwBottle.addEventListener('touchend', (e) => {
+        keyboard.D = false;
+    });
 }
