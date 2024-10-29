@@ -514,7 +514,7 @@ h1 {
   color: white;
   font-size: 2em;
   text-align: center;
-  z-index: 1000001;
+  z-index: 2000001;
   justify-content: center;
   align-items: center;
   padding: 20px;

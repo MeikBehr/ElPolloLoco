@@ -392,30 +392,35 @@ function showControlsIngameBackButton(containerButton) {
 window.addEventListener('load', checkOrientation);
 window.addEventListener('resize', checkOrientation);
 
+
 function checkOrientation() {
     const container = document.getElementById('landscapeWarning');
 
     if (window.innerHeight < 933) {
-        // Bedingung für Mobiltelefone und Tablets (Höhe < 933px)
         if (window.innerWidth < window.innerHeight) {
-            // Wenn das Gerät im Hochformat ist (Breite < Höhe)
             container.classList.remove('d-none');
             isPaused = true;
         } else {
-            // Wenn das Gerät im Querformat ist (Breite > Höhe)
             container.classList.add('d-none');
             if (!isPausedResistent) {
                 isPaused = false;
             }
         }
     } else {
-        // Wenn das Gerät eine Höhe >= 933px hat (z.B. Desktop), wird die Warnung ausgeblendet
         container.classList.add('d-none');
         if (!isPausedResistent) {
             isPaused = false;
         }
     }
+
+    if (window.innerWidth < window.innerHeight) {
+        container.classList.remove('d-none');
+        isPaused = true;
+    }
 }
+
+
+
 
 
 
