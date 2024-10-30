@@ -517,7 +517,7 @@ window.addEventListener('load', () => {
     const mobileControls = document.getElementById('mobileControls');
 
     // Falls kein Touchscreen, Steuerelemente ausblenden (auch wenn Bildschirmgröße passt)
-    if (!isTouchDevice()) {
+    if (!isTouchDevice() ) {
         mobileControls.style.display = 'none';
     }
 });
