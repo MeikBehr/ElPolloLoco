@@ -27,7 +27,8 @@ function init() {
 
 	startGame();
 	showScreen('canvas');
-    showButtonsIngame();
+    
+    // showButtonsIngame();
 
 
     touchScreenTouchStartEvent();
@@ -181,7 +182,7 @@ function showScreen(screenId) {
     if (screenId == ('canvas' || 'game__lost' || 'game__won')) {
         screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won'];
     } else {
-        screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won', 'ingame__button__container']; 
+        screens = ['game', 'controls', 'about', 'story', 'canvas', 'section__controls', 'game__lost', 'game__won']; 
     }
 
     
@@ -349,14 +350,14 @@ function stopAllSounds() {
 }
 
 
-function showButtonsIngame() {
-    const container = document.getElementById('ingame__button__container');
-    console.log(container);
-    container.classList.remove('d-none');
-    console.log('Working');
-    console.log(container);
+// function showButtonsIngame() {
+//     const container = document.getElementById('ingame__button__container');
+//     console.log(container);
+//     container.classList.remove('d-none');
+//     console.log('Working');
+//     console.log(container);
     
-}
+// }
 
 
 function showControlsIngame() {
@@ -504,3 +505,28 @@ function touchScreenTouchEndEvent() {
         keyboard.D = false;
     });
 }
+
+/* ------------------------------- */
+
+
+function isTouchDevice() {
+    return ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+}
+
+window.addEventListener('load', () => {
+    const mobileControls = document.getElementById('mobileControls');
+
+    // Falls kein Touchscreen, Steuerelemente ausblenden (auch wenn Bildschirmgröße passt)
+    if (!isTouchDevice()) {
+        mobileControls.style.display = 'none';
+    }
+});
+
+
+function pauseGame() {
+    isPaused = !isPaused;
+}
+
+
+
+
