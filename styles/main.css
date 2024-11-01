@@ -535,6 +535,59 @@ h1 {
 
 
 
+#mobile__container-left {
+  position: absolute;
+  width: 50%;
+  bottom: -0.5rem;
+  left: 6rem;
+}
+
+
+.mobile__btn-left {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 1));
+}
+
+.mobile__btn-right {
+  position: absolute;
+  bottom: 1rem;
+  left: 6rem;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 1));
+}
+
+
+#mobile__container-right {
+  position: absolute;
+  width: 50%;
+  bottom: -0.5rem;
+  right: 5rem;
+}
+
+
+.mobile__btn-jump {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
+}
+
+.mobile__btn-throw {
+  position: absolute;
+  bottom: 1rem;
+  right: 6rem;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 1));
+}
+
 
 
 
@@ -548,13 +601,8 @@ h1 {
 /* Smartphones ---------------------- */
 
 
-/* Desktops (größer als 1024px) */
-@media only screen and (min-width: 1024px) {
-  
-}
 
-
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   header {
     display: none !important;
   }
@@ -562,7 +610,7 @@ h1 {
 
 
 /* Tablets (768px bis 1024px) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
 
   .game {
     border-radius: 0px;
@@ -646,10 +694,16 @@ h1 {
 
 
 
+#gameControls {
+  display: block; /* Standardmäßig ausgeblendet */
+  max-width: 720px;
+  max-height: 480px;
+}
+
+
 /* Steuerelemente für mobile Geräte vorbereiten */
 #mobileControls {
   display: none; /* Standardmäßig ausgeblendet */
-
   max-width: 720px;
   max-height: 480px;
 }
@@ -659,58 +713,8 @@ h1 {
   #mobileControls {
       display: block;
   }
-}
 
-
-#mobile__container-left {
-  position: absolute;
-  width: 50%;
-  bottom: -0.5rem;
-  left: 6rem;
-}
-
-
-.mobile__btn-left {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  width: 2rem;
-  height: 2rem;
-  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 1));
-}
-
-.mobile__btn-right {
-  position: absolute;
-  bottom: 1rem;
-  left: 6rem;
-  width: 2rem;
-  height: 2rem;
-  filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 1));
-}
-
-
-#mobile__container-right {
-  position: absolute;
-  width: 50%;
-  bottom: -0.5rem;
-  right: 5rem;
-}
-
-
-.mobile__btn-jump {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
-}
-
-.mobile__btn-throw {
-  position: absolute;
-  bottom: 1rem;
-  right: 6rem;
-  width: 2rem;
-  height: 2rem;
-  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 1));
+  #gameControls {
+    display: hidden;
+  }
 }
