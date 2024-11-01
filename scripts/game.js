@@ -316,10 +316,15 @@ function styleChangeForFullScreen() {
 function toggleMute() {
     const muteButton = document.getElementById('game__mute-btn');
     const unmuteButton = document.getElementById('game__unmute-btn');
+    const mobileAudio = document.getElementById('audio-btn');
+
     // isMuted = !isMuted;
     isMuted = !isMuted;
 	if (isMuted) {
         stopAllSounds();
+        mobileAudio.src = './assets/icons/mute.png';
+    } else {
+        mobileAudio.src = './assets/icons/audio.png';
     };
     muteButton.classList.toggle('d-none', isMuted);
     unmuteButton.classList.toggle('d-none', !isMuted);
