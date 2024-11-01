@@ -478,7 +478,7 @@ h1 {
   position: absolute;
   display: flex;
   top: 15px;
-  right: 30px;
+  right: 10%;
   gap: 12px;
 }
 
@@ -591,6 +591,20 @@ h1 {
 
 
 
+#gameControls {
+  display: block; /* Standardmäßig ausgeblendet */
+  max-width: 720px;
+  max-height: 480px;
+}
+
+
+/* Steuerelemente für mobile Geräte vorbereiten */
+#mobileControls {
+  display: none; /* Standardmäßig ausgeblendet */
+  max-width: 720px;
+  max-height: 480px;
+}
+
 
 
 
@@ -605,6 +619,10 @@ h1 {
 @media only screen and (max-width: 1023px) {
   header {
     display: none !important;
+  }
+
+  #gameControls {
+    display: none;
   }
 }
 
@@ -658,6 +676,7 @@ h1 {
 
   .ingame__buttons {
     right: 110px;
+    /* right: 10%; */
   }
 
 }
@@ -704,21 +723,6 @@ h1 {
   }
 }
 
-
-
-#gameControls {
-  display: block; /* Standardmäßig ausgeblendet */
-  max-width: 720px;
-  max-height: 480px;
-}
-
-
-/* Steuerelemente für mobile Geräte vorbereiten */
-#mobileControls {
-  display: none; /* Standardmäßig ausgeblendet */
-  max-width: 720px;
-  max-height: 480px;
-}
 
 /* Für Bildschirme kleiner oder gleich 768px */
 @media only screen and (max-width: 1023px) {
