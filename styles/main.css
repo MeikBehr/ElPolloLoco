@@ -637,6 +637,14 @@ h1 {
 }
 
 
+@media only screen and (max-width: 933px) and (max-height: 431px) {
+
+  .ingame__buttons {
+    right: 60px;
+  }
+
+}
+
 @media only screen and (max-width: 920px) and (max-height: 414px) {
 
   .ingame__buttons {
@@ -655,17 +663,21 @@ h1 {
 }
 
 
-/* @media only screen and (max-width: 720px) {
-  canvas,
-  #content {
-    height: 100dvh  !important;
-    border-radius: 0px;
+@media only screen and (max-width: 883px) and (max-height: 345px) {
+
+  .ingame__buttons {
+    right: 140px;
   }
 
+  #mobile__container-left {
+    left: 8rem;
+  }
 
-} */
+  #mobile__container-right {
+    right: 8rem;
+  }
 
-
+}
 
 
 @media only screen and (max-height: 480px) {
@@ -709,7 +721,7 @@ h1 {
 }
 
 /* Für Bildschirme kleiner oder gleich 768px */
-@media (max-width: 1023px) {
+@media only screen and (max-width: 1023px) {
   #mobileControls {
       display: block;
   }
