@@ -21,16 +21,13 @@ class World {
     coinsCounter = 0;
     cameraX = 0;
     throwableObjects = [];
-
     statusbarHealth = new StatusbarHealth();
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
     statusbarEndboss = new StatusbarEndboss();
-
     ismuted = false;
     backgroundSound = new Audio('./assets/audio/background.mp3');
     backgroundSoundVolume = 0.01;
-
     soundWalk = new Audio('./assets/audio/walking.mp3');
     soundJump = new Audio('./assets/audio/jump.mp3');
     soundHurt = new Audio('./assets/audio/hurt.mp3');
@@ -327,8 +324,6 @@ class World {
 
     draw() {
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-
-        // MOVEABLE OBJECTS
         this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
@@ -340,8 +335,6 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.cameraX, 0);
-
-        // FIXED OBJECTS
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoin);
         this.addToMap(this.statusbarBottle);
@@ -352,12 +345,7 @@ class World {
         this.showCoins();
         this.showBottles();
         this.showHealth();
-
-        // if (this.stopGame && !isPaused) {
-        //     isPaused = true;
-        //     console.log('Game is over');
-        // };
-        
+       
         requestAnimationFrame(() => {
             this.draw();
         });
@@ -453,12 +441,9 @@ class World {
     
     stopSound(sound) {
         sound.pause();
-        sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
-        activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
+        sound.currentTime = 0;
+        activeSounds = activeSounds.filter(s => s !== sound);
     }
-
-
-
 
     checkIfCharacterOrEndbossIsDead() {
         if (this.character.characterIsDead && !isPaused) {
@@ -476,51 +461,12 @@ class World {
         }
     }
 
-
-
-
-
-
-
     gameOverTest() {
         setTimeout(() => {
             this.backgroundSound.pause();
             this.clearAllIntervals();
         }, 2000);
     }
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-    // gameOverTest2() {
-
-    //     this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-    //     this.ctx.font="40px Comic Sans MS";
-    //     this.ctx.textAlign="center"; 
-    //     this.ctx.fillStyle = '#ffffff';
-    //     this.ctx.fillText("Game Over!", this.canvas.width / 2, this.canvas.height/2 - 120)
-
-    //     this.ctx.font="18px Comic Sans MS";
-    //     this.ctx.fillStyle = '#D7DF01';
-    //     this.ctx.fillText("You have left " + this.character.bottles / 20 + " bottles and collected " + this.character.coins / 20 + " coins.", this.canvas.width / 2, this.canvas.height/2 - 40);
-    //     this.ctx.fillText("You killed " + this.character.killCountChicken + " Chicken and " + this.character.killCountSmallChicken + " small Chicken.", this.canvas.width / 2, this.canvas.height/2 - 80);
-    
-	//     this.ctx.font="36px Comic Sans MS";
-    //     this.ctx.fillStyle = '#D7DF01';
-    //     this.ctx.fillText("Press 'Space' to continue.", this.canvas.width / 2, this.canvas.height/2 + 40); 
-
-
-    // }
 
 }
 

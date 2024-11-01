@@ -121,8 +121,8 @@ class MovableObject extends DrawableObjects {
 
     stopSound(sound) {
         sound.pause();
-        sound.currentTime = 0; // Setzt den Sound auf den Anfang zurück
-        activeSounds = activeSounds.filter(s => s !== sound); // Entfernt den Sound aus der aktiven Liste
+        sound.currentTime = 0;
+        activeSounds = activeSounds.filter(s => s !== sound);
     }
 
     stopAnimation() {

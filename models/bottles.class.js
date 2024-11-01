@@ -11,11 +11,6 @@ class Bottle extends MovableObject {
         right: 20,
       };
 
-    // IMAGES_BOTTLE = [
-    //     './assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
-    //     './assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
-    // ]
-
     IMAGES_BOTTLE = [
         './assets/img/6_salsa_bottle/1_salsa_bottle_in_air.png',
         './assets/img/6_salsa_bottle/2_salsa_bottle_in_air.png',
