@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="de" translate="no">
-
     <head>
-
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	    <meta name="robots" content="noindex, nofollow">
-	    <meta name="description" content="This is a trainingswebside of a student from the Developers Akademie">
-        <link rel="icon" href="./assets/img/4_enemie_boss_chicken/1_walk/G1.png">
-        <link rel="stylesheet" type="text/css" href="./styles/fonts.css">
-        <link rel="stylesheet" type="text/css" href="./styles/main.css">
-        <link rel="stylesheet" type="text/css" href="./styles/mobile.css">
-        <link rel="stylesheet" type="text/css" href="./styles/media.css">
-        
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="description" content="This is a trainingswebside of a student from the Developers Akademie" />
+        <link rel="icon" href="./assets/img/4_enemie_boss_chicken/1_walk/G1.png" />
+        <link rel="stylesheet" type="text/css" href="./styles/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/mobile.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/media.css" />
         <script src="./models/drawable-objects.class.js"></script>
         <script src="./models/movable-object.class.js"></script>
         <script src="./models/throwable-object.class.js"></script>
@@ -22,13 +19,11 @@
         <script src="./models/normal-enemies.class.js"></script>
         <script src="./models/character.class.js"></script>
         <script src="./models/endboss.class.js"></script>
-
         <script src="./models/statusbars.class.js"></script>
         <script src="./models/statusbar-health.class.js"></script>
         <script src="./models/statusbar-coin.class.js"></script>
         <script src="./models/statusbar-bottle.class.js"></script>
         <script src="./models/statusbar-endboss.class.js"></script>
-
         <script src="./models/chicken_small.class.js"></script>
         <script src="./models/chicken.class.js"></script>
         <script src="./models/clouds.class.js"></script>
@@ -41,28 +36,16 @@
         <script src="./models/world.class.js"></script>
         <script src="./scripts/game.js"></script>
         <title>El Pollo Loco</title>
-
     </head>
 
     <body onload="showScreen('game')">
-
         <header id="header">
             <h1>El Pollo Loco</h1>
         </header>
-
-        <!-- <main id="main"> -->
-
-            <!-- Canvas with game -->
-            <!-- <canvas id="canvas" width="720" height="480" class="d-none"></canvas> -->
-
         <div id="content" class="content__size">
-
             <div id="content__canvas">
                 <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
             </div>
-
-            <!-- Start-Screen -->
-
             <div id="game" class="game bordRad">
                 <button id="game__start-btn" class="game-btn" onclick="init(), showScreen('canvas')">Play</button>
                 <button id="game__controls-btn" class="game-btn" onclick="showScreen('controls')">Controls</button>
@@ -70,198 +53,159 @@
 
                 <button id="game__mute-btn" class="game-btn" onclick="toggleMute()">
                     <div class="game__container-img">
-                        <img class="game__sound-btn" src="./assets/icons/audio.png" alt="Mute">
+                        <img class="game__sound-btn" src="./assets/icons/audio.png" alt="Mute" />
                     </div>
                 </button>
                 <button id="game__unmute-btn" class="game-btn d-none" onclick="toggleMute()">
                     <div class="game__container-img">
-                        <img class="game__sound-btn" src="./assets/icons/mute.png" alt="Unmute">
+                        <img class="game__sound-btn" src="./assets/icons/mute.png" alt="Unmute" />
                     </div>
                 </button>
-                
+
                 <button id="game__fullscreen-btn" class="game-btn" onclick="toggleFullscreen()">
                     <div class="game__container-img">
-                        <img id="fullscreen" src="./assets/icons/fullscreen.png">
+                        <img id="fullscreen" src="./assets/icons/fullscreen.png" />
                     </div>
                 </button>
             </div>
-
-            <!-- Menu-Screen CONTROL-->
             <div id="controls" class="controls d-none bordRad">
-
                 <div class="back-btn-absolut">
                     <button id="controls__back-btn" class="game-btn" onclick="showScreen('game')">Back</button>
                 </div>
-
                 <section class="controls__section">
-
                     <div class="controls__section__content">
-
                         <div class="controls__headline">
                             <div class="text-stroke">Controls</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/arrow_left.png">
+                                <img src="./assets/icons/arrow_left.png" />
                             </div>
                             <div>Use cursor LEFT to move left</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/arrow_right.png">
+                                <img src="./assets/icons/arrow_right.png" />
                             </div>
                             <div>Use cursor RIGHT to move right</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/keyboard_space.png">
+                                <img src="./assets/icons/keyboard_space.png" />
                             </div>
                             <div>Press SPACE to jump</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/keyboard_D.png">
+                                <img src="./assets/icons/keyboard_D.png" />
                             </div>
                             <div>Press D to throw a bottle</div>
-                        </div>   
+                        </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/keyboard_P.png">
+                                <img src="./assets/icons/keyboard_P.png" />
                             </div>
                             <div>Press P for pause</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/keyboard_M.png">
+                                <img src="./assets/icons/keyboard_M.png" />
                             </div>
                             <div>Press M for Mute/Unmute</div>
                         </div>
                         <div class="controls__description">
                             <div class="controls__container-img">
-                                <img src="./assets/icons/keyboard_V.png">
+                                <img src="./assets/icons/keyboard_V.png" />
                             </div>
                             <div>Press V for Fullscreen/Normalscreen</div>
                         </div>
-
                     </div>
-
                 </section>
-
             </div>
+            <div id="about" class="about d-none bordRad">
+                <div class="back-btn-absolut" onclick="showScreen('game')">
+                    <button class="game-btn">Back</button>
+                </div>
 
-            <!-- Menu-Screen ABOUT-->
-            
-                    <div id="about" class="about d-none bordRad">
-
-                        <div class="back-btn-absolut" onclick="showScreen('game')">
-                            <button class="game-btn" >Back</button>
+                <section class="controls__section">
+                    <div class="controls__section__content about__content">
+                        <div class="about__header">
+                            <div class="text-stroke">About</div>
                         </div>
 
-                        <section class="controls__section">
-
-                            <div class="controls__section__content about__content">
-                                
-                                <div class="about__header">
-                                    <div class="text-stroke">About</div>
-                                </div>
-
-                                <div class="about__description">
-                                    <button id="story__btn" class="game-btn about-btn" onclick="showScreen('story')">Story</button>
-                                    <button id="datenschutz" class="game-btn about-btn" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>
-                                    <button id="impressum" class="game-btn about-btn" onclick="window.open('./impressum.html', '_blank')">Impressum</button>
-                                    <button id="credits" class="game-btn about-btn" onclick="window.open('./credits.html', '_blank')">Credits</button>
-                                </div>
-
-                            </div>
-
-                        </section>   
+                        <div class="about__description">
+                            <button id="story__btn" class="game-btn about-btn" onclick="showScreen('story')">Story</button>
+                            <button id="datenschutz" class="game-btn about-btn" onclick="window.open('./datenschutz.html', '_blank')">Datenschutz</button>
+                            <button id="impressum" class="game-btn about-btn" onclick="window.open('./impressum.html', '_blank')">Impressum</button>
+                            <button id="credits" class="game-btn about-btn" onclick="window.open('./credits.html', '_blank')">Credits</button>
+                        </div>
                     </div>
+                </section>
+            </div>
 
-            <!-- Menu-Screen ABOUT-->
-            
             <div id="story" class="story d-none bordRad">
-
                 <div class="back-btn-absolut">
                     <button class="game-btn" onclick="showScreen('game')">Back</button>
                 </div>
 
                 <section class="controls__section">
-
                     <div class="controls__section__content about__content">
-                        
                         <div class="story__header">
                             <div class="text-stroke">Story</div>
                         </div>
 
                         <div class="story__description">
                             <div class="story__description-text text-stroke">
-                                <p>Our Mexican hero was absolutely thrilled to bits after winning a chicken-eating contest in his village. He thought the battle was over and he'd won the war! He had no idea that the real fight would begin in his dreams. That night, as he drifted off into a deep sleep, he was taken on a wild ride into a bizarre world where the chickens he had defeated came back as angry spirits. Guess what! Our hero is being chased through strange and twisted landscapes by a massive, menacing Chicken Boss and his feathered nightmares. With his big, bright sombrero on his head and armed with fiery Tabasco sauce, he must battle his way through and take down the giant Chicken Boss once and for all to escape this wild dream. Only by defeating the boss with his hot sauce can he end the nightmare and return to peaceful sleep. The contest is far from over, and now, his sanity is on the line. But he'll be ok!</p>
+                                <p>
+                                    Our Mexican hero was absolutely thrilled to bits after winning a chicken-eating contest in his village. He thought the battle was over and he'd won the war! He had no idea that the real fight would begin in his dreams. That night, as he drifted off into a deep
+                                    sleep, he was taken on a wild ride into a bizarre world where the chickens he had defeated came back as angry spirits. Guess what! Our hero is being chased through strange and twisted landscapes by a massive, menacing Chicken Boss and his feathered nightmares.
+                                    With his big, bright sombrero on his head and armed with fiery Tabasco sauce, he must battle his way through and take down the giant Chicken Boss once and for all to escape this wild dream. Only by defeating the boss with his hot sauce can he end the nightmare and
+                                    return to peaceful sleep. The contest is far from over, and now, his sanity is on the line. But he'll be ok!
+                                </p>
                             </div>
                         </div>
-
                     </div>
-
-                </section>   
+                </section>
             </div>
-                
 
-            <!-- Screen LOST GAME-->
             <div id="game__lost" class="game__lost bordRad d-none">
                 <button class="game__lost-btn game__restart" onclick="restartGame()">Restart Game</button>
                 <button class="game__lost-btn game__startscreen" onclick="backToStartScreen()">Start Screen</button>
             </div>
 
-            <!-- Screen WON GAME-->
             <div id="game__won" class="game__won bordRad d-none">
                 <button class="game__lost-btn game__restart" onclick="restartGame()">Restart Game</button>
                 <button class="game__lost-btn game__startscreen" onclick="backToStartScreen()">Start Screen</button>
             </div>
 
-
-
-            <!-- Buttons INGAME -->
             <div id="gameControls">
                 <div id="ingame__button__container" class="ingame__buttons">
-                    <img id="audio-btn" src="./assets/icons/audio.png" alt="" onclick="toggleMute()">
-                    <img id="fullscreen-btn" src="./assets/icons/fullscreen.png" alt="" onclick="toggleFullscreen()">
-                    <img id="settings-btn" src="./assets/icons/option.png" alt="" onclick="showControlsIngame()">
+                    <img id="audio-btn" src="./assets/icons/audio.png" alt="" onclick="toggleMute()" />
+                    <img id="fullscreen-btn" src="./assets/icons/fullscreen.png" alt="" onclick="toggleFullscreen()" />
+                    <img id="settings-btn" src="./assets/icons/option.png" alt="" onclick="showControlsIngame()" />
                 </div>
             </div>
 
-
-
-
-            <!-- Buttons MOBILE INGAME -->
-             <div id="mobileControls">
+            <div id="mobileControls">
                 <div id="ingame__button__container" class="ingame__buttons">
-                    <img id="audio-btn-mobile" src="./assets/icons/audio.png" alt="" onclick="toggleMute()">
-                    <img id="pause-btn" src="./assets/icons/keyboard_P.png" alt="" onclick="pauseGame()">
-                    <img id="fullscreen-btn" src="./assets/icons/fullscreen.png" alt="" onclick="toggleFullscreen()">
-                    <img id="settings-btn" src="./assets/icons/option.png" alt="" onclick="showControlsIngame()">
+                    <img id="audio-btn-mobile" src="./assets/icons/audio.png" alt="" onclick="toggleMute()" />
+                    <img id="pause-btn" src="./assets/icons/keyboard_P.png" alt="" onclick="pauseGame()" />
+                    <img id="fullscreen-btn" src="./assets/icons/fullscreen.png" alt="" onclick="toggleFullscreen()" />
+                    <img id="settings-btn" src="./assets/icons/option.png" alt="" onclick="showControlsIngame()" />
                 </div>
 
-                <!-- Buttons Mobile LEFT -->
                 <div id="mobile__container-left">
-                    <img id="mobile__left" class="mobile__btn-left" src="./assets/icons/arrow_left.png" alt="">
-                    <img id="mobile__right" class="mobile__btn-right" src="./assets/icons/arrow_right.png" alt="">
+                    <img id="mobile__left" class="mobile__btn-left" src="./assets/icons/arrow_left.png" alt="" />
+                    <img id="mobile__right" class="mobile__btn-right" src="./assets/icons/arrow_right.png" alt="" />
                 </div>
 
-                <!-- Buttons Mobile RIGHT -->
                 <div id="mobile__container-right">
-                    <img id="mobile__jump" class="mobile__btn-jump" src="./assets/icons/keyboard_space.png" alt="">
-                    <img id="mobile__throw" class="mobile__btn-throw" src="./assets/icons/keyboard_D.png" alt="">
+                    <img id="mobile__jump" class="mobile__btn-jump" src="./assets/icons/keyboard_space.png" alt="" />
+                    <img id="mobile__throw" class="mobile__btn-throw" src="./assets/icons/keyboard_D.png" alt="" />
                 </div>
             </div>
-
-
         </div>
 
-        <!-- </main> -->
-
         <div id="landscapeWarning" class="landscape-warning d-none">Bitte drehen Sie Ihr Gerät.</div>
-
     </body>
-
-
-
 </html>
