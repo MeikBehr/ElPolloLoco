@@ -1,0 +1,114 @@
+
+
+@media only screen and (max-width: 1023px) {
+    header {
+      display: none !important;
+    }
+  
+    #gameControls {
+      display: none;
+    }
+  }
+  
+  
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  
+    .game {
+      border-radius: 0px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 767px) {
+  
+    .ingame__buttons {
+      right: 70px;
+    }
+  
+    canvas {
+      border-radius: 0;
+    }
+  
+    .game {
+      border-radius: 0px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 933px) and (max-height: 431px) {
+  
+    .ingame__buttons {
+      right: 60px;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 920px) and (max-height: 414px) {
+  
+    .ingame__buttons {
+      right: 80px;
+    }
+  
+  }
+  
+  
+  @media only screen and (max-width: 850px) and (max-height: 480px) {
+  
+    .ingame__buttons {
+      right: 110px;
+    }
+  
+  }
+  
+  
+  @media only screen and (max-width: 883px) and (max-height: 345px) {
+  
+    .ingame__buttons {
+      right: 140px;
+    }
+  
+    #mobile__container-left {
+      left: 8rem;
+    }
+  
+    #mobile__container-right {
+      right: 8rem;
+    }
+  
+  }
+  
+  
+  @media only screen and (max-height: 480px) {
+    canvas,
+    #content {
+      height: 100dvh  !important;
+      border-radius: 0px;
+    }
+  
+    canvas {
+      border-radius: 0;
+    }
+  
+    #content {
+      width: 100vw !important;
+      height: 100dvh !important;
+    }
+  }
+  
+  
+  @media only screen and (max-height: 480px) {
+    .controls__section {
+      transform: scale(0.8);
+    }
+  }
+  
+  @media only screen and (max-width: 1023px) {
+    #mobileControls {
+        display: block;
+    }
+  
+    #gameControls {
+      display: hidden;
+    }
+  }
+  
