@@ -441,6 +441,7 @@ h1 {
   filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 1));
 }
 
-#audio-btn {
+#audio-btn,
+#audio-btn-mobile {
   filter: invert(1) drop-shadow(0px 0px 4px rgba(0, 0, 0, 1));
 }
