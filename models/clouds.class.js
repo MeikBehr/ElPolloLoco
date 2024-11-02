@@ -1,7 +1,15 @@
+/**
+ * Represents a cloud in the game that moves horizontally.
+ * @extends MovableObject
+ */
 class Cloud extends MovableObject {
 
+    /** @type {HTMLImageElement} - The image of the cloud */
     img;
 
+    /** 
+     * @param {number} x - Initial x position of the cloud
+     */
     constructor (x) {
         super();
         this.loadImage('./assets/img/5_background/layers/4_clouds/1.png');
@@ -13,6 +21,9 @@ class Cloud extends MovableObject {
         this.animate();
     }
 
+    /** 
+     * Animates the cloud by moving it horizontally across the screen.
+     */
     animate() {
         setInterval( () => {
             if(!isPaused) {
@@ -20,8 +31,4 @@ class Cloud extends MovableObject {
             }
         }, 1000 / 60);
     }
-
 }
-
-
-
