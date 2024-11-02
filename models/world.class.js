@@ -370,25 +370,10 @@ class World {
     }
 
 
-
-
-
-
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-    /* ================================================================================================================        */
-
-
-    
-
-    checkCollisionsOfThrowObjects () {
+    /**
+     * Checks for collisions of throwable objects (bottles) with enemies, the end boss, and the ground.
+     */
+    checkCollisionsOfThrowObjects() {
         this.throwableObjects.forEach((bottle, index) => {
             this.checkCollisionsBottleEnemie(bottle, index);
             this.checkCollisionsBottleEndboss(bottle, index);
@@ -397,33 +382,63 @@ class World {
     }
 
 
-    checkCollisionsBottleGround(bottle, index) {
-        if (!bottle.isAboveGround()) {
-            this.soundBottleSplash.volume = 0.1;
-            bottle.playSound(this.soundBottleSplash);
-            setTimeout(() => {
-                this.throwableObjects.splice(index, 1)
-            }, 1000 / 60);
-        };
-    }
+     /**
+     * Checks for collisions between a bottle and the ground.
+     * If the bottle is not above ground, it plays a splash sound and removes the bottle from the throwableObjects array after a short delay.
+     * 
+     * @param {Object} bottle - The bottle object to check for ground collision.
+     * @param {number} index - The index of the bottle in the throwableObjects array.
+     */
+        checkCollisionsBottleGround(bottle, index) {
+            if (!bottle.isAboveGround()) {
+                this.soundBottleSplash.volume = 0.1;
+                bottle.playSound(this.soundBottleSplash);
+                setTimeout(() => {
+                    this.throwableObjects.splice(index, 1);
+                }, 1000 / 60);
+            }
+        }
+    
 
 
-    checkCollisionsBottleEndboss(bottle, index) {
-        this.level.endboss.forEach((endboss) => {
-            if (bottle.isColliding(endboss)) {
+     /**
+     * Checks for collisions between a thrown bottle and the endboss.
+     * If a collision is detected, it plays a splash sound, applies damage to the endboss,
+     * updates the endboss's health status, and removes the bottle from the throwableObjects array after a short delay.
+     * 
+     * @param {Object} bottle - The bottle object to check for collisions with the endboss.
+     * @param {number} index - The index of the bottle in the throwableObjects array.
+     */
+     checkCollisionsBottleEndboss(bottle, index) {
+        const { endboss } = this.level;
+
+        for (const boss of endboss) {
+            if (bottle.isColliding(boss)) {
                 bottle.objectIsColiding = true;
                 this.soundBottleSplash.volume = 0.1;
                 bottle.playSound(this.soundBottleSplash);
-                endboss.endbossHit(endboss);
-                this.statusbarEndboss.setPercentage(endboss.energy);
+                boss.endbossHit(boss);
+                this.statusbarEndboss.setPercentage(boss.energy);
+
                 setTimeout(() => {
-                    this.throwableObjects.splice(index, 1)
+                    this.throwableObjects.splice(index, 1);
                 }, 100);
-            };
-        })
+
+                break; // Stop iterating after the first collision
+            }
+        }
     }
 
 
+     /**
+     * Checks for collisions between a thrown bottle and enemies.
+     * If a collision is detected and the enemy is not dead, it plays a splash sound,
+     * marks the bottle as colliding, sets the enemy as dead, 
+     * and removes the bottle from the throwableObjects array after a short delay.
+     * 
+     * @param {Object} bottle - The bottle object to check for collisions with enemies.
+     * @param {number} index - The index of the bottle in the throwableObjects array.
+     */    
     checkCollisionsBottleEnemie(bottle, index) {
         this.arrayOfEnemies.forEach(array => {
             array.forEach(enemy => {
@@ -439,11 +454,18 @@ class World {
             });
         });
     }
-    
 
 
 
-
+    /**
+     * Collects coins when the character collides with a coin item.
+     * Increases the character's coin count by 20 (up to a maximum of 100),
+     * removes the coin from the array, updates the coin status bar,
+     * and plays the coin collection sound.
+     * 
+     * @param {number} index - The index of the coin in the array of items.
+     * @param {Array} arrayOfItems - The array containing coin items.
+     */
     collectingCoins(index, arrayOfItems) {
         if (this.character.coins < 100) {
             this.character.coins += 20;
@@ -455,7 +477,15 @@ class World {
         };
     }
 
-
+    /**
+     * Collects bottles when the character collides with a bottle item.
+     * Increases the character's bottle count by 20 (up to a maximum of 100),
+     * removes the bottle from the array, updates the bottle status bar,
+     * and plays the bottle collection sound.
+     * 
+     * @param {number} index - The index of the bottle in the array of items.
+     * @param {Array} arrayOfItems - The array containing bottle items.
+     */
     collectingBottles(index, arrayOfItems) {
         if (this.character.bottles < 100) {
             this.character.bottles += 20;
@@ -467,116 +497,78 @@ class World {
         };
     }
 
-
-
+    /**
+     * Removes all throwable objects that have fallen below a certain threshold.
+     * Objects with a y-coordinate greater than 1000 will be removed from the array.
+     */
     deleteThrowingObjects() {
         this.throwableObjects = this.throwableObjects.filter((object) => {
             return object.y <= 1000;
         });
     }
 
-
-
-    
-    checkThrownObjects() {
-        if (this.throwCooldown) {
-            return;
-        }
-    
-        if (!isPaused) {
-            if (this.keyboard.D && this.character.bottles > 0) {
-                let bottle = new BottleThrowable((this.character.x + 20), this.character.y + 100, this.character.otherDirection);
-                bottle.isThrown = true;
-                this.throwableObjects.push(bottle);
-                this.character.idleTime = 0;
-                if (this.soundBottleThrow.paused) {
-                    this.soundBottleThrow.playbackRate = 1;
-                    this.soundBottleThrow.volume = 0.1;
-                    bottle.playSound(this.soundBottleThrow);
-                }
-                this.character.bottles = this.character.bottles - 20;
-                this.statusbarBottle.setPercentage(this.character.bottles);
-                this.throwCooldown = true;
-                setTimeout(() => {
-                    this.throwCooldown = false;
-                }, 1000);
-            }
-        }
-    };
-    
-
-
-    draw() {
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.cameraX, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.chickenSmall); 
-        this.addObjectsToMap(this.level.chicken);
-        this.addObjectsToMap(this.level.endboss);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.cameraX, 0);
-        this.addToMap(this.statusbarHealth);
-        this.addToMap(this.statusbarCoin);
-        this.addToMap(this.statusbarBottle);
-        if (this.level.endboss[0].hadFirstContact) {
-            this.addToMap(this.statusbarEndboss);
-        }
-
-        this.showCoins();
-        this.showBottles();
-        this.showHealth();
-       
-        requestAnimationFrame(() => {
-            this.draw();
-        });
-
-
-    }
-
-
+    /**
+     * Displays the current coin count of the character on the canvas.
+     * The coin count is shown in yellow text.
+     */
     showCoins() {
-        this.ctx.font="24px Zabars";
+        this.ctx.font = "24px Zabars";
         this.ctx.fillStyle = '#D7DF01';
         this.ctx.fillText(': ' + this.character.coins + ' %', 225, 97);
     }
 
-
+    /**
+     * Displays the current bottle count of the character on the canvas.
+     * The bottle count is shown in yellow text.
+     */
     showBottles() {
-        this.ctx.font="24px Zabars";
+        this.ctx.font = "24px Zabars";
         this.ctx.fillStyle = '#D7DF01';
         this.ctx.fillText(': ' + this.character.bottles + ' %', 225, 142);
     }
 
-
+    /**
+     * Displays the current health (energy) of the character on the canvas.
+     * The health is shown in yellow text.
+     */
     showHealth() {
-        this.ctx.font="24px Zabars";
+        this.ctx.font = "24px Zabars";
         this.ctx.fillStyle = '#D7DF01';
         this.ctx.fillText(': ' + this.character.energy + ' %', 225, 52);
     }
 
-
-    
+    /**
+     * Adds an array of objects to the map by calling addToMap for each object.
+     * 
+     * @param {Array} objects - An array of objects to be added to the map.
+     */
     addObjectsToMap(objects) {
         objects.forEach((object) => {
             this.addToMap(object);
         });
     }
 
+    /**
+     * Draws a single object on the canvas.
+     * Flips the image if the object is facing the other direction.
+     * 
+     * @param {Object} mo - The object to be drawn on the canvas.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
-        }     
+        }
         mo.draw(this.ctx);
         if (mo.otherDirection) {
-            this.flipImageBack(mo)
+            this.flipImageBack(mo);
         }
     }
 
-
+    /**
+     * Flips the image of the object horizontally by scaling.
+     * 
+     * @param {Object} mo - The object to be flipped.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -584,13 +576,22 @@ class World {
         mo.x = mo.x * -1;
     }
 
-
+    /**
+     * Restores the canvas context to its original state after flipping.
+     * 
+     * @param {Object} mo - The object whose position needs to be restored.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
-
+    /**
+     * Resets the position of chicken objects that have moved off-screen.
+     * If a chicken's x-coordinate is less than or equal to -150, it is repositioned to 4000.
+     * 
+     * @param {Array} chicken - The array of chicken objects to be checked.
+     */
     chickenLoop(chicken) {
         chicken.forEach((chick) => {
             if (chick.x <= -150) {
@@ -599,6 +600,10 @@ class World {
         })
     }
 
+    /**
+     * Resets the position of cloud objects that have moved off-screen.
+     * If a cloud's x-coordinate is less than or equal to -150, it is repositioned to 4000.
+     */
     cloudLoop() {
         this.level.clouds.forEach((cloud) => {
             if (cloud.x <= -150) {
@@ -607,15 +612,27 @@ class World {
         })
     }
 
-
+    /**
+     * Clears the entire canvas to prepare for the next frame.
+     */
     clearCanvas() {
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
+    /**
+     * Clears all intervals that have been set using setInterval.
+     * This is useful for stopping ongoing game loops when the game ends.
+     */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 
+    /**
+     * Plays a given sound if the game is not muted.
+     * Adds the sound to the active sounds list.
+     * 
+     * @param {HTMLAudioElement} sound - The sound to be played.
+     */
     playSound(sound) {
         if (!isMuted) {
             sound.play();
@@ -623,12 +640,24 @@ class World {
         }
     }
     
+    /**
+     * Stops and resets a given sound.
+     * 
+     * @param {HTMLAudioElement} sound - The sound to be stopped.
+     */
     stopSound(sound) {
         sound.pause();
         sound.currentTime = 0;
         activeSounds = activeSounds.filter(s => s !== sound);
     }
 
+    /**
+     * Checks if the character or the endboss is dead.
+     * If the character is dead, it triggers the game over sequence.
+     * If the endboss is dead, it triggers the win sequence.
+     * 
+     * @returns {void}
+     */
     checkIfCharacterOrEndbossIsDead() {
         if (this.character.characterIsDead && !isPaused) {
             this.gameOverTest();
@@ -645,6 +674,9 @@ class World {
         }
     }
 
+    /**
+     * Handles game over logic by pausing the background sound and clearing all intervals.
+     */
     gameOverTest() {
         setTimeout(() => {
             this.backgroundSound.pause();
@@ -652,7 +684,177 @@ class World {
         }, 2000);
     }
 
+
+    /**
+     * Checks if the character can throw a bottle based on cooldown and paused state.
+     * If the 'D' key is pressed and the character has bottles, it calls the throwBottle method.
+     */
+    checkThrownObjects() {
+        if (this.throwCooldown || isPaused) {
+            return; // Exit if throwing is on cooldown or the game is paused
+        }
+        if (this.keyboard.D && this.character.bottles > 0) {
+            this.throwBottle(); // Throw a bottle if conditions are met
+        }
+    }
+
+    /**
+     * Creates a new throwable bottle object and adds it to the list of throwable objects.
+     * Updates the character's idle time and plays the throw sound.
+     * Decreases the number of bottles the character has and starts the throw cooldown.
+     */
+    throwBottle() {
+        const bottle = new BottleThrowable(this.character.x + 20, this.character.y + 100, this.character.otherDirection);
+        bottle.isThrown = true;
+        this.throwableObjects.push(bottle); // Add the thrown bottle to the array
+        this.character.idleTime = 0; // Reset idle time to indicate action
+        this.playThrowSound(bottle); // Play throw sound
+        this.updateCharacterBottles(); // Update the character's bottle count
+        this.startThrowCooldown(); // Start cooldown period to prevent immediate subsequent throws
+    }
+
+    /**
+     * Plays the sound of throwing a bottle if it is not already playing.
+     * Sets playback rate and volume before playing the sound.
+     * 
+     * @param {BottleThrowable} bottle - The bottle object being thrown, used for sound playback.
+     */
+    playThrowSound(bottle) {
+        if (this.soundBottleThrow.paused) {
+            this.soundBottleThrow.playbackRate = 1; // Set playback speed
+            this.soundBottleThrow.volume = 0.1; // Set volume level
+            bottle.playSound(this.soundBottleThrow); // Play the sound associated with throwing a bottle
+        }
+    }
+
+    /**
+     * Updates the character's bottle count and the corresponding status bar.
+     * Decreases the number of bottles by 20.
+     */
+    updateCharacterBottles() {
+        this.character.bottles -= 20; // Reduce bottle count
+        this.statusbarBottle.setPercentage(this.character.bottles); // Update status bar display
+    }
+
+    /**
+     * Initiates a cooldown period for throwing bottles to prevent spamming.
+     * Sets the throwCooldown flag to true and resets it after 1000 milliseconds.
+     */
+    startThrowCooldown() {
+        this.throwCooldown = true; // Set cooldown flag
+        setTimeout(() => {
+            this.throwCooldown = false; // Reset cooldown after the specified time
+        }, 1000);
+    }
+
+
+    /**
+     * Clears the canvas and renders all game objects, including background elements, 
+     * characters, throwable objects, and status bars. Continuously calls itself 
+     * to create an animation loop.
+     */
+    draw() {
+        this.clearCanvas(); // Clear the canvas for redrawing
+        this.translateCanvas(); // Adjust canvas position based on camera
+
+        // Render level objects
+        this.renderBackgroundObjects();
+        this.renderClouds();
+        this.renderCoins();
+        this.renderBottles();
+        this.renderChickens();
+        this.renderEndboss();
+
+        // Render character and throwable objects
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.throwableObjects);
+
+        this.resetCanvasTranslation(); // Reset canvas position to original
+        this.renderStatusBars(); // Render health and item status bars
+
+        // Show endboss status bar after first contact
+        if (this.level.endboss[0].hadFirstContact) {
+            this.addToMap(this.statusbarEndboss);
+        }
+
+        this.showCoins(); // Display coins count
+        this.showBottles(); // Display bottles count
+        this.showHealth(); // Display health status
+
+        requestAnimationFrame(() => this.draw()); // Request the next animation frame
+    }
+
+    /**
+     * Clears the entire canvas.
+     */
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    /**
+     * Translates the canvas context by the camera's X position.
+     */
+    translateCanvas() {
+        this.ctx.translate(this.cameraX, 0);
+    }
+
+    /**
+     * Resets the canvas translation to the original position.
+     */
+    resetCanvasTranslation() {
+        this.ctx.translate(-this.cameraX, 0);
+    }
+
+    /**
+     * Renders background objects onto the canvas.
+     */
+    renderBackgroundObjects() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+    }
+
+    /**
+     * Renders clouds onto the canvas.
+     */
+    renderClouds() {
+        this.addObjectsToMap(this.level.clouds);
+    }
+
+    /**
+     * Renders coins onto the canvas.
+     */
+    renderCoins() {
+        this.addObjectsToMap(this.level.coins);
+    }
+
+    /**
+     * Renders bottles onto the canvas.
+     */
+    renderBottles() {
+        this.addObjectsToMap(this.level.bottles);
+    }
+
+    /**
+     * Renders chickens (both small and regular) onto the canvas.
+     */
+    renderChickens() {
+        this.addObjectsToMap(this.level.chickenSmall);
+        this.addObjectsToMap(this.level.chicken);
+    }
+
+    /**
+     * Renders the endboss onto the canvas.
+     */
+    renderEndboss() {
+        this.addObjectsToMap(this.level.endboss);
+    }
+
+    /**
+     * Renders all status bars (health, coins, bottles) onto the canvas.
+     */
+    renderStatusBars() {
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoin);
+        this.addToMap(this.statusbarBottle);
+    }
+
 }
-
-
-
