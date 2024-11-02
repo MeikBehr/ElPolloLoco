@@ -72,17 +72,46 @@ function initClouds() {
  * @returns {Array<BackgroundObject>}
  */
 function initBackground() {
-    const positions = [-719, 0, 719, 2 * 719, 3 * 719, 4 * 719, 5 * 719, 6 * 719];
-    const layers = [
-        './assets/img/5_background/layers/air.png',
-        './assets/img/5_background/layers/3_third_layer/1.png',
-        './assets/img/5_background/layers/2_second_layer/1.png',
-        './assets/img/5_background/layers/1_first_layer/1.png',
-        './assets/img/5_background/layers/3_third_layer/2.png',
-        './assets/img/5_background/layers/2_second_layer/2.png',
-        './assets/img/5_background/layers/1_first_layer/2.png'
+    return [
+        new BackgroundObject('./assets/img/5_background/layers/air.png', -719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/1.png', -719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/1.png', -719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/1.png', -719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 0 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/2.png', 0 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/2.png', 0 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/2.png', 0 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 1*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/1.png', 1*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/1.png', 1*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/1.png', 1*719 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 2*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/2.png', 2*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/2.png', 2*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/2.png', 2*719 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 3*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/1.png', 3*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/1.png', 3*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/1.png', 3*719 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 4*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/2.png', 4*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/2.png', 4*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/2.png', 4*719 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 5*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/1.png', 5*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/1.png', 5*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/1.png', 5*719 ,0),
+
+        new BackgroundObject('./assets/img/5_background/layers/air.png', 6*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/3_third_layer/2.png', 6*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/2_second_layer/2.png', 6*719 ,0),
+        new BackgroundObject('./assets/img/5_background/layers/1_first_layer/2.png', 6*719 ,0),
     ];
-    return positions.flatMap(position => layers.map(layer => new BackgroundObject(layer, position, 0)));
 }
 
 /**
