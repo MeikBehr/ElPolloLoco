@@ -1,29 +1,47 @@
+/**
+ * Represents a normal chicken enemy.
+ * @extends NormalEnemies
+ */
 class Chicken extends NormalEnemies {
 
+    /** @type {number} - Height of the chicken */
     height = 100;
+
+    /** @type {number} - Width of the chicken */
     width = 100;
+
+    /** @type {number} - Y position of the chicken */
     y = 325;
+
+    /** @type {number} - Speed of the chicken */
     speed = 0.7;
 
+    /** @type {boolean} - Indicates if the chicken is dead */
     enemyIsDead = false;
 
+    /** @type {{top: number, bottom: number, left: number, right: number}} - Collision offset values */
     offset = {
         top: 0,
         bottom: 0,
         left: 0,
         right: 0,
-      };
+    };
 
+    /** @type {string[]} - Array of images for the chicken walking animation */
     IMAGES_WALKING = [
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
         './assets/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
 
+    /** @type {string[]} - Array of images for the chicken dead animation */
     IMAGES_DEAD = [
         './assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
     ];
 
+    /** 
+     * @param {number} x - Initial x position of the chicken
+     */
     constructor(x) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
@@ -33,6 +51,4 @@ class Chicken extends NormalEnemies {
         this.speed = this.speed + Math.random() * 0.25;
         this.animate();
     }
-
-
 }
