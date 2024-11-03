@@ -14,7 +14,7 @@ class Character extends MovableObject {
     killCountChicken = 0;
     killCountSmallChicken = 0;
     soundHurtPlayed = false;
-
+    
     /**
      * Offset values for collision detection.
      */
@@ -239,13 +239,15 @@ class Character extends MovableObject {
      */
     animationIdle() {
         this.playAnimation(this.IMAGES_STANDING);
-        this.stopSound(this.world.soundSnoring);
         this.idleTime += 100;
         if (this.idleTime >= 8000) {
             this.playAnimation(this.IMAGES_SLEEPING);
-            this.world.soundSnoring.volume = 0.04;
+            this.world.soundSnoring.playbackRate = 1;
+            this.world.soundSnoring.volume = 0.08;
             this.playSound(this.world.soundSnoring);
+            this.soundSnoring = true;
         }
+
     }
 
     /**
