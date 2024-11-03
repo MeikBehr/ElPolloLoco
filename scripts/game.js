@@ -52,8 +52,10 @@ function showElements() {
  */
 function styleCanvasBorderRadius() {
     const canvas = document.getElementById('canvas');
+    const game = document.getElementById('game');
     canvas.style.borderRadius = "2rem";
     canvas.classList.remove('fullscreen-mode');
+    game.style.borderRadius = "2rem";
     document.getElementById('content__canvas').classList.remove('fullscreen-mode');
 }
 
@@ -68,13 +70,13 @@ function resetBorderRadiusForElements() {
  * Adjusts the styles for normal screen mode based on whether the game has started.
  */
 function styleChangeForNormalScreen() {
-    if (!fullscreen && gameStart) {
+    if (!fullscreen) {
         showElements();
         styleCanvasBorderRadius();
-    }
-    
-    if (!fullscreen && !gameStart) {
-        resetBorderRadiusForElements();
+
+        document.querySelectorAll('.bordRad').forEach(ele => {
+            ele.style.borderRadius = '2rem';
+        });
     }
 }
 
@@ -231,7 +233,7 @@ function setFullscreenStyles() {
         const element = document.getElementById(id);
         if (element) element.classList.add('d-none');
     });
-    ['content__canvas', 'canvas'].forEach(id => {
+    ['content__canvas', 'canvas', 'game__won', 'game__lost'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.style.borderRadius = "0px";
