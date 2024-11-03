@@ -99,7 +99,7 @@ class Endboss extends MovableObject {
      * @param {Endboss} endboss - The end boss that is hit.
      */
     endbossHit(endboss) {
-        endboss.energy -= 100;
+        endboss.energy -= 20;
         this.i = 22;
         if (endboss.energy < 0) {
             endboss.energy = 0;
