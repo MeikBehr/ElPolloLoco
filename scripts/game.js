@@ -431,8 +431,6 @@ function checkOrientation() {
     }
 }
 
-/* ----------------------------------------------------------------- */
-
 /**
  * Adds a touch event listener to a button that updates the keyboard state 
  * when touched.
@@ -443,9 +441,8 @@ function checkOrientation() {
 function addTouchEvent(buttonId, action) {
     const button = document.getElementById(buttonId);
     button.addEventListener('touchstart', (e) => {
-        e.preventDefault();
         keyboard[action] = true;
-    });
+    }, { passive: true });
 }
 
 /**
@@ -469,7 +466,7 @@ function addTouchEndEvent(buttonId, action) {
     const button = document.getElementById(buttonId);
     button.addEventListener('touchend', () => {
         keyboard[action] = false;
-    });
+    }, { passive: true });
 }
 
 /**
