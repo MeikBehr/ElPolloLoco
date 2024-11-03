@@ -125,15 +125,15 @@ class MovableObject extends DrawableObjects {
      */
     hit(enemy) {
         if (enemy instanceof ChickenSmall) {
-            this.energy -= 5;
+            this.energy -= 20;
         }
 
         if (enemy instanceof Chicken) {
-            this.energy -= 10;
+            this.energy -= 30;
         }
 
         if (enemy instanceof Endboss) {
-            this.energy -= 20;
+            this.energy -= 50;
         }
 
         if (this.energy < 0) {
