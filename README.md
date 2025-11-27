@@ -1,5 +1,5 @@
 # ElPolloLoco
-Writing a littel 2d game to hone my skills. This is a project of the Developer Akademie (Modul 12) 
+Writing a little 2d game to hone my skills. This project was created as part of a training module at the Developer Akademie.
 
 MIT License
 
