@@ -1,14 +1,41 @@
-# ElPolloLoco
-Writing a little 2d game to hone my skills. This project was created as part of a training module at the Developer Akademie.
+# El Pollo Loco – 2D Jump-and-Run Game
 
-MIT License
+El Pollo Loco is a 2D browser-based jump-and-run game developed with vanilla JavaScript. The player controls Pepe, collects coins and salsa bottles, and fights enemies and the final boss. The project focuses on object-oriented programming, game mechanics, and real-time interactions.
 
-Copyright (c) 2024 Meik Behr
+## 🔧 Tech Stack
+- HTML5
+- CSS
+- JavaScript (Vanilla)
+- Object-Oriented Programming (OOP)
+- Git & GitHub
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+## 🚀 Live Demo
+👉 https://develobehr.de/el-pollo-loco/
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+## 📂 Repository
+👉 https://github.com/MeikBehr/ElPolloLoco
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## ✅ Features
+- 2D side-scrolling jump-and-run gameplay
+- Character movement and collision detection
+- Enemy AI and final boss fight
+- Collectable items (coins, salsa bottles)
+- Health and energy system
+- Sound effects and animations
+- Responsive canvas rendering
 
-(https://opensource.org/license/mit)
+## 🧠 My Contribution & Learning Goals
+- Implementing object-oriented game logic in JavaScript
+- Collision detection and physics-based movement
+- State handling for player, enemies and game progress
+- Asset loading and performance optimization
+- Building a complete browser game without frameworks
+
+## 🎓 Project Background
+This project was developed as part of the **Frontend Developer training program at the Developer Akademie**.
+
+## 📌 Status
+Project completed and fully playable.
+
+## 📄 License
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
